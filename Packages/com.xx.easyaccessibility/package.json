@@ -1,0 +1,11 @@
+{
+    "name": "com.xx.easyaccessibility",
+    "version": "0.0.1",
+    "displayName": "Easy Accessibility",
+    "description": "An open-source tool for making accessibility easy.",
+    "unity": "6000.2",
+    "author": {
+        "name": "Jeremiah Stevens",
+        "email": "jerdstevens@gmail.com"
+    }
+}
