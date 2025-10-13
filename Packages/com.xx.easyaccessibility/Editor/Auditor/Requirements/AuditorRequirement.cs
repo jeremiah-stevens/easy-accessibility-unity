@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace EasyAccessibility
 {
@@ -16,7 +17,10 @@ namespace EasyAccessibility
 
 
 
-        public virtual void Audit() { }
+        public virtual void Audit()
+        {
+            Debug.Log($"Performing audit '{this.GetType().Name}'...");
+        }
 
 
 
