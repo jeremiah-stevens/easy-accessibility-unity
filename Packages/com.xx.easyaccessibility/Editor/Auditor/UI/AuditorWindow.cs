@@ -34,14 +34,21 @@ namespace EasyAccessibility
             var auditorRequirements = AssetDatabase.LoadAssetByGUID<AuditorRequirementsSO>(new UnityEditor.GUID(AssetDatabase.FindAssets("t:auditorrequirementsso")[0]));
             auditorRequirements.report = new();
 
+            int issueCount = 0;
+
             foreach (var type in types)
             {
                 var instance = (AuditorRequirement)Activator.CreateInstance(type);
                 instance.Audit();
                 auditorRequirements.report.requirements.Add(instance);
+                issueCount += instance.issues.Count;
             }
 
+            Debug.Log($"Finished! Found '{issueCount}' issues");
+
+            EditorUtility.SetDirty(auditorRequirements);
             AssetDatabase.SaveAssets();
+
         }
 
 

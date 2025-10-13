@@ -7,50 +7,90 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using System.Text;
+using UnityEditor.SceneManagement;
 
 namespace EasyAccessibility
 {
+    /*TODO:
+     * - Consider allowing settings for checking assets more granularly (ex: also check packages, only check those that will be included in build, etc.)
+     * - Duplicate checks (referencing same object and same path)
+     */
     [CreateAssetMenu(fileName = "AuditorRequirementWCAG1_1_Title", menuName = "Scriptable Objects/AuditorRequirementWCAG1_1_Title")]
     public class AuditorRequirementWCAG1_1_1_NonTextContent : AuditorRequirement
     {
         public override void Audit()
         {
-            /*TODO:
-             * * Check every prefab for the given elements
-             * * Check every scene for the given elements
-             */
+            base.Audit();
 
             issues.Clear();
 
-            var prefabs = AssetDatabase.FindAssetGUIDs("t:prefab", new[] {"Assets"});
-            foreach(var prefab in prefabs)
-            {
-                var obj = AssetDatabase.LoadAssetByGUID<GameObject>(prefab);
+            AuditPrefabs();
 
-                AuditComponents<UnityEngine.UI.Image>(obj);
-                AuditComponents<RawImage>(obj);
-                AuditComponents<UnityEngine.UI.Toggle>(obj);
-                AuditComponents<UnityEngine.UI.Slider>(obj);
-                AuditComponents<Scrollbar>(obj);
-                AuditComponents<UnityEngine.UI.Button>(obj);
-                AuditComponents<Dropdown>(obj);
-                AuditComponents<InputField>(obj);
-                AuditComponents<Text>(obj);
-                AuditComponents<TMP_InputField>(obj);
-                AuditComponents<TMP_Text>(obj);
-                AuditComponents<TMP_Dropdown>(obj);
-            }
+            AuditUIToolkit();
+
+            AuditScenes();
 
             this.status = (issues.Count == 0) ? Status.Unsure : Status.Fail;
         }
 
-        private void AuditComponents<T>(GameObject go) where T : UnityEngine.Component
+
+
+
+        #region Audit GameObjects (Prefabs, Scenes)
+
+        private void AuditPrefabs()
         {
-            var components = go.GetComponentsInChildren<T>(includeInactive: true);
+            var prefabs = AssetDatabase.FindAssetGUIDs("t:prefab", new[] { "Assets" });
+            foreach (var prefab in prefabs)
+            {
+                var obj = AssetDatabase.LoadAssetByGUID<GameObject>(prefab);
+                AuditObject(obj);
+            }
+        }
+
+        private void AuditScenes()
+        {
+            var startingScenePath = EditorSceneManager.GetActiveScene().path;
+
+            var scenes = AssetDatabase.FindAssetGUIDs("t:scene", new[] { "Assets" });
+            foreach (var scene in scenes)
+            {
+                var path = AssetDatabase.GUIDToAssetPath(scene);
+                var currScene = EditorSceneManager.OpenScene(path, OpenSceneMode.Single);
+
+                var objs = GameObject.FindObjectsByType<GameObject>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+                foreach (var obj in objs)
+                {
+                    AuditObject(obj, markScene: true);
+                }
+            }
+
+            EditorSceneManager.OpenScene(startingScenePath, OpenSceneMode.Single);
+        }
+
+        private void AuditObject(GameObject gameObject, bool markScene = false)
+        {
+            AuditComponents<UnityEngine.UI.Image>(gameObject, markScene);
+            AuditComponents<RawImage>(gameObject, markScene);
+            AuditComponents<UnityEngine.UI.Toggle>(gameObject, markScene);
+            AuditComponents<UnityEngine.UI.Slider>(gameObject, markScene);
+            AuditComponents<Scrollbar>(gameObject, markScene);
+            AuditComponents<UnityEngine.UI.Button>(gameObject, markScene);
+            AuditComponents<Dropdown>(gameObject, markScene);
+            AuditComponents<InputField>(gameObject, markScene);
+            AuditComponents<Text>(gameObject, markScene);
+            AuditComponents<TMP_InputField>(gameObject, markScene);
+            AuditComponents<TMP_Text>(gameObject, markScene);
+            AuditComponents<TMP_Dropdown>(gameObject, markScene);
+        }
+
+        private void AuditComponents<T>(GameObject gameObject, bool markScene = false) where T : UnityEngine.Component
+        {
+            var components = gameObject.GetComponentsInChildren<T>(includeInactive: true);
 
             StringBuilder sb = new();
 
-            foreach(var curr in components)
+            foreach (var curr in components)
             {
                 var accessibilityElement = curr.transform.GetComponent<AccessibilityElement>();
                 if (accessibilityElement == null)
@@ -59,15 +99,15 @@ namespace EasyAccessibility
                     sb.Append(curr.name);
                     var parent = curr.transform.parent;
 
-                    while(parent != null)
+                    while (parent != null)
                     {
-                        sb.Insert(0, parent.name+"/");
+                        sb.Insert(0, parent.name + "/");
                         parent = parent.parent;
                     }
 
                     issues.Add(new Issue()
                     {
-                        asset = go,
+                        asset = (markScene) ? AssetDatabase.LoadAssetAtPath<SceneAsset>(gameObject.scene.path) : gameObject,
                         issue = $"Object '{sb.ToString()}' is missing an accessibility element."
                     });
                 }
@@ -77,6 +117,47 @@ namespace EasyAccessibility
                 }
             }
         }
+
+        #endregion
+
+
+
+        #region Audit UIToolkit
+
+        private void AuditUIToolkit()
+        {
+            var visualTreeAssets = AssetDatabase.FindAssetGUIDs("t:visualtreeasset", new[] { "Assets" });
+            foreach (var asset in visualTreeAssets)
+            {
+                var obj = AssetDatabase.LoadAssetByGUID<VisualTreeAsset>(asset);
+
+                foreach(var curr in obj.Instantiate().hierarchy.Children())
+                {
+                    AuditVisualElementsRecursive(curr, obj, "");
+                }
+            }
+        }
+
+        private void AuditVisualElementsRecursive(VisualElement rootElement, VisualTreeAsset asset, string subpath)
+        {
+            AuditVisualElement(rootElement, asset, subpath + $"/{rootElement.name}");
+
+            foreach(var curr in rootElement.Children())
+            {
+                AuditVisualElementsRecursive(curr, asset, subpath + $"/{rootElement.name}");
+            }
+        }
+
+        private void AuditVisualElement(VisualElement visualElement, VisualTreeAsset asset, string path)
+        {
+            issues.Add(new Issue() //TODO: should find some way of checking if was actually assigned to accessibility node, leaving as false positive as starting point
+            {
+                asset = asset,
+                issue = $"Visual Element '{path}' is not assigned to Accessibility Hierarchy"
+            });
+        }
+
+        #endregion
 
 
 
