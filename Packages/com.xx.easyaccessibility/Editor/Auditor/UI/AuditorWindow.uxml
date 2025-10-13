@@ -1,0 +1,3 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.xx.easyaccessibility/Editor/Auditor/UI/AuditorWindow.uss?fileID=7433441132597879392&amp;guid=9594b168858ff3941846427e981fdd7c&amp;type=3#AuditorWindow" />
+</ui:UXML>
