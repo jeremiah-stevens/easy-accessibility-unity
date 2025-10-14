@@ -15,7 +15,6 @@ namespace EasyAccessibility
      * - Consider allowing settings for checking assets more granularly (ex: also check packages, only check those that will be included in build, etc.)
      * - Duplicate checks (referencing same object and same path)
      */
-    [CreateAssetMenu(fileName = "AuditorRequirementWCAG1_1_Title", menuName = "Scriptable Objects/AuditorRequirementWCAG1_1_Title")]
     public class AuditorRequirementWCAG1_1_1_NonTextContent : AuditorRequirement
     {
         public override void Audit()
