@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 namespace EasyAccessibility
@@ -20,6 +22,64 @@ namespace EasyAccessibility
         public virtual void Audit()
         {
             Debug.Log($"Performing audit '{this.GetType().Name}'...");
+        }
+
+        protected void AuditForInstanceWithCamera<T>(string failMessage) where T : UnityEngine.Object
+        {
+            var startingScenePath = EditorSceneManager.GetActiveScene().path;
+
+            var scenes = AssetDatabase.FindAssetGUIDs("t:scene", new[] { "Assets" });
+            foreach (var scene in scenes)
+            {
+                var path = AssetDatabase.GUIDToAssetPath(scene);
+                var currScene = EditorSceneManager.OpenScene(path, OpenSceneMode.Single);
+
+                var cam = GameObject.FindAnyObjectByType<Camera>(FindObjectsInactive.Include);
+                if (cam)
+                {
+                    var caption = GameObject.FindFirstObjectByType<T>(FindObjectsInactive.Include);
+
+                    if (caption == null)
+                    {
+                        issues.Add(new Issue()
+                        {
+                            asset = AssetDatabase.LoadAssetAtPath<SceneAsset>(cam.scene.path),
+                            issue = $"Scene '{cam.scene.name}' {failMessage}"
+                        });
+                    }
+                }
+            }
+
+            EditorSceneManager.OpenScene(startingScenePath, OpenSceneMode.Single);
+        }
+
+        protected void AuditForTranscripts<T>(string searchPattern) where T : UnityEngine.Object
+        {
+            var assetTranscriptGuids = AssetDatabase.FindAssetGUIDs("t:assettranscriptso", new[] { "Assets" }); //TODO: find a way of finding IAssetTranscripts
+            var transcripts = new Dictionary<UnityEngine.Object, AssetTranscriptSO>();
+            foreach (var curr in assetTranscriptGuids)
+            {
+                var currTranscriptSO = AssetDatabase.LoadAssetByGUID<AssetTranscriptSO>(curr);
+                transcripts.Add(currTranscriptSO.Asset, currTranscriptSO);
+            }
+
+            var assets = AssetDatabase.FindAssetGUIDs(searchPattern, new[] { "Assets" });
+            foreach (var curr in assets)
+            {
+                var currAsset = AssetDatabase.LoadAssetByGUID<T>(curr);
+                if (transcripts.ContainsKey(currAsset))
+                {
+                    //TODO: validate transcript information
+                }
+                else
+                {
+                    issues.Add(new Issue()
+                    {
+                        asset = currAsset,
+                        issue = $"Asset '{currAsset.name}' does not have transcript information."
+                    });
+                }
+            }
         }
 
 
