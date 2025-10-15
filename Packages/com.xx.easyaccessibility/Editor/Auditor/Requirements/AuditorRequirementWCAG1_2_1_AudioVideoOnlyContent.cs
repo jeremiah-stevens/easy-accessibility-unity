@@ -15,40 +15,12 @@ namespace EasyAccessibility
 
             issues.Clear();
 
-            var assetTranscriptGuids = AssetDatabase.FindAssetGUIDs("t:assettranscriptso", new[] { "Assets" }); //TODO: find a way of finding IAssetTranscripts
-            var dict = new Dictionary<UnityEngine.Object, AssetTranscriptSO>();
-            foreach(var curr in assetTranscriptGuids)
-            {
-                var currTranscriptSO = AssetDatabase.LoadAssetByGUID<AssetTranscriptSO>(curr);
-                dict.Add(currTranscriptSO.Asset, currTranscriptSO);
-            }
-
-            AuditAssetType<AudioClip>(dict, "t:audioclip");
-            AuditAssetType<VideoClip>(dict, "t:videoclip");
+            AuditForTranscripts<AudioClip>("t:audioclip");
+            AuditForTranscripts<VideoClip>("t:videoclip");
 
             this.status = (issues.Count == 0) ? Status.Pass : Status.Fail;
         }
 
-        private void AuditAssetType<T>(Dictionary<UnityEngine.Object, AssetTranscriptSO> transcripts, string searchParam) where T : UnityEngine.Object
-        {
-            var audioClips = AssetDatabase.FindAssetGUIDs(searchParam, new[] { "Assets" });
-            foreach(var curr in audioClips)
-            {
-                var currAsset = AssetDatabase.LoadAssetByGUID<T>(curr);
-                if(transcripts.ContainsKey(currAsset))
-                {
-                    //TODO: validate transcript information
-                }
-                else
-                {
-                    issues.Add(new Issue()
-                    {
-                        asset = currAsset,
-                        issue = $"Asset '{currAsset.name}' does not have transcript information."
-                    });
-                }
-            }
-        }
 
 
 
