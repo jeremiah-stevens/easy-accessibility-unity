@@ -1,6 +1,6 @@
 namespace EasyAccessibility
 {
-    public class AuditorRequirementWCAG1_2_9_AudioOnlyLive : AuditorRequirementWCAG1_2_4_CaptionsLive
+    public class AuditorRequirementWCAG_1_2_09_AudioOnlyLive : AuditorRequirementWCAG_1_2_04_CaptionsLive
     {
         public override void Audit()
         {
@@ -16,7 +16,7 @@ namespace EasyAccessibility
 
 
 
-        public AuditorRequirementWCAG1_2_9_AudioOnlyLive()
+        public AuditorRequirementWCAG_1_2_09_AudioOnlyLive()
         {
             source = AuditorRequirementKeys.Source_WCAG;
             name = AuditorRequirementKeys.Title_WCAG_1_2_9;

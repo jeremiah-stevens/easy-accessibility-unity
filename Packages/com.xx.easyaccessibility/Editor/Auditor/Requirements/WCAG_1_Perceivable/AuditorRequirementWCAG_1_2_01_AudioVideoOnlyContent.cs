@@ -7,7 +7,7 @@ using UnityEngine.Video;
 
 namespace EasyAccessibility
 {
-    public class AuditorRequirementWCAG1_2_1_AudioVideoOnlyContent : AuditorRequirement
+    public class AuditorRequirementWCAG_1_2_01_AudioVideoOnlyContent : AuditorRequirement
     {
         public override void Audit()
         {
@@ -24,7 +24,7 @@ namespace EasyAccessibility
 
 
 
-        public AuditorRequirementWCAG1_2_1_AudioVideoOnlyContent()
+        public AuditorRequirementWCAG_1_2_01_AudioVideoOnlyContent()
         {
             source = AuditorRequirementKeys.Source_WCAG;
             name = AuditorRequirementKeys.Title_WCAG_1_2_1;

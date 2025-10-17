@@ -15,7 +15,7 @@ namespace EasyAccessibility
      * - Consider allowing settings for checking assets more granularly (ex: also check packages, only check those that will be included in build, etc.)
      * - Duplicate checks (referencing same object and same path)
      */
-    public class AuditorRequirementWCAG1_1_1_NonTextContent : AuditorRequirement
+    public class AuditorRequirementWCAG_1_1_01_NonTextContent : AuditorRequirement
     {
         public override void Audit()
         {
@@ -74,6 +74,7 @@ namespace EasyAccessibility
             AuditComponents<UnityEngine.UI.Toggle>(gameObject, markScene);
             AuditComponents<UnityEngine.UI.Slider>(gameObject, markScene);
             AuditComponents<Scrollbar>(gameObject, markScene);
+            AuditComponents<ScrollRect>(gameObject, markScene);
             AuditComponents<UnityEngine.UI.Button>(gameObject, markScene);
             AuditComponents<Dropdown>(gameObject, markScene);
             AuditComponents<InputField>(gameObject, markScene);
@@ -161,7 +162,7 @@ namespace EasyAccessibility
 
 
 
-        public AuditorRequirementWCAG1_1_1_NonTextContent()
+        public AuditorRequirementWCAG_1_1_01_NonTextContent()
         {
             source = AuditorRequirementKeys.Source_WCAG;
             name = AuditorRequirementKeys.Title_WCAG_1_1_1;

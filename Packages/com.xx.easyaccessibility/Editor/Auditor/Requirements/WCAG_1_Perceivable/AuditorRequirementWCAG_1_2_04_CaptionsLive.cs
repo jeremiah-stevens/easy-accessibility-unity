@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace EasyAccessibility
 {
-    public class AuditorRequirementWCAG1_2_4_CaptionsLive : AuditorRequirement
+    public class AuditorRequirementWCAG_1_2_04_CaptionsLive : AuditorRequirement
     {
         public override void Audit()
         {
@@ -25,7 +25,7 @@ namespace EasyAccessibility
 
 
 
-        public AuditorRequirementWCAG1_2_4_CaptionsLive()
+        public AuditorRequirementWCAG_1_2_04_CaptionsLive()
         {
             source = AuditorRequirementKeys.Source_WCAG;
             name = AuditorRequirementKeys.Title_WCAG_1_2_4;
