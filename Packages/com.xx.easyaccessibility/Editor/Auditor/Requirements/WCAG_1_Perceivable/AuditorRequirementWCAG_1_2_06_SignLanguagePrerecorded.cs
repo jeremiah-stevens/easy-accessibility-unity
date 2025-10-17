@@ -1,6 +1,6 @@
 namespace EasyAccessibility
 {
-    public class AuditorRequirementWCAG1_2_6_SignLanguagePrerecorded : AuditorRequirement
+    public class AuditorRequirementWCAG_1_2_06_SignLanguagePrerecorded : AuditorRequirement
     {
         public override void Audit()
         {
@@ -21,7 +21,7 @@ namespace EasyAccessibility
 
 
 
-        public AuditorRequirementWCAG1_2_6_SignLanguagePrerecorded()
+        public AuditorRequirementWCAG_1_2_06_SignLanguagePrerecorded()
         {
             source = AuditorRequirementKeys.Source_WCAG;
             name = AuditorRequirementKeys.Title_WCAG_1_2_6;

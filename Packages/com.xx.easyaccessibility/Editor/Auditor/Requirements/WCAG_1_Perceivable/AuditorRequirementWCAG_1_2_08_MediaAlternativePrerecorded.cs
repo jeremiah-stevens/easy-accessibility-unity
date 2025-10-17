@@ -2,7 +2,7 @@ using UnityEngine.Video;
 
 namespace EasyAccessibility
 {
-    public class AuditorRequirementWCAG1_2_8_MediaAlternativePrerecorded : AuditorRequirement
+    public class AuditorRequirementWCAG_1_2_08_MediaAlternativePrerecorded : AuditorRequirement
     {
         public override void Audit()
         {
@@ -18,7 +18,7 @@ namespace EasyAccessibility
 
 
 
-        public AuditorRequirementWCAG1_2_8_MediaAlternativePrerecorded()
+        public AuditorRequirementWCAG_1_2_08_MediaAlternativePrerecorded()
         {
             source = AuditorRequirementKeys.Source_WCAG;
             name = AuditorRequirementKeys.Title_WCAG_1_2_8;

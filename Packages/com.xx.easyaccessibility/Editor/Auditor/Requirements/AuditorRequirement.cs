@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace EasyAccessibility
 {
+    /*TODO:
+     * - Update AuditForInstanceWithCamera to find all monobehaviours and then find those that are of the interface type
+     */
     [Serializable]
     public class AuditorRequirement
     {
@@ -22,6 +25,8 @@ namespace EasyAccessibility
         public virtual void Audit()
         {
             Debug.Log($"Performing audit '{this.GetType().Name}'...");
+
+            this.status = Status.Unsure; //by default, we set it to unsure
         }
 
         protected void AuditForInstanceWithCamera<T>(string failMessage) where T : UnityEngine.Object

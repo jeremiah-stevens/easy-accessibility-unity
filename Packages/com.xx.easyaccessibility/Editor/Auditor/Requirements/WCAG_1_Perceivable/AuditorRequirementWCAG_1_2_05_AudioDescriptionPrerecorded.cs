@@ -1,8 +1,8 @@
 namespace EasyAccessibility
 {
-    public class AuditorRequirementWCAG1_2_5_AudioDescriptionPrerecorded : AuditorRequirementWCAG1_2_1_AudioVideoOnlyContent
+    public class AuditorRequirementWCAG_1_2_05_AudioDescriptionPrerecorded : AuditorRequirementWCAG_1_2_01_AudioVideoOnlyContent
     {
-        public AuditorRequirementWCAG1_2_5_AudioDescriptionPrerecorded()
+        public AuditorRequirementWCAG_1_2_05_AudioDescriptionPrerecorded()
         {
             source = AuditorRequirementKeys.Source_WCAG;
             name = AuditorRequirementKeys.Title_WCAG_1_2_5;
