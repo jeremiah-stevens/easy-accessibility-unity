@@ -8,6 +8,7 @@ namespace EasyAccessibility
 {
     /*TODO:
      * - Update AuditForInstanceWithCamera to find all monobehaviours and then find those that are of the interface type
+     * - Consider setting up as a ScriptableObject instead; find the commonalities and write up methods + SOs for each
      */
     [Serializable]
     public class AuditorRequirement

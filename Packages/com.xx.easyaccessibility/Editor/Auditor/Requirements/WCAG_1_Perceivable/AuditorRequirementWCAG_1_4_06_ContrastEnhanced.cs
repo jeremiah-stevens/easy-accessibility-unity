@@ -13,7 +13,7 @@ namespace EasyAccessibility
             name = AuditorRequirementKeys.GetTitle(1,4,6);
             description = AuditorRequirementKeys.GetDescription(1,4,6);
             referenceLink = AuditorRequirementKeys.GetUrl(1,4,6);
-            status = Status.None;
+            
         }
     }
 }

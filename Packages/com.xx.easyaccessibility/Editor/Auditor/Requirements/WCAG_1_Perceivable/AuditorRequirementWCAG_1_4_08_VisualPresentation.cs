@@ -6,7 +6,7 @@ namespace EasyAccessibility
         {
             base.Audit();
 
-            AuditForInstanceWithCamera<TextSettings>("has no VisualSettingsp provider.");
+            AuditForInstanceWithCamera<TextSettings>("has no VisualSettings provider.");
         }
 
 
@@ -17,7 +17,7 @@ namespace EasyAccessibility
             name = AuditorRequirementKeys.GetTitle(1,4,8);
             description = AuditorRequirementKeys.GetDescription(1,4,8);
             referenceLink = AuditorRequirementKeys.GetUrl(1,4,8);
-            status = Status.None;
+            
         }
     }
 }
