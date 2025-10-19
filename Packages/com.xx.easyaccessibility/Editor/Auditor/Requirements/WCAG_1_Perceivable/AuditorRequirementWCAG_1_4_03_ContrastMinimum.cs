@@ -13,9 +13,9 @@ namespace EasyAccessibility
         public AuditorRequirementWCAG_1_4_03_ContrastMinimum()
         {
             source = AuditorRequirementKeys.Source_WCAG;
-            name = AuditorRequirementKeys.Title_WCAG_1_4_3;
-            description = AuditorRequirementKeys.Description_WCAG_1_4_3;
-            referenceLink = AuditorRequirementKeys.URL_WCAG_1_4_3;
+            name = AuditorRequirementKeys.GetTitle(1,4,3);
+            description = AuditorRequirementKeys.GetDescription(1,4,3);
+            referenceLink = AuditorRequirementKeys.GetUrl(1,4,3);
             status = Status.None;
         }
     }

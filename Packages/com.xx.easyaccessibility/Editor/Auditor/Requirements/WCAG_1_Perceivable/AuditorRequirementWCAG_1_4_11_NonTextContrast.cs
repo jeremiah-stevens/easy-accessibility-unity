@@ -8,9 +8,9 @@ namespace EasyAccessibility
         public AuditorRequirementWCAG_1_4_11_NonTextContrast()
         {
             source = AuditorRequirementKeys.Source_WCAG;
-            name = AuditorRequirementKeys.Title_WCAG_1_4_11;
-            description = AuditorRequirementKeys.Description_WCAG_1_4_11;
-            referenceLink = AuditorRequirementKeys.URL_WCAG_1_4_11;
+            name = AuditorRequirementKeys.GetTitle(1,4,11);
+            description = AuditorRequirementKeys.GetDescription(1,4,11);
+            referenceLink = AuditorRequirementKeys.GetUrl(1,4,11);
             status = Status.None;
         }
     }

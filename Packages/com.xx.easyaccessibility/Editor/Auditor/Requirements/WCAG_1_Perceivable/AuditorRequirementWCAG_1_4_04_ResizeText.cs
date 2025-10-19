@@ -9,9 +9,9 @@ namespace EasyAccessibility
         public AuditorRequirementWCAG_1_4_04_ResizeText()
         {
             source = AuditorRequirementKeys.Source_WCAG;
-            name = AuditorRequirementKeys.Title_WCAG_1_4_4;
-            description = AuditorRequirementKeys.Description_WCAG_1_4_4;
-            referenceLink = AuditorRequirementKeys.URL_WCAG_1_4_4;
+            name = AuditorRequirementKeys.GetTitle(1,4,4);
+            description = AuditorRequirementKeys.GetDescription(1,4,4);
+            referenceLink = AuditorRequirementKeys.GetUrl(1,4,4);
             status = Status.None;
         }
     }

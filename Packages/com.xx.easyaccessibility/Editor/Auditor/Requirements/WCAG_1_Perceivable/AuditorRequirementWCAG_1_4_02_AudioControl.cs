@@ -19,9 +19,9 @@ namespace EasyAccessibility
         public AuditorRequirementWCAG_1_4_02_AudioControl()
         {
             source = AuditorRequirementKeys.Source_WCAG;
-            name = AuditorRequirementKeys.Title_WCAG_1_4_2;
-            description = AuditorRequirementKeys.Description_WCAG_1_4_2;
-            referenceLink = AuditorRequirementKeys.URL_WCAG_1_4_2;
+            name = AuditorRequirementKeys.GetTitle(1,4,2);
+            description = AuditorRequirementKeys.GetDescription(1,4,2);
+            referenceLink = AuditorRequirementKeys.GetUrl(1,4,2);
             status = Status.None;
         }
     }

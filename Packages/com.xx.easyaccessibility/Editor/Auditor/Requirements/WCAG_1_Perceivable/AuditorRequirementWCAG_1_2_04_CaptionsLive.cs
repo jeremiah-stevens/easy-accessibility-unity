@@ -28,9 +28,9 @@ namespace EasyAccessibility
         public AuditorRequirementWCAG_1_2_04_CaptionsLive()
         {
             source = AuditorRequirementKeys.Source_WCAG;
-            name = AuditorRequirementKeys.Title_WCAG_1_2_4;
-            description = AuditorRequirementKeys.Description_WCAG_1_2_4;
-            referenceLink = AuditorRequirementKeys.URL_WCAG_1_2_4;
+            name = AuditorRequirementKeys.GetTitle(1,2,4);
+            description = AuditorRequirementKeys.GetDescription(1,2,4);
+            referenceLink = AuditorRequirementKeys.GetUrl(1,2,4);
             status = Status.None;
         }
     }

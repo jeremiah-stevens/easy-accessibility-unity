@@ -9,9 +9,9 @@ namespace EasyAccessibility
         public AuditorRequirementWCAG_1_4_12_TextSpacing()
         {
             source = AuditorRequirementKeys.Source_WCAG;
-            name = AuditorRequirementKeys.Title_WCAG_1_4_12;
-            description = AuditorRequirementKeys.Description_WCAG_1_4_12;
-            referenceLink = AuditorRequirementKeys.URL_WCAG_1_4_12;
+            name = AuditorRequirementKeys.GetTitle(1,4,12);
+            description = AuditorRequirementKeys.GetDescription(1,4,12);
+            referenceLink = AuditorRequirementKeys.GetUrl(1,4,12);
             status = Status.None;
         }
     }
