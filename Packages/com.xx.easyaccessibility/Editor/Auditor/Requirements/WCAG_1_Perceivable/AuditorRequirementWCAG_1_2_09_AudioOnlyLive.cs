@@ -19,9 +19,9 @@ namespace EasyAccessibility
         public AuditorRequirementWCAG_1_2_09_AudioOnlyLive()
         {
             source = AuditorRequirementKeys.Source_WCAG;
-            name = AuditorRequirementKeys.Title_WCAG_1_2_9;
-            description = AuditorRequirementKeys.Description_WCAG_1_2_9;
-            referenceLink = AuditorRequirementKeys.URL_WCAG_1_2_9;
+            name = AuditorRequirementKeys.GetTitle(1,2,9);
+            description = AuditorRequirementKeys.GetDescription(1,2,9);
+            referenceLink = AuditorRequirementKeys.GetUrl(1,2,9);
             status = Status.None;
         }
     }

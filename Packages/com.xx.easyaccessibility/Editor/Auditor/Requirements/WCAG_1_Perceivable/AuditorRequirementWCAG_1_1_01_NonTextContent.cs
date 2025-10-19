@@ -165,9 +165,9 @@ namespace EasyAccessibility
         public AuditorRequirementWCAG_1_1_01_NonTextContent()
         {
             source = AuditorRequirementKeys.Source_WCAG;
-            name = AuditorRequirementKeys.Title_WCAG_1_1_1;
-            description = AuditorRequirementKeys.Description_WCAG_1_1_1;
-            referenceLink = AuditorRequirementKeys.URL_WCAG_1_1_1;
+            name = AuditorRequirementKeys.GetTitle(1, 1, 1);
+            description = AuditorRequirementKeys.GetDescription(1, 1, 1);
+            referenceLink = AuditorRequirementKeys.GetUrl(1, 1, 1);
             status = Status.None;
         }
     }

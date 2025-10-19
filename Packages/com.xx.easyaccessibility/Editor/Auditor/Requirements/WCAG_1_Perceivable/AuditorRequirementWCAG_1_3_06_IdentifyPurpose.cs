@@ -8,9 +8,9 @@ namespace EasyAccessibility
         public AuditorRequirementWCAG_1_3_06_IdentifyPurpose()
         {
             source = AuditorRequirementKeys.Source_WCAG;
-            name = AuditorRequirementKeys.Title_WCAG_1_3_6;
-            description = AuditorRequirementKeys.Description_WCAG_1_3_6;
-            referenceLink = AuditorRequirementKeys.URL_WCAG_1_3_6;
+            name = AuditorRequirementKeys.GetTitle(1,3,6);
+            description = AuditorRequirementKeys.GetDescription(1,3,6);
+            referenceLink = AuditorRequirementKeys.GetUrl(1,3,6);
             status = Status.None;
         }
     }

@@ -91,9 +91,9 @@ namespace EasyAccessibility
         public AuditorRequirementWCAG_1_4_10_Reflow()
         {
             source = AuditorRequirementKeys.Source_WCAG;
-            name = AuditorRequirementKeys.Title_WCAG_1_4_10;
-            description = AuditorRequirementKeys.Description_WCAG_1_4_10;
-            referenceLink = AuditorRequirementKeys.URL_WCAG_1_4_10;
+            name = AuditorRequirementKeys.GetTitle(1,4,10);
+            description = AuditorRequirementKeys.GetDescription(1,4,10);
+            referenceLink = AuditorRequirementKeys.GetUrl(1,4,10);
             status = Status.None;
         }
     }

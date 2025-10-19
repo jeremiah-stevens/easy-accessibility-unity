@@ -8,9 +8,9 @@ namespace EasyAccessibility
         public AuditorRequirementWCAG_1_3_03_SensoryCharacteristics()
         {
             source = AuditorRequirementKeys.Source_WCAG;
-            name = AuditorRequirementKeys.Title_WCAG_1_3_3;
-            description = AuditorRequirementKeys.Description_WCAG_1_3_3;
-            referenceLink = AuditorRequirementKeys.URL_WCAG_1_3_3;
+            name = AuditorRequirementKeys.GetTitle(1,3,3);
+            description = AuditorRequirementKeys.GetDescription(1,3,3);
+            referenceLink = AuditorRequirementKeys.GetUrl(1,3,3);
             status = Status.None;
         }
     }

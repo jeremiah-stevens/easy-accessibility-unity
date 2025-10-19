@@ -5,9 +5,9 @@ namespace EasyAccessibility
         public AuditorRequirementWCAG_1_2_03_AudioDescriptionOrMediaAlternativePrerecorded()
         {
             source = AuditorRequirementKeys.Source_WCAG;
-            name = AuditorRequirementKeys.Title_WCAG_1_2_3;
-            description = AuditorRequirementKeys.Description_WCAG_1_2_3;
-            referenceLink = AuditorRequirementKeys.URL_WCAG_1_2_3;
+            name = AuditorRequirementKeys.GetTitle(1,2,3);
+            description = AuditorRequirementKeys.GetDescription(1,2,3);
+            referenceLink = AuditorRequirementKeys.GetUrl(1,2,3);
             status = Status.None;
         }
     }

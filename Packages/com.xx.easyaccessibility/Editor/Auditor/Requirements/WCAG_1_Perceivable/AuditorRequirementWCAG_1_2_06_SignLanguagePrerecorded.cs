@@ -24,9 +24,9 @@ namespace EasyAccessibility
         public AuditorRequirementWCAG_1_2_06_SignLanguagePrerecorded()
         {
             source = AuditorRequirementKeys.Source_WCAG;
-            name = AuditorRequirementKeys.Title_WCAG_1_2_6;
-            description = AuditorRequirementKeys.Description_WCAG_1_2_6;
-            referenceLink = AuditorRequirementKeys.URL_WCAG_1_2_6;
+            name = AuditorRequirementKeys.GetTitle(1, 2, 6);
+            description = AuditorRequirementKeys.GetDescription(1,2,6);
+            referenceLink = AuditorRequirementKeys.GetUrl(1,2,6);
             status = Status.None;
         }
     }

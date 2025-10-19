@@ -8,9 +8,9 @@ namespace EasyAccessibility
         public AuditorRequirementWCAG_1_4_13_ContentOnHoverOrFocus()
         {
             source = AuditorRequirementKeys.Source_WCAG;
-            name = AuditorRequirementKeys.Title_WCAG_1_4_13;
-            description = AuditorRequirementKeys.Description_WCAG_1_4_13;
-            referenceLink = AuditorRequirementKeys.URL_WCAG_1_4_13;
+            name = AuditorRequirementKeys.GetTitle(1,4,13);
+            description = AuditorRequirementKeys.GetDescription(1,4,13);
+            referenceLink = AuditorRequirementKeys.GetUrl(1,4,13);
             status = Status.None;
         }
     }
