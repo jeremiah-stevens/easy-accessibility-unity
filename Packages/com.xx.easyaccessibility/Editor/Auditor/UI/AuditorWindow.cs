@@ -25,21 +25,30 @@ namespace EasyAccessibility
         SerializedObject m_auditorRequirements;
 
         [MenuItem("Window/Easy Accessibility/Auditor")]
-        public static void ShowExample()
+        public static void ShowWindow()
         {
             AuditorWindow wnd = GetWindow<AuditorWindow>();
-            wnd.titleContent = new GUIContent("Auditor");
+            wnd.titleContent = new GUIContent("Accessibility Auditor");
         }
 
-
-        [MenuItem("Window/Easy Accessibility/Audit")]
         public static void Audit()
         {
             var baseType = typeof(AuditorRequirement);
             var assembly = typeof(AuditorRequirement).Assembly;
             var types = assembly.GetTypes().Where(t => t.IsSubclassOf(baseType));
-            
-            var auditorRequirements = AssetDatabase.LoadAssetByGUID<AuditorRequirementsSO>(new UnityEditor.GUID(AssetDatabase.FindAssets("t:auditorrequirementsso")[0]));
+
+            AuditorRequirementsSO auditorRequirements = null;
+            if (!HasExistingReport()) //TODO: test this more thoroughly
+            {
+                auditorRequirements = ScriptableObject.CreateInstance<AuditorRequirementsSO>();
+                AssetDatabase.CreateFolder("Assets", "Accessibility");
+                AssetDatabase.CreateAsset(auditorRequirements, "Assets/Accessibility/AccessibilityReport.asset");
+                AssetDatabase.SaveAssets();
+            }
+            else
+            {
+                auditorRequirements = AssetDatabase.LoadAssetByGUID<AuditorRequirementsSO>(new UnityEditor.GUID(AssetDatabase.FindAssets("t:auditorrequirementsso")[0]));
+            }
             auditorRequirements.report = new();
 
             int issueCount = 0;
@@ -56,18 +65,41 @@ namespace EasyAccessibility
 
             EditorUtility.SetDirty(auditorRequirements);
             AssetDatabase.SaveAssets();
-
         }
 
 
 
+        private static bool HasExistingReport()
+        {
+            var assets = AssetDatabase.FindAssets("t:auditorrequirementsso");
+            return assets.Length > 0;
+        }
+
         public void CreateGUI()
         {
+            if (!HasExistingReport())
+            {
+                Audit();
+                return;
+            }
+
             auditorRequirements = AssetDatabase.LoadAssetByGUID<AuditorRequirementsSO>(new UnityEditor.GUID(AssetDatabase.FindAssets("t:auditorrequirementsso")[0]));
             m_auditorRequirements = new SerializedObject(auditorRequirements);
 
             // Each editor window contains a root VisualElement object
             VisualElement root = rootVisualElement;
+
+            var toolbar = new Toolbar()
+            {
+                style =
+                {
+                    justifyContent = Justify.FlexEnd
+                }
+            };
+
+            toolbar.Add(new ToolbarButton(() => Audit()) { text = "Audit Project" });
+
+            root.Add(toolbar);
 
             var splitView = new UnityEngine.UIElements.TwoPaneSplitView
             {
@@ -124,7 +156,6 @@ namespace EasyAccessibility
             var listView = new ListView
             {
                 bindingPath = "report.requirements",
-                //itemTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Packages/com.xx.easyaccessibility/Editor/Auditor/UI/AuditorRequirementEntry.uxml"),
             };
 
             listView.makeItem = () => new Label();
@@ -241,6 +272,23 @@ namespace EasyAccessibility
                 var req = enumerator.Current as AuditorRequirement;
                 if(req != null)
                 {
+                    m_rightPane.Add(new Label()
+                    {
+                        text = req.name,
+                        style =
+                        {
+                            fontSize = 24
+                        }
+                    });
+                    m_rightPane.Add(new Label()
+                    {
+                        text = req.description,
+                        style =
+                        {
+                            unityTextOverflowPosition = TextOverflowPosition.
+                        }
+                    });
+                    m_rightPane.Add(new Button(() => Application.OpenURL(req.referenceLink)) { text = "Reference" });
                     //TODO: add descriptive information (name of requirement, links, etc.)
                     var view = CreateLayoutMultiColumnListView(req.issues);
                     m_rightPane.Add(view);
