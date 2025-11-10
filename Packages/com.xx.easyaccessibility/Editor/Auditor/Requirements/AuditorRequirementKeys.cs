@@ -39,6 +39,7 @@ namespace EasyAccessibility
         public static string GetDescription(int requirement, int guideline, int successCriteria)
         {
             var obj = WCAGJson["principles"][requirement - 1]["guidelines"][guideline - 1]["successcriteria"][successCriteria - 1];
+            //TODO: consider expanding on details in description
             return $"{(string)obj["title"]}";
         }
 

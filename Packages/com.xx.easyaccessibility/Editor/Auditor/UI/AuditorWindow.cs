@@ -11,6 +11,7 @@ using UnityEngine.UIElements;
 
 namespace EasyAccessibility
 {
+
     public class AuditorWindow : EditorWindow
     {
         [SerializeField] private int m_selectedIndex = -1;
@@ -24,6 +25,11 @@ namespace EasyAccessibility
         AuditorRequirementsSO auditorRequirements;
         SerializedObject m_auditorRequirements;
 
+        List<AuditorRequirement> m_selectedReqs = new();
+
+
+
+
         [MenuItem("Window/Easy Accessibility/Auditor")]
         public static void ShowWindow()
         {
@@ -31,64 +37,28 @@ namespace EasyAccessibility
             wnd.titleContent = new GUIContent("Accessibility Auditor");
         }
 
-        public static void Audit()
-        {
-            var baseType = typeof(AuditorRequirement);
-            var assembly = typeof(AuditorRequirement).Assembly;
-            var types = assembly.GetTypes().Where(t => t.IsSubclassOf(baseType));
-
-            AuditorRequirementsSO auditorRequirements = null;
-            if (!HasExistingReport()) //TODO: test this more thoroughly
-            {
-                auditorRequirements = ScriptableObject.CreateInstance<AuditorRequirementsSO>();
-                AssetDatabase.CreateFolder("Assets", "Accessibility");
-                AssetDatabase.CreateAsset(auditorRequirements, "Assets/Accessibility/AccessibilityReport.asset");
-                AssetDatabase.SaveAssets();
-            }
-            else
-            {
-                auditorRequirements = AssetDatabase.LoadAssetByGUID<AuditorRequirementsSO>(new UnityEditor.GUID(AssetDatabase.FindAssets("t:auditorrequirementsso")[0]));
-            }
-            auditorRequirements.report = new();
-
-            int issueCount = 0;
-
-            foreach (var type in types)
-            {
-                var instance = (AuditorRequirement)Activator.CreateInstance(type);
-                instance.Audit();
-                auditorRequirements.report.requirements.Add(instance);
-                issueCount += instance.issues.Count;
-            }
-
-            Debug.Log($"Finished! Found '{issueCount}' issues");
-
-            EditorUtility.SetDirty(auditorRequirements);
-            AssetDatabase.SaveAssets();
-        }
 
 
-
-        private static bool HasExistingReport()
-        {
-            var assets = AssetDatabase.FindAssets("t:auditorrequirementsso");
-            return assets.Length > 0;
-        }
 
         public void CreateGUI()
         {
-            if (!HasExistingReport())
+            if (!AccessibilityAuditor.HasExistingReport()) //TODO: consider setting up a view with no data and a button to perform audit instead of auto-performing
             {
-                Audit();
-                return;
+                AccessibilityAuditor.Audit();
             }
 
             auditorRequirements = AssetDatabase.LoadAssetByGUID<AuditorRequirementsSO>(new UnityEditor.GUID(AssetDatabase.FindAssets("t:auditorrequirementsso")[0]));
             m_auditorRequirements = new SerializedObject(auditorRequirements);
 
-            // Each editor window contains a root VisualElement object
             VisualElement root = rootVisualElement;
+            root.Add(CreateToolbar());
+            root.Add(CreateSplitView());
 
+            m_listView.selectedIndex = m_selectedIndex;
+        }
+
+        private VisualElement CreateToolbar()
+        {
             var toolbar = new Toolbar()
             {
                 style =
@@ -97,26 +67,22 @@ namespace EasyAccessibility
                 }
             };
 
-            toolbar.Add(new ToolbarButton(() => Audit()) { text = "Audit Project" });
+            toolbar.Add(new ToolbarButton(() => AccessibilityAuditor.Audit()) { text = "Audit Project" });
+            toolbar.Add(new ToolbarButton(() => Application.OpenURL("https://gitlab.com/a-la-code-group/easy-accessibility-unity")) { iconImage = EditorGUIUtility.FindTexture("d__Help@2x") }); //TODO: change out icon for Gitlab repo
+            //TODO: link to docs
 
-            root.Add(toolbar);
+            return toolbar;
+        }
 
+        private VisualElement CreateSplitView()
+        {
             var splitView = new UnityEngine.UIElements.TwoPaneSplitView
             {
                 fixedPaneIndex = 0,
                 fixedPaneInitialDimension = 250f,
                 orientation = TwoPaneSplitViewOrientation.Horizontal,
             };
-            root.Add(splitView);
-
-
-
             var leftPane = new VisualElement();
-            //var requirementSearchField = new ToolbarSearchField();
-            //requirementSearchField.RegisterValueChangedCallback(OnSearchChanged);
-            //TODO: add in buttons for switching off/on pass/fail/unsure items
-
-            //leftPane.Add(requirementSearchField);
             leftPane.Add(CreateRequirementSearchOptions());
             m_listView = CreateLayoutListView();
             leftPane.Add(m_listView);
@@ -124,29 +90,31 @@ namespace EasyAccessibility
             splitView.Add(leftPane);
             splitView.Add(m_rightPane);
 
-            m_listView.selectedIndex = m_selectedIndex;
+            return splitView;
         }
 
         private VisualElement CreateRequirementSearchOptions()
         {
             var output = new VisualElement();
             output.style.flexDirection = FlexDirection.Row;
-            output.style.height = 40;
+            output.style.height = 24;
+            output.style.minHeight = 24;
 
             var requirementSearchField = new ToolbarSearchField();
             requirementSearchField.style.width = 100;
             requirementSearchField.RegisterValueChangedCallback(OnSearchChanged);
             output.Add(requirementSearchField);
 
-            var toggleButtons = new ToggleButtonGroup();
-            toggleButtons.isMultipleSelection = true;
-            toggleButtons.allowEmptySelection = true;
+            //TODO: re-enable when we support toggle group for filtering options
+            //var toggleButtons = new ToggleButtonGroup();
+            //toggleButtons.isMultipleSelection = true;
+            //toggleButtons.allowEmptySelection = true;
 
-            toggleButtons.Add(new Button { iconImage = EditorGUIUtility.FindTexture("TestPassed") });
-            toggleButtons.Add(new Button { iconImage = EditorGUIUtility.FindTexture("TestInconclusive") });
-            toggleButtons.Add(new Button { iconImage = EditorGUIUtility.FindTexture("TestFailed") });
+            //toggleButtons.Add(new Button { iconImage = EditorGUIUtility.FindTexture("TestPassed") });
+            //toggleButtons.Add(new Button { iconImage = EditorGUIUtility.FindTexture("TestInconclusive") });
+            //toggleButtons.Add(new Button { iconImage = EditorGUIUtility.FindTexture("TestFailed") });
 
-            output.Add(toggleButtons);
+            //output.Add(toggleButtons);
 
             return output;
         }
@@ -163,7 +131,7 @@ namespace EasyAccessibility
             {
                 var label = item as Label;
                 string icon = "";
-                switch(auditorRequirements.report.requirements[index].status)
+                switch(m_selectedReqs[index].status) //TODO: these should be icons, not text characters
                 {
                     case AuditorRequirement.Status.Pass:
                         icon = "✓";
@@ -176,9 +144,10 @@ namespace EasyAccessibility
                         break;
                 }
 
-                label.text = $"[{icon}] {auditorRequirements.report.requirements[index].name}";
+                label.text = $"[{icon}] {m_selectedReqs[index].name}";
             };
-            listView.itemsSource = auditorRequirements.report.requirements;
+            m_selectedReqs = auditorRequirements.report.requirements;
+            listView.itemsSource = m_selectedReqs;
             listView.selectionChanged += OnRequirementSelected;
 
             listView.selectionChanged += (items) => { m_selectedIndex = listView.selectedIndex; };
@@ -224,19 +193,23 @@ namespace EasyAccessibility
         {
             if(string.IsNullOrEmpty(evt.newValue))
             {
-                m_listView.itemsSource = auditorRequirements.report.requirements;
+                m_selectedReqs = auditorRequirements.report.requirements;
             }
             else
             {
-                m_listView.itemsSource = auditorRequirements.report.requirements.Where(item => item.name.ToLower().Contains(evt.newValue.ToLower(), StringComparison.InvariantCultureIgnoreCase)).ToList();
+                var list = auditorRequirements.report.requirements.Where(item => item.name.ToLower().Contains(evt.newValue.ToLower(), StringComparison.InvariantCultureIgnoreCase)).ToList();
+                m_selectedReqs = list;
             }
+            m_listView.itemsSource = m_selectedReqs;
             m_listView.Rebuild();
         }
 
         private VisualElement MakeObjectCell()
         {
-            var objectField = new ObjectField();
-            //TODO: make this un-editable
+            var objectField = new ObjectField()
+            {
+                enabledSelf = false
+            };
             return objectField;
         }
 
@@ -272,7 +245,15 @@ namespace EasyAccessibility
                 var req = enumerator.Current as AuditorRequirement;
                 if(req != null)
                 {
-                    m_rightPane.Add(new Label()
+                    var headerGroup = new VisualElement()
+                    {
+                        style =
+                        {
+                            flexDirection = FlexDirection.Row,
+                            minHeight = 30 //TODO: code this to match with the header size and margin
+                        }
+                    };
+                    headerGroup.Add(new Label()
                     {
                         text = req.name,
                         style =
@@ -280,16 +261,30 @@ namespace EasyAccessibility
                             fontSize = 24
                         }
                     });
+                    headerGroup.Add(new Button(() => Application.OpenURL(req.referenceLink))
+                    {
+                        text = "",
+                        iconImage = EditorGUIUtility.FindTexture("d_Linked"),
+                        style =
+                        {
+                            backgroundColor = new Color(0,0,0,0),
+                            borderTopWidth = 0,
+                            borderBottomWidth = 0,
+                            borderLeftWidth = 0,
+                            borderRightWidth = 0,
+                        }
+                    });
+                    m_rightPane.Add(headerGroup);
+
                     m_rightPane.Add(new Label()
                     {
                         text = req.description,
                         style =
                         {
-                            unityTextOverflowPosition = TextOverflowPosition.
+                            whiteSpace = WhiteSpace.PreWrap,
+                            marginBottom = 20
                         }
                     });
-                    m_rightPane.Add(new Button(() => Application.OpenURL(req.referenceLink)) { text = "Reference" });
-                    //TODO: add descriptive information (name of requirement, links, etc.)
                     var view = CreateLayoutMultiColumnListView(req.issues);
                     m_rightPane.Add(view);
                 }
