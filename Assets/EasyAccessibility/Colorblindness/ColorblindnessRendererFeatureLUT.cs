@@ -6,15 +6,12 @@ using UnityEngine.Rendering.Universal;
 
 /*TODO:
  * - Set up URP support as conditional on if the package is installed or not
- * - Split into two implementations: LUT and Procedural
- * - Fix artifacting on textures at high percentage on LUT (LOD issue from Blit?)
- * - Auto-assign variables
  * - Figure out how we want to handle colorblindness simulation (separate toggle? Don't want devs to use on accident in-game)
- * - Figure out how to move under Packages; currently causes the script to be missing in RenderPipeline
+ * - Set up a test scene using Isahara slides, 3D models, and some UI
  */
 namespace EasyAccessibility
 {
-    public class ColorblindnessRendererFeature : ScriptableRendererFeature
+    public class ColorblindnessRendererFeatureLUT : ColorblindnessRendererFeature
     {
         [SerializeField] Material material;
         [SerializeField] ColorblindSettings.ColorblindMode mode;
@@ -23,17 +20,14 @@ namespace EasyAccessibility
         [SerializeField] Texture3D textureDeutranopia;
         [SerializeField] Texture3D textureTritanopia;
 
-        ColorblindnessRenderPass m_pass;
-
-
-
+        ColorblindnessRenderPassLUT m_pass;
 
 
 
 
         public override void Create()
         {
-            m_pass = new ColorblindnessRenderPass();
+            m_pass = new ColorblindnessRenderPassLUT();
             m_pass.renderPassEvent = RenderPassEvent.AfterRenderingPostProcessing;
         }
 
@@ -66,7 +60,7 @@ namespace EasyAccessibility
         }
     }
 
-    public class ColorblindnessRenderPass : ScriptableRenderPass
+    public class ColorblindnessRenderPassLUT : ScriptableRenderPass
     {
         const string m_PassName = "ColorblindnessPass";
         Material m_material;
