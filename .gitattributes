@@ -1,2 +1,5 @@
 *.wav filter=lfs diff=lfs merge=lfs -text
 *.mp4 filter=lfs diff=lfs merge=lfs -text
+Packages/com.xx.easyaccessibility/Runtime/Colorblindness/Rendering/LUT_Deutranopia.asset filter=lfs diff=lfs merge=lfs -text
+Packages/com.xx.easyaccessibility/Runtime/Colorblindness/Rendering/LUT_Protanopia.asset filter=lfs diff=lfs merge=lfs -text
+Packages/com.xx.easyaccessibility/Runtime/Colorblindness/Rendering/LUT_Tritanopia.asset filter=lfs diff=lfs merge=lfs -text
