@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EasyAccessibility.ColorblindnessRendererFeatureProcedural
   m_Active: 0
   material: {fileID: 2100000, guid: 129a38649d299de41a9e521ab966f98e, type: 2}
-  mode: 0
+  mode: 3
   amount: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -85,9 +85,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95a0f702ac317bf4180dda2c3573231e, type: 3}
   m_Name: ColorblindnessRendererFeatureLUT
   m_EditorClassIdentifier: Assembly-CSharp::EasyAccessibility.ColorblindnessRendererFeature
-  m_Active: 1
+  m_Active: 0
   material: {fileID: 2100000, guid: 27966dc0a733c704da6d2d1e71eb721e, type: 2}
-  mode: 1
+  mode: 3
   amount: 1
   textureProtanopia: {fileID: 11700000, guid: 9c634bf88f819344a8c17e63f43fb780, type: 2}
   textureDeutranopia: {fileID: 11700000, guid: 555e478cc2c686f478aca007bb83d2b1, type: 2}
