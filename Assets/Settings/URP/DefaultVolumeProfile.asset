@@ -465,6 +465,39 @@ MonoBehaviour:
   - {fileID: -6288072647309666549}
   - {fileID: 7518938298396184218}
   - {fileID: -1410297666881709256}
+  - {fileID: 7064155251942543187}
+  - {fileID: 33868504131537485}
+--- !u!114 &33868504131537485
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a1abb427d51ce4eacf03d6bcec9aee, type: 3}
+  m_Name: ColorblindnessPostProcessVolume
+  m_EditorClassIdentifier: Assembly-CSharp::EasyAccessibility.ColorblindnessPostProcessVolume
+  active: 1
+  mode:
+    m_OverrideState: 1
+    m_Value: 0
+  amount:
+    m_OverrideState: 1
+    m_Value: 0
+  textureProtanopia:
+    m_OverrideState: 1
+    m_Value: {fileID: 0}
+    dimension: 3
+  textureDeutranopia:
+    m_OverrideState: 1
+    m_Value: {fileID: 0}
+    dimension: 3
+  textureTritanopia:
+    m_OverrideState: 1
+    m_Value: {fileID: 0}
+    dimension: 3
 --- !u!114 &853819529557874667
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -866,6 +899,25 @@ MonoBehaviour:
   m_Name: VolumeComponentSupportedOnAnySRP
   m_EditorClassIdentifier: Unity.RenderPipelines.Core.Editor.Tests:UnityEngine.Rendering.Tests:VolumeComponentEditorSupportedOnTests/VolumeComponentSupportedOnAnySRP
   active: 1
+--- !u!114 &7064155251942543187
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 621c3e3229f293f438b0e73b9d41cfdd, type: 3}
+  m_Name: Colorblindness
+  m_EditorClassIdentifier: Assembly-CSharp::Colorblindness
+  active: 1
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0
+  Type:
+    m_OverrideState: 1
+    m_Value: 0
 --- !u!114 &7173750748008157695
 MonoBehaviour:
   m_ObjectHideFlags: 3

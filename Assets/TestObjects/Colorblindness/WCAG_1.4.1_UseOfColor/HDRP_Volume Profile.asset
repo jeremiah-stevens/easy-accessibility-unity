@@ -1,0 +1,146 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9142512963369382776
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: ColorblindCorrectionProcedural
+  m_EditorClassIdentifier: Assembly-CSharp:EasyAccessibility:ColorblindCorrectionProcedural
+  active: 0
+  mode:
+    m_OverrideState: 1
+    m_Value: 1
+  amount:
+    m_OverrideState: 1
+    m_Value: 0
+  materialParameter:
+    m_OverrideState: 1
+    m_Value: {fileID: 2100000, guid: 1e125c0bb195fbf4496b16472cb4154f, type: 2}
+--- !u!114 &-5512192153204063989
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: ColorblindCorrectionProcedural
+  m_EditorClassIdentifier: Assembly-CSharp:EasyAccessibility:ColorblindCorrectionProcedural
+  active: 1
+  mode:
+    m_OverrideState: 1
+    m_Value: 3
+  amount:
+    m_OverrideState: 1
+    m_Value: 0
+  materialParameter:
+    m_OverrideState: 1
+    m_Value: {fileID: 2100000, guid: 1e125c0bb195fbf4496b16472cb4154f, type: 2}
+--- !u!114 &-467920989325125273
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: ColorblindCorrectionProcedural
+  m_EditorClassIdentifier: Assembly-CSharp:EasyAccessibility:ColorblindCorrectionProcedural
+  active: 1
+  mode:
+    m_OverrideState: 1
+    m_Value: 3
+  amount:
+    m_OverrideState: 1
+    m_Value: 1
+  materialParameter:
+    m_OverrideState: 1
+    m_Value: {fileID: 2100000, guid: 1e125c0bb195fbf4496b16472cb4154f, type: 2}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
+  m_Name: HDRP_Volume Profile
+  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.VolumeProfile
+  components:
+  - {fileID: 8998525679801867818}
+  - {fileID: -9142512963369382776}
+--- !u!114 &2233374204928355840
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: ColorblindnessCorrectionProceduralPostProcessVolume
+  m_EditorClassIdentifier: Assembly-CSharp:EasyAccessibility:ColorblindnessCorrectionProceduralPostProcessVolume
+  active: 1
+  <displayName>k__BackingField: 
+  m_IsInitialized: 0
+  typeName: 
+  <passName>k__BackingField: 
+  mode:
+    <fieldHash>k__BackingField: -1206535072
+    m_OverrideState: 1
+    m_Value: 3
+  amount:
+    <fieldHash>k__BackingField: -967184680
+    m_OverrideState: 1
+    m_Value: 1
+  materialParameter:
+    <fieldHash>k__BackingField: -727834288
+    m_OverrideState: 1
+    m_Value: {fileID: 2100000, guid: 1e125c0bb195fbf4496b16472cb4154f, type: 2}
+--- !u!114 &8998525679801867818
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a1abb427d51ce4eacf03d6bcec9aee, type: 3}
+  m_Name: ColorblindnessPostProcessVolume
+  m_EditorClassIdentifier: Assembly-CSharp::EasyAccessibility.ColorblindnessPostProcessVolume
+  active: 1
+  mode:
+    m_OverrideState: 1
+    m_Value: 3
+  amount:
+    m_OverrideState: 1
+    m_Value: 1
+  textureProtanopia:
+    m_OverrideState: 1
+    m_Value: {fileID: 11700000, guid: 9c634bf88f819344a8c17e63f43fb780, type: 2}
+    dimension: 3
+  textureDeutranopia:
+    m_OverrideState: 1
+    m_Value: {fileID: 11700000, guid: 555e478cc2c686f478aca007bb83d2b1, type: 2}
+    dimension: 3
+  textureTritanopia:
+    m_OverrideState: 1
+    m_Value: {fileID: 11700000, guid: 9d4b5ef605a227149a7f46918f286e69, type: 2}
+    dimension: 3
+  materialParameter:
+    m_OverrideState: 1
+    m_Value: {fileID: 2100000, guid: 3e004ba76466e0d48969e0fa62d25853, type: 2}

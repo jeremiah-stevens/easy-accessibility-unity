@@ -8,7 +8,7 @@ namespace EasyAccessibility
         {
             None = 0,
             Protanopia = 1,
-            Deutranopia = 2,
+            Deuteranopia = 2,
             Tritanopia = 3,
         };
     }

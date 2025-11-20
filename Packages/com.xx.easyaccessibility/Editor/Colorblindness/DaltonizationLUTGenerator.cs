@@ -15,7 +15,7 @@ namespace EasyAccessibility
                 0.0, 0.0,      1.0
             };
 
-        static double[] Deutranope = { // greens are greatly reduced (1% men)
+        static double[] Deutranope = {
 		        1.0,      0.0, 0.0,
                 0.494207, 0.0, 1.24827,
                 0.0,      0.0, 1.0
@@ -56,7 +56,7 @@ namespace EasyAccessibility
                 case ColorblindSettings.ColorblindMode.Protanopia:
                     cvdMatrix = Protanope;
                     break;
-                case ColorblindSettings.ColorblindMode.Deutranopia:
+                case ColorblindSettings.ColorblindMode.Deuteranopia:
                     cvdMatrix = Deutranope;
                     break;
                 case ColorblindSettings.ColorblindMode.Tritanopia:
@@ -74,11 +74,14 @@ namespace EasyAccessibility
                 {
                     for (float r = 0; r < resolution; r++)
                     {
+                        //TODO: part of approach for Texture2D
+                        //int uSpacer = Mathf.FloorToInt(b % 16) * 256;
+                        //int vSpacer = Mathf.FloorToInt(b / 16) * 256;
+                        //tex.SetPixel((int)g + uSpacer, (int)r + vSpacer, new Color(r / 255, g / 255, b / 255));
                         data[i++] = new Color(r / 255, g / 255, b / 255);
                     }
                 }
             }
-
 
             int id = 0;
             for (int rIndex = 0; rIndex < resolution; rIndex++)
@@ -126,19 +129,20 @@ namespace EasyAccessibility
                 }
             }
 
-
             //TODO: better to write to a Texture2D and convert format for compression settings, but not working properly
             //var output = new Texture2D(4096, 4096, TextureFormat.RGBA32, false);
-            //output.SetPixels(data);
+            //output.SetPixels(tex.GetPixels(0));//tex.GetPixelData<Color>(0).ToArray());
             //output.Apply();
             //byte[] bytes = output.EncodeToPNG();
-            //File.WriteAllBytes(Application.dataPath + "/../Packages/com.xx.easyaccessibility/Runtime/Colorblindness/LUT_{Enum.GetName(typeof(ColorblindSettings.ColorblindMode), mode)}.png", bytes);
-            ////AssetDatabase.CreateAsset(output, "Packages/com.xx.easyaccessibility/clut.png");
+            //string path = Path.GetFullPath(Path.Combine(Application.dataPath, @"..\", $"Packages/com.xx.easyaccessibility/Runtime/Colorblindness/Rendering/LUT_{Enum.GetName(typeof(ColorblindSettings.ColorblindMode), mode)}.png"));
+            //Debug.Log(path);
+            //File.WriteAllBytes(path, bytes);
+            //AssetDatabase.CreateAsset(output, "Packages/com.xx.easyaccessibility/clut.png");
 
             var output = new Texture3D(resolution, resolution, resolution, TextureFormat.RGBA32, false);
             output.SetPixels(data);
             output.Apply();
-            AssetDatabase.CreateAsset(output, $"Packages/com.xx.easyaccessibility/Runtime/Colorblindness/LUT_{Enum.GetName(typeof(ColorblindSettings.ColorblindMode), mode)}.asset");
+            AssetDatabase.CreateAsset(output, $"Packages/com.xx.easyaccessibility/Runtime/Colorblindness/Rendering/LUT_{Enum.GetName(typeof(ColorblindSettings.ColorblindMode), mode)}.asset");
         }
     }
 }
