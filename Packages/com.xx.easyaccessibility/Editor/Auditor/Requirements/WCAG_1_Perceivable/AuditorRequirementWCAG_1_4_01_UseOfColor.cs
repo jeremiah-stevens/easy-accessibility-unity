@@ -29,6 +29,7 @@ namespace EasyAccessibility
 
         private void VerifyAllUniversalRendererDataHasColorblindnessSetting()
         {
+#if EA_URP
             var guids = AssetDatabase.FindAssets("t:UniversalRendererData");
 
             foreach (var guid in guids)
@@ -49,6 +50,7 @@ namespace EasyAccessibility
                     }
                 }
             }
+#endif
         }
     }
 }

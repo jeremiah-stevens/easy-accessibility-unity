@@ -1179,7 +1179,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &445122025
 Transform:
   m_ObjectHideFlags: 0
@@ -1833,8 +1833,8 @@ GameObject:
   - component: {fileID: 593232236}
   - component: {fileID: 593232239}
   - component: {fileID: 593232240}
-  - component: {fileID: 593232241}
   - component: {fileID: 593232242}
+  - component: {fileID: 593232241}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2106,12 +2106,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 593232235}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74868216cc7a5044da49ae5bc140c491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: com.xx.easyaccessibility.Runtime::EasyAccessibility.ColorblindCorrectionProceduralBuiltIn
-  shader: {fileID: 4800000, guid: fc6556f9a9492e7498923afe651505e9, type: 3}
+  overrideSettings: 0
   mode: 1
   amount: 1
 --- !u!114 &593232242
@@ -2121,13 +2121,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 593232235}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b46ecd5474512fe408fa3647492846df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: com.xx.easyaccessibility.Runtime::EasyAccessibility.ColorblindCorrectionLUTBuiltIn
-  shader: {fileID: 4800000, guid: 8d9f27e50915d06419d3960af8a1e591, type: 3}
-  mode: 1
+  overrideSettings: 0
+  mode: 0
   amount: 1
   textureProtanopia: {fileID: 11700000, guid: 9c634bf88f819344a8c17e63f43fb780, type: 2}
   textureDeutranopia: {fileID: 11700000, guid: 555e478cc2c686f478aca007bb83d2b1, type: 2}
@@ -2582,7 +2582,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &844075553
 Transform:
   m_ObjectHideFlags: 0

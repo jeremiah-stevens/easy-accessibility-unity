@@ -1,3 +1,4 @@
+#if EA_URP
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -6,6 +7,9 @@ using UnityEngine.Rendering.Universal;
  */
 namespace EasyAccessibility
 {
+    /// <summary>
+    /// Base class for colorblind-related renderer features (Universal Render Pipeline).
+    /// </summary>
     public abstract class ColorblindnessRendererFeature : ScriptableRendererFeature
     {
         public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
@@ -17,3 +21,4 @@ namespace EasyAccessibility
         }
     }
 }
+#endif

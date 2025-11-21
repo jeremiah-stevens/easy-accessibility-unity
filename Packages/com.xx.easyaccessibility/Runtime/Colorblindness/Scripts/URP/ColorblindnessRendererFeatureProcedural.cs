@@ -1,78 +1,87 @@
+#if EA_URP
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.Rendering.RenderGraphModule;
 using UnityEngine.Rendering.RenderGraphModule.Util;
 using UnityEngine.Rendering.Universal;
-using static Colorblindness;
 
 
 namespace EasyAccessibility
 {
+    /// <summary>
+    /// Applies colorblind correction using the procedural approach (Universal Render Pipeline).
+    /// </summary>
     public class ColorblindnessRendererFeatureProcedural : ColorblindnessRendererFeature
     {
-        [SerializeField] Material material;
-        [SerializeField] ColorblindSettings.ColorblindMode mode;
+        [SerializeField]Material material;
+
+        [Header("Override")]
+        [SerializeField] bool overrideSettings;
+        [SerializeField] AccessibilitySettings.ColorblindMode mode;
         [SerializeField][Range(0f, 1f)] float amount = 1;
 
-        ColorblindnessRenderPassProcedural m_pass;
+        //state
+        ColorblindCorrectionRenderPassProcedural m_pass;
 
 
 
 
-
-
-
-        public override void Create()
+        private void SwapMode(AccessibilitySettings.ColorblindMode mode)
         {
-            m_pass = new ColorblindnessRenderPassProcedural();
-            m_pass.renderPassEvent = RenderPassEvent.AfterRenderingPostProcessing;
-        }
-
-        public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
-        {
-            if (material == null)
-            {
-                Debug.LogWarning(this.name + " material is null and will be skipped.");
-                return;
-            }
-
-            material.SetInt("_Mode", (int)mode);
-
             switch(mode)
             {
-                case ColorblindSettings.ColorblindMode.Protanopia:
+                case AccessibilitySettings.ColorblindMode.Protanopia:
                     material.EnableKeyword("_MODE_PROTANOPIA");
                     material.DisableKeyword("_MODE_DEUTERANOPIA");
                     material.DisableKeyword("_MODE_TRITANOPIA");
                     break;
-                case ColorblindSettings.ColorblindMode.Deuteranopia:
+                case AccessibilitySettings.ColorblindMode.Deuteranopia:
                     material.DisableKeyword("_MODE_PROTANOPIA");
                     material.EnableKeyword("_MODE_DEUTERANOPIA");
                     material.DisableKeyword("_MODE_TRITANOPIA");
                     break;
-                case ColorblindSettings.ColorblindMode.Tritanopia:
+                case AccessibilitySettings.ColorblindMode.Tritanopia:
                     material.DisableKeyword("_MODE_PROTANOPIA");
                     material.DisableKeyword("_MODE_DEUTERANOPIA");
                     material.EnableKeyword("_MODE_TRITANOPIA");
                     break;
-                case ColorblindSettings.ColorblindMode.None:
+                case AccessibilitySettings.ColorblindMode.None:
                 default:
                     material.DisableKeyword("_MODE_PROTANOPIA");
                     material.DisableKeyword("_MODE_DEUTERANOPIA");
                     material.DisableKeyword("_MODE_TRITANOPIA");
                     break;
             }
+        }
 
-            material.SetFloat("_Amount", amount);
+
+        public override void Create()
+        {
+            m_pass = new ColorblindCorrectionRenderPassProcedural();
+            m_pass.renderPassEvent = RenderPassEvent.AfterRenderingPostProcessing;
+        }
+
+        public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
+        {
+            if (material == null) return;
+
+            SwapMode(AccessibilitySettings.Instance.colorblindCorrectionMode);
+            material.SetFloat("_Amount", AccessibilitySettings.Instance.colorblindCorrectionAmount);
+
+            if(overrideSettings)
+            {
+                SwapMode(mode);
+                material.SetFloat("_Amount", amount);
+            }
+
             m_pass.Setup(material);
             renderer.EnqueuePass(m_pass);
         }
     }
 
-    public class ColorblindnessRenderPassProcedural : ScriptableRenderPass
+    public class ColorblindCorrectionRenderPassProcedural : ScriptableRenderPass
     {
-        const string m_PassName = "ColorblindnessPass";
+        const string m_PassName = "ColorblindCorrectionPass";
         Material material;
 
 
@@ -99,3 +108,4 @@ namespace EasyAccessibility
         }
     }
 }
+#endif

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b46ecd5474512fe408fa3647492846df
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - textureProtanopia: {fileID: 11700000, guid: 9c634bf88f819344a8c17e63f43fb780, type: 2}
+  - textureDeutranopia: {fileID: 11700000, guid: 555e478cc2c686f478aca007bb83d2b1, type: 2}
+  - textureTritanopia: {fileID: 11700000, guid: 9d4b5ef605a227149a7f46918f286e69, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

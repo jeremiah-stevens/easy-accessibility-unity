@@ -1,3 +1,4 @@
+#if EA_URP
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.RenderGraphModule;
@@ -10,16 +11,43 @@ using UnityEngine.Rendering.Universal;
  */
 namespace EasyAccessibility
 {
+    /// <summary>
+    /// Applies colorblind correction using a look-up table approach (Universal Render Pipeline).
+    /// </summary>
     public class ColorblindnessRendererFeatureLUT : ColorblindnessRendererFeature
     {
         [SerializeField] Material material;
-        [SerializeField] ColorblindSettings.ColorblindMode mode;
+
+        [Header("Override")]
+        [SerializeField] bool overrideSettings;
+        [SerializeField] AccessibilitySettings.ColorblindMode mode;
         [SerializeField][Range(0f, 1f)] float amount = 1;
         [SerializeField] Texture3D textureProtanopia;
         [SerializeField] Texture3D textureDeutranopia;
         [SerializeField] Texture3D textureTritanopia;
 
         ColorblindnessRenderPassLUT m_pass;
+
+
+
+
+        private void SetLUT(AccessibilitySettings.ColorblindMode mode)
+        {
+            Texture3D tex = null;
+            switch(mode)
+            {
+                case AccessibilitySettings.ColorblindMode.Protanopia:
+                    tex = textureProtanopia;
+                    break;
+                case AccessibilitySettings.ColorblindMode.Deuteranopia:
+                    tex = textureDeutranopia;
+                    break;
+                case AccessibilitySettings.ColorblindMode.Tritanopia:
+                    tex = textureTritanopia;
+                    break;
+            }
+            material.SetTexture("_LUT", tex);
+        }
 
 
 
@@ -32,28 +60,19 @@ namespace EasyAccessibility
 
         public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
         {
-            if (material == null)
+            if (material == null) return;
+
+            SetLUT(AccessibilitySettings.Instance.colorblindCorrectionMode);
+            material.SetInt("_Mode", (int)AccessibilitySettings.Instance.colorblindCorrectionMode);
+            material.SetFloat("_Amount", AccessibilitySettings.Instance.colorblindCorrectionAmount);
+
+            if(overrideSettings)
             {
-                Debug.LogWarning(this.name + " material is null and will be skipped.");
-                return;
+                SetLUT(mode);
+                material.SetInt("_Mode", (int)mode);
+                material.SetFloat("_Amount", amount);
             }
 
-            material.SetInt("_Mode", (int)mode);
-            material.SetFloat("_Amount", amount);
-            Texture3D tex = null;
-            switch(mode)
-            {
-                case ColorblindSettings.ColorblindMode.Protanopia:
-                    tex = textureProtanopia;
-                    break;
-                case ColorblindSettings.ColorblindMode.Deuteranopia:
-                    tex = textureDeutranopia;
-                    break;
-                case ColorblindSettings.ColorblindMode.Tritanopia:
-                    tex = textureTritanopia;
-                    break;
-            }
-            material.SetTexture("_LUT", tex);
             m_pass.Setup(material);
             renderer.EnqueuePass(m_pass);
         }
@@ -88,3 +107,4 @@ namespace EasyAccessibility
         }
     }
 }
+#endif
