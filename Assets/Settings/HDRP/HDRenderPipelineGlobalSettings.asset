@@ -710,10 +710,10 @@ MonoBehaviour:
         m_AfterPostProcessCustomPostProcesses:
           m_InjectionPoint: 2
           m_CustomPostProcessTypesAsString:
-          - EasyAccessibility.ColorblindCorrectionLUT, Assembly-CSharp, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          - EasyAccessibility.ColorblindCorrectionProcedural, Assembly-CSharp, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
+          - EasyAccessibility.ColorblindCorrectionLUTHDRP, com.xx.easyaccessibility.Runtime,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+          - EasyAccessibility.ColorblindCorrectionProceduralHDRP, com.xx.easyaccessibility.Runtime,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     - rid: 922328982618112327
       type: {class: HDRenderPipelineEditorTextures, ns: UnityEngine.Rendering.HighDefinition, asm: Unity.RenderPipelines.HighDefinition.Runtime}
       data:

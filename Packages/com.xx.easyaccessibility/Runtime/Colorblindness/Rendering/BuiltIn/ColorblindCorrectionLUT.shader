@@ -1,5 +1,5 @@
 //source: https://miko.art/labs/Color-Vision/Javascript/Color.Vision.Daltonize.js
-Shader "EasyAccessibility/Colorblind Correction (Procedural)"
+Shader "EasyAccessibility/BuiltIn/ColorblindCorrectionLUT"
 {   
     Properties
     {
@@ -23,7 +23,7 @@ Shader "EasyAccessibility/Colorblind Correction (Procedural)"
            #pragma fragment frag
            #include "UnityCG.cginc"
 
-                      int _Mode;
+           int _Mode;
            float _Amount;
            sampler2D _MainTex;
            sampler3D _LUT;
@@ -57,9 +57,10 @@ Shader "EasyAccessibility/Colorblind Correction (Procedural)"
                    return half4(col_rgb.r, col_rgb.g, col_rgb.b, 1);
                }
 
+               //sample the look-up table based on the input color
                half3 col_adjusted = tex3D(_LUT, col_rgb);
 
-               // Modify the sampled color
+               //apply the amount
                return lerp(half4(col_rgb.r, col_rgb.g, col_rgb.b, 1), half4(col_adjusted.r, col_adjusted.g, col_adjusted.b, 1), _Amount);
            }
 

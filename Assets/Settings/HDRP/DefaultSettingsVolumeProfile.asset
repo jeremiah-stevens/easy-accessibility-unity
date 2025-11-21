@@ -1089,8 +1089,8 @@ MonoBehaviour:
   - {fileID: -1060058964631320762}
   - {fileID: 84675734479033381}
   - {fileID: 3574972635879152071}
-  - {fileID: 7340590130728738832}
-  - {fileID: 6049349321145711934}
+  - {fileID: 2230361648262413886}
+  - {fileID: 3211795467700133090}
 --- !u!114 &84675734479033381
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1464,6 +1464,68 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 0
   m_Version: 1
+--- !u!114 &2230361648262413886
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66cc690f9caa7174d86b42c22799c6fd, type: 3}
+  m_Name: ColorblindCorrectionLUTHDRP
+  m_EditorClassIdentifier: com.xx.easyaccessibility.Runtime::EasyAccessibility.ColorblindCorrectionLUTHDRP
+  active: 1
+  materialParameter:
+    m_OverrideState: 1
+    m_Value: {fileID: 0}
+  overrideSettings:
+    m_OverrideState: 1
+    m_Value: 0
+  mode:
+    m_OverrideState: 1
+    m_Value: 0
+  amount:
+    m_OverrideState: 1
+    m_Value: 0
+  textureProtanopia:
+    m_OverrideState: 1
+    m_Value: {fileID: 0}
+    dimension: 3
+  textureDeutranopia:
+    m_OverrideState: 1
+    m_Value: {fileID: 0}
+    dimension: 3
+  textureTritanopia:
+    m_OverrideState: 1
+    m_Value: {fileID: 0}
+    dimension: 3
+--- !u!114 &3211795467700133090
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a1abb427d51ce4eacf03d6bcec9aee, type: 3}
+  m_Name: ColorblindCorrectionProceduralHDRP
+  m_EditorClassIdentifier: com.xx.easyaccessibility.Runtime::EasyAccessibility.ColorblindCorrectionProceduralHDRP
+  active: 1
+  materialParameter:
+    m_OverrideState: 1
+    m_Value: {fileID: 0}
+  overrideSettings:
+    m_OverrideState: 1
+    m_Value: 0
+  mode:
+    m_OverrideState: 1
+    m_Value: 0
+  amount:
+    m_OverrideState: 1
+    m_Value: 0
 --- !u!114 &3574972635879152071
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -2253,27 +2315,18 @@ MonoBehaviour:
   m_Name: ColorblindnessPostProcessVolume
   m_EditorClassIdentifier: Assembly-CSharp::EasyAccessibility.ColorblindnessPostProcessVolume
   active: 1
+  materialParameter:
+    m_OverrideState: 1
+    m_Value: {fileID: 0}
+  overrideSettings:
+    m_OverrideState: 1
+    m_Value: 0
   mode:
     m_OverrideState: 1
     m_Value: 0
   amount:
     m_OverrideState: 1
     m_Value: 0
-  textureProtanopia:
-    m_OverrideState: 1
-    m_Value: {fileID: 0}
-    dimension: 3
-  textureDeutranopia:
-    m_OverrideState: 1
-    m_Value: {fileID: 0}
-    dimension: 3
-  textureTritanopia:
-    m_OverrideState: 1
-    m_Value: {fileID: 0}
-    dimension: 3
-  materialParameter:
-    m_OverrideState: 1
-    m_Value: {fileID: 0}
 --- !u!114 &7502528774814404555
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -2785,6 +2838,43 @@ MonoBehaviour:
   m_ObsoleteShapeOffsetZ:
     m_OverrideState: 1
     m_Value: 0
+--- !u!114 &8164216214851161364
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66cc690f9caa7174d86b42c22799c6fd, type: 3}
+  m_Name: ColorblindCorrectionLUTHDRP
+  m_EditorClassIdentifier: Assembly-CSharp::EasyAccessibility.ColorblindCorrectionLUTHDRP
+  active: 1
+  materialParameter:
+    m_OverrideState: 1
+    m_Value: {fileID: 0}
+  overrideSettings:
+    m_OverrideState: 1
+    m_Value: 0
+  mode:
+    m_OverrideState: 1
+    m_Value: 0
+  amount:
+    m_OverrideState: 1
+    m_Value: 0
+  textureProtanopia:
+    m_OverrideState: 1
+    m_Value: {fileID: 0}
+    dimension: 3
+  textureDeutranopia:
+    m_OverrideState: 1
+    m_Value: {fileID: 0}
+    dimension: 3
+  textureTritanopia:
+    m_OverrideState: 1
+    m_Value: {fileID: 0}
+    dimension: 3
 --- !u!114 &8422099503203268746
 MonoBehaviour:
   m_ObjectHideFlags: 3

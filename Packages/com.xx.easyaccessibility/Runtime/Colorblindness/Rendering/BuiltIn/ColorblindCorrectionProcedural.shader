@@ -1,5 +1,5 @@
 //source: https://miko.art/labs/Color-Vision/Javascript/Color.Vision.Daltonize.js
-Shader "EasyAccessibility/Colorblind Correction (Procedural)"
+Shader "EasyAccessibility/BuiltIn/ColorblindCorrectionProcedural"
 {   
     Properties
     {
@@ -121,7 +121,7 @@ Shader "EasyAccessibility/Colorblind Correction (Procedural)"
                //add compensation
                col_RGB = col_RRGGBB + col_rgb;
 
-               // Modify the sampled color
+               //apply the amount
                return lerp(half4(col_rgb.r, col_rgb.g, col_rgb.b, 1), half4(col_RGB.r, col_RGB.g, col_RGB.b, 1), _Amount);
            }
 

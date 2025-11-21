@@ -1,12 +1,13 @@
-using Mono.Cecil.Cil;
 using System;
-using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
 namespace EasyAccessibility
 {
+    /// <summary>
+    /// Generates look-up tables for use in LUT-based approaches.
+    /// </summary>
     public class DaltonizationLUTGenerator : EditorWindow
     {
         static double[] Protanope = {
@@ -15,7 +16,7 @@ namespace EasyAccessibility
                 0.0, 0.0,      1.0
             };
 
-        static double[] Deutranope = {
+        static double[] Deuteranope = {
 		        1.0,      0.0, 0.0,
                 0.494207, 0.0, 1.24827,
                 0.0,      0.0, 1.0
@@ -30,36 +31,35 @@ namespace EasyAccessibility
         [MenuItem("Window/Easy Accessibility/Generate LUTS")]
         public static void GenerateLUTS()
         {
-            foreach (var curr in Enum.GetValues(typeof(ColorblindSettings.ColorblindMode)).Cast<ColorblindSettings.ColorblindMode>())
+            foreach (var curr in Enum.GetValues(typeof(AccessibilitySettings.ColorblindMode)).Cast<AccessibilitySettings.ColorblindMode>())
             {
-                if (curr == ColorblindSettings.ColorblindMode.None) continue; //skip basic
+                if (curr == AccessibilitySettings.ColorblindMode.None) continue; //skip basic
                 GenerateLUT(curr);
             }
         }
 
-        
         //source: https://miko.art/labs/Color-Vision/Javascript/Color.Vision.Daltonize.js
-        public static void GenerateLUT(ColorblindSettings.ColorblindMode mode = ColorblindSettings.ColorblindMode.Protanopia)
+        public static void GenerateLUT(AccessibilitySettings.ColorblindMode mode = AccessibilitySettings.ColorblindMode.Protanopia)
         {
             int resolution = 256;
             var data = new Color[resolution * resolution * resolution];
 
-            if(mode == ColorblindSettings.ColorblindMode.None)
+            if(mode == AccessibilitySettings.ColorblindMode.None)
             {
-                Debug.Log("No need to generate a CLUT for identity/normal vision.");
+                Debug.Log("No need to generate a LUT for identity/normal vision.");
                 return;
             }
 
             double[] cvdMatrix;
             switch(mode)
             {
-                case ColorblindSettings.ColorblindMode.Protanopia:
+                case AccessibilitySettings.ColorblindMode.Protanopia:
                     cvdMatrix = Protanope;
                     break;
-                case ColorblindSettings.ColorblindMode.Deuteranopia:
-                    cvdMatrix = Deutranope;
+                case AccessibilitySettings.ColorblindMode.Deuteranopia:
+                    cvdMatrix = Deuteranope;
                     break;
-                case ColorblindSettings.ColorblindMode.Tritanopia:
+                case AccessibilitySettings.ColorblindMode.Tritanopia:
                     cvdMatrix = Tritanope;
                     break;
                 default:
@@ -142,7 +142,7 @@ namespace EasyAccessibility
             var output = new Texture3D(resolution, resolution, resolution, TextureFormat.RGBA32, false);
             output.SetPixels(data);
             output.Apply();
-            AssetDatabase.CreateAsset(output, $"Packages/com.xx.easyaccessibility/Runtime/Colorblindness/Rendering/LUT_{Enum.GetName(typeof(ColorblindSettings.ColorblindMode), mode)}.asset");
+            AssetDatabase.CreateAsset(output, $"Packages/com.xx.easyaccessibility/Runtime/Colorblindness/Rendering/LUT_{Enum.GetName(typeof(AccessibilitySettings.ColorblindMode), mode)}.asset");
         }
     }
 }
