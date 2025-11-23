@@ -9,47 +9,71 @@ using UnityEngine.Rendering.Universal;
 namespace EasyAccessibility
 {
     /// <summary>
-    /// Applies colorblind correction using the procedural approach (Universal Render Pipeline).
+    /// Applies colorblind simulation using the procedural approach (Universal Render Pipeline).
+    /// NOTE: should only be used for testing purposes. Use colorblind correction for accessibility
+    ///       support.
     /// </summary>
-    public class ColorblindnessRendererFeatureProcedural : ColorblindnessRendererFeature
+    public class ColorblindSimulationURP : ColorblindnessRendererFeature
     {
         [SerializeField]Material material;
 
         [Header("Override")]
         [SerializeField] bool overrideSettings;
-        [SerializeField] AccessibilitySettings.ColorblindMode mode;
+        [SerializeField] AccessibilitySettings.ColorblindSimulationMode mode;
         [SerializeField][Range(0f, 1f)] float amount = 1;
 
         //state
-        ColorblindCorrectionRenderPassProcedural m_pass;
+        ColorblindSimulationRenderPassProcedural m_pass;
 
 
 
 
-        private void SwapMode(AccessibilitySettings.ColorblindMode mode)
+        private void SwapMode(AccessibilitySettings.ColorblindSimulationMode mode)
         {
             switch(mode)
             {
-                case AccessibilitySettings.ColorblindMode.Protanopia:
+                case AccessibilitySettings.ColorblindSimulationMode.Protanopia:
                     material.EnableKeyword("_MODE_PROTANOPIA");
                     material.DisableKeyword("_MODE_DEUTERANOPIA");
                     material.DisableKeyword("_MODE_TRITANOPIA");
+                    material.DisableKeyword("_MODE_CONE_MONOCHROMATISM");
+                    material.DisableKeyword("_MODE_ACHROMATOPSIA");
                     break;
-                case AccessibilitySettings.ColorblindMode.Deuteranopia:
+                case AccessibilitySettings.ColorblindSimulationMode.Deuteranopia:
                     material.DisableKeyword("_MODE_PROTANOPIA");
                     material.EnableKeyword("_MODE_DEUTERANOPIA");
                     material.DisableKeyword("_MODE_TRITANOPIA");
+                    material.DisableKeyword("_MODE_CONE_MONOCHROMATISM");
+                    material.DisableKeyword("_MODE_ACHROMATOPSIA");
                     break;
-                case AccessibilitySettings.ColorblindMode.Tritanopia:
+                case AccessibilitySettings.ColorblindSimulationMode.Tritanopia:
                     material.DisableKeyword("_MODE_PROTANOPIA");
                     material.DisableKeyword("_MODE_DEUTERANOPIA");
                     material.EnableKeyword("_MODE_TRITANOPIA");
+                    material.DisableKeyword("_MODE_CONE_MONOCHROMATISM");
+                    material.DisableKeyword("_MODE_ACHROMATOPSIA");
                     break;
-                case AccessibilitySettings.ColorblindMode.None:
+                case AccessibilitySettings.ColorblindSimulationMode.Monochromatism:
+                    material.DisableKeyword("_MODE_PROTANOPIA");
+                    material.DisableKeyword("_MODE_DEUTERANOPIA");
+                    material.DisableKeyword("_MODE_TRITANOPIA");
+                    material.EnableKeyword("_MODE_CONE_MONOCHROMATISM");
+                    material.DisableKeyword("_MODE_ACHROMATOPSIA");
+                    break;
+                case AccessibilitySettings.ColorblindSimulationMode.Achromatopsia:
+                    material.DisableKeyword("_MODE_PROTANOPIA");
+                    material.DisableKeyword("_MODE_DEUTERANOPIA");
+                    material.DisableKeyword("_MODE_TRITANOPIA");
+                    material.DisableKeyword("_MODE_CONE_MONOCHROMATISM");
+                    material.EnableKeyword("_MODE_ACHROMATOPSIA");
+                    break;
+                case AccessibilitySettings.ColorblindSimulationMode.None:
                 default:
                     material.DisableKeyword("_MODE_PROTANOPIA");
                     material.DisableKeyword("_MODE_DEUTERANOPIA");
                     material.DisableKeyword("_MODE_TRITANOPIA");
+                    material.DisableKeyword("_MODE_CONE_MONOCHROMATISM");
+                    material.DisableKeyword("_MODE_ACHROMATOPSIA");
                     break;
             }
         }
@@ -57,7 +81,7 @@ namespace EasyAccessibility
 
         public override void Create()
         {
-            m_pass = new ColorblindCorrectionRenderPassProcedural();
+            m_pass = new ColorblindSimulationRenderPassProcedural();
             m_pass.renderPassEvent = RenderPassEvent.AfterRenderingPostProcessing;
         }
 
@@ -65,8 +89,8 @@ namespace EasyAccessibility
         {
             if (material == null) return;
 
-            SwapMode(AccessibilitySettings.Instance.colorblindCorrectionMode);
-            material.SetFloat("_Amount", AccessibilitySettings.Instance.colorblindCorrectionAmount);
+            SwapMode(AccessibilitySettings.Instance.colorblindSimulationMode);
+            material.SetFloat("_Amount", AccessibilitySettings.Instance.colorblindSimulationAmount);
 
             if(overrideSettings)
             {
@@ -79,9 +103,9 @@ namespace EasyAccessibility
         }
     }
 
-    public class ColorblindCorrectionRenderPassProcedural : ScriptableRenderPass
+    public class ColorblindSimulationRenderPassProcedural : ScriptableRenderPass
     {
-        const string m_PassName = "ColorblindCorrectionPass";
+        const string m_PassName = "ColorblindSimulationPass";
         Material material;
 
 

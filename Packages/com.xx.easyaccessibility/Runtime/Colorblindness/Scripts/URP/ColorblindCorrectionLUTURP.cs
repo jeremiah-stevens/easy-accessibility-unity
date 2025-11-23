@@ -5,22 +5,18 @@ using UnityEngine.Rendering.RenderGraphModule;
 using UnityEngine.Rendering.RenderGraphModule.Util;
 using UnityEngine.Rendering.Universal;
 
-/*TODO:
- * - Set up URP support as conditional on if the package is installed or not
- * - Figure out how we want to handle colorblindness simulation (separate toggle? Don't want devs to use on accident in-game)
- */
 namespace EasyAccessibility
 {
     /// <summary>
     /// Applies colorblind correction using a look-up table approach (Universal Render Pipeline).
     /// </summary>
-    public class ColorblindnessRendererFeatureLUT : ColorblindnessRendererFeature
+    public class ColorblindCorrectionLUTURP : ColorblindnessRendererFeature
     {
         [SerializeField] Material material;
 
         [Header("Override")]
         [SerializeField] bool overrideSettings;
-        [SerializeField] AccessibilitySettings.ColorblindMode mode;
+        [SerializeField] AccessibilitySettings.ColorblindCorrectionMode mode;
         [SerializeField][Range(0f, 1f)] float amount = 1;
         [SerializeField] Texture3D textureProtanopia;
         [SerializeField] Texture3D textureDeutranopia;
@@ -31,18 +27,18 @@ namespace EasyAccessibility
 
 
 
-        private void SetLUT(AccessibilitySettings.ColorblindMode mode)
+        private void SetLUT(AccessibilitySettings.ColorblindCorrectionMode mode)
         {
             Texture3D tex = null;
             switch(mode)
             {
-                case AccessibilitySettings.ColorblindMode.Protanopia:
+                case AccessibilitySettings.ColorblindCorrectionMode.Protanopia:
                     tex = textureProtanopia;
                     break;
-                case AccessibilitySettings.ColorblindMode.Deuteranopia:
+                case AccessibilitySettings.ColorblindCorrectionMode.Deuteranopia:
                     tex = textureDeutranopia;
                     break;
-                case AccessibilitySettings.ColorblindMode.Tritanopia:
+                case AccessibilitySettings.ColorblindCorrectionMode.Tritanopia:
                     tex = textureTritanopia;
                     break;
             }

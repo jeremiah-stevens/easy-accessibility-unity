@@ -4,6 +4,7 @@ using Unity.Properties;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace EasyAccessibility
 {
@@ -31,7 +32,7 @@ namespace EasyAccessibility
             this.status = Status.Unsure; //by default, we set it to unsure
         }
 
-        protected void AuditForInstanceWithCamera<T>(string failMessage) where T : UnityEngine.Object
+        protected void AuditForInstanceWithCamera<T>(string failMessage, Action<T> validationAction = null) where T : UnityEngine.Object
         {
             var startingScenePath = EditorSceneManager.GetActiveScene().path;
 
@@ -44,15 +45,19 @@ namespace EasyAccessibility
                 var cam = GameObject.FindAnyObjectByType<Camera>(FindObjectsInactive.Include);
                 if (cam)
                 {
-                    var caption = GameObject.FindFirstObjectByType<T>(FindObjectsInactive.Include);
+                    var instance = GameObject.FindFirstObjectByType<T>(FindObjectsInactive.Include);
 
-                    if (caption == null)
+                    if (instance == null)
                     {
                         issues.Add(new Issue()
                         {
                             asset = AssetDatabase.LoadAssetAtPath<SceneAsset>(cam.scene.path),
                             issue = $"Scene '{cam.scene.name}' {failMessage}"
                         });
+                    }
+                    else if(validationAction != null)
+                    {
+                        validationAction.Invoke(instance);
                     }
                 }
             }
@@ -87,6 +92,19 @@ namespace EasyAccessibility
                     });
                 }
             }
+        }
+
+        public static bool UsesBuiltInRenderPipeline()
+        {
+            bool hasQualityLevelWithNoRenderPipeline = false;
+            QualitySettings.ForEach(() =>
+            {
+                if(QualitySettings.renderPipeline == null)
+                    hasQualityLevelWithNoRenderPipeline = true;
+            });
+
+            return GraphicsSettings.defaultRenderPipeline == null
+            && hasQualityLevelWithNoRenderPipeline;
         }
 
 

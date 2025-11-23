@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bccede6ffc90d64d92d9fd84cacd179, type: 3}
   m_Name: AccessibilitySettings
   m_EditorClassIdentifier: com.xx.easyaccessibility.Runtime::EasyAccessibility.AccessibilitySettings
-  colorblindCorrectionMode: 3
-  colorblindCorrectionAmount: 1
+  colorblindCorrectionMode: 0
+  colorblindCorrectionAmount: 0
+  colorblindSimulationMode: 0
+  colorblindSimulationAmount: 0

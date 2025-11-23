@@ -28,23 +28,23 @@ namespace EasyAccessibility
                 -0.395913, 0.801109, 0.0
             };
 
-        [MenuItem("Window/Easy Accessibility/Generate LUTS")]
+        [MenuItem("Window/Easy Accessibility/Config/Generate LUTS")]
         public static void GenerateLUTS()
         {
-            foreach (var curr in Enum.GetValues(typeof(AccessibilitySettings.ColorblindMode)).Cast<AccessibilitySettings.ColorblindMode>())
+            foreach (var curr in Enum.GetValues(typeof(AccessibilitySettings.ColorblindCorrectionMode)).Cast<AccessibilitySettings.ColorblindCorrectionMode>())
             {
-                if (curr == AccessibilitySettings.ColorblindMode.None) continue; //skip basic
+                if (curr == AccessibilitySettings.ColorblindCorrectionMode.None) continue; //skip basic
                 GenerateLUT(curr);
             }
         }
 
         //source: https://miko.art/labs/Color-Vision/Javascript/Color.Vision.Daltonize.js
-        public static void GenerateLUT(AccessibilitySettings.ColorblindMode mode = AccessibilitySettings.ColorblindMode.Protanopia)
+        public static void GenerateLUT(AccessibilitySettings.ColorblindCorrectionMode mode = AccessibilitySettings.ColorblindCorrectionMode.Protanopia)
         {
             int resolution = 256;
             var data = new Color[resolution * resolution * resolution];
 
-            if(mode == AccessibilitySettings.ColorblindMode.None)
+            if(mode == AccessibilitySettings.ColorblindCorrectionMode.None)
             {
                 Debug.Log("No need to generate a LUT for identity/normal vision.");
                 return;
@@ -53,13 +53,13 @@ namespace EasyAccessibility
             double[] cvdMatrix;
             switch(mode)
             {
-                case AccessibilitySettings.ColorblindMode.Protanopia:
+                case AccessibilitySettings.ColorblindCorrectionMode.Protanopia:
                     cvdMatrix = Protanope;
                     break;
-                case AccessibilitySettings.ColorblindMode.Deuteranopia:
+                case AccessibilitySettings.ColorblindCorrectionMode.Deuteranopia:
                     cvdMatrix = Deuteranope;
                     break;
-                case AccessibilitySettings.ColorblindMode.Tritanopia:
+                case AccessibilitySettings.ColorblindCorrectionMode.Tritanopia:
                     cvdMatrix = Tritanope;
                     break;
                 default:
@@ -142,7 +142,7 @@ namespace EasyAccessibility
             var output = new Texture3D(resolution, resolution, resolution, TextureFormat.RGBA32, false);
             output.SetPixels(data);
             output.Apply();
-            AssetDatabase.CreateAsset(output, $"Packages/com.xx.easyaccessibility/Runtime/Colorblindness/Rendering/LUT_{Enum.GetName(typeof(AccessibilitySettings.ColorblindMode), mode)}.asset");
+            AssetDatabase.CreateAsset(output, $"Packages/com.xx.easyaccessibility/Runtime/Colorblindness/Rendering/LUT_{Enum.GetName(typeof(AccessibilitySettings.ColorblindCorrectionMode), mode)}.asset");
         }
     }
 }

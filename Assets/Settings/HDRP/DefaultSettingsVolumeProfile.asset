@@ -1091,6 +1091,7 @@ MonoBehaviour:
   - {fileID: 3574972635879152071}
   - {fileID: 2230361648262413886}
   - {fileID: 3211795467700133090}
+  - {fileID: 5509830785856249039}
 --- !u!114 &84675734479033381
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -2176,6 +2177,31 @@ MonoBehaviour:
   proceduralSoftness:
     m_OverrideState: 1
     m_Value: 0.5
+--- !u!114 &5509830785856249039
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 387a489d793d814408f5f138f572d16d, type: 3}
+  m_Name: ColorblindSimulationHDRP
+  m_EditorClassIdentifier: com.xx.easyaccessibility.Runtime::EasyAccessibility.ColorblindSimulationHDRP
+  active: 1
+  materialParameter:
+    m_OverrideState: 1
+    m_Value: {fileID: 0}
+  overrideSettings:
+    m_OverrideState: 1
+    m_Value: 0
+  mode:
+    m_OverrideState: 1
+    m_Value: 0
+  amount:
+    m_OverrideState: 1
+    m_Value: 0
 --- !u!114 &5629132117630041347
 MonoBehaviour:
   m_ObjectHideFlags: 3

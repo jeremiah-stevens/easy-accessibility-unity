@@ -1,4 +1,5 @@
 using UnityEditor;
+using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 namespace EasyAccessibility
@@ -24,7 +25,10 @@ namespace EasyAccessibility
         {
             base.Audit();
 
+            //checks for colorblind correction
             VerifyAllUniversalRendererDataHasColorblindnessSetting();
+            VerifyAllScenesHaveACameraWithColorblindCorrectionBuiltIn();
+            VerifyAllScenesHaveHDRPVolumeWithColorblindCorrectionHDRP();
         }
 
         private void VerifyAllUniversalRendererDataHasColorblindnessSetting()
@@ -45,11 +49,37 @@ namespace EasyAccessibility
                         issues.Add(new Issue()
                         {
                             asset = curr,
-                            issue = $"UniversalRendererData '{curr}' does not include a colorblindness feature. Consider adding one to offer colorblindness support."
+                            issue = $"UniversalRendererData '{curr}' does not include a colorblind correction feature. Consider adding one to offer colorblind correction support."
                         });
                     }
                 }
             }
+#endif
+        }
+
+        private void VerifyAllScenesHaveACameraWithColorblindCorrectionBuiltIn()
+        {
+            if(!UsesBuiltInRenderPipeline()) return; //don't check for this if there is no built-in render pipeline usage
+
+            AuditForInstanceWithCamera<ColorblindCorrectionBuiltIn>("No colorblind correction feature on camera");
+        }
+
+        private void VerifyAllScenesHaveHDRPVolumeWithColorblindCorrectionHDRP()
+        {
+#if EA_HDRP
+            AuditForInstanceWithCamera<Volume>("No volume in the given scene.", (volume) =>
+            {
+                var index = volume.profile.components.FindIndex((i) => i is ColorblindCorrectionHDRP);
+
+                if(index == -1)
+                {
+                    issues.Add(new Issue()
+                    {
+                        asset = volume.profile,
+                        issue = $"Volume Profile '{volume.profile}' does not include a colorblind correction feature. Consider adding one to offer colorblind correction support."
+                    });
+                }
+            });
 #endif
         }
     }
