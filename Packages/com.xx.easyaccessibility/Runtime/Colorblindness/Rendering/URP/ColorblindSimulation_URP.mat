@@ -7,14 +7,12 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ColorblindCorrectionProcedural_URP
-  m_Shader: {fileID: -6465566751694194690, guid: 28740f1a8fce8d9418363ee2e4e08314, type: 3}
+  m_Name: ColorblindSimulation_URP
+  m_Shader: {fileID: -6465566751694194690, guid: 2eda16d4d94004546b797689b3d1850c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _MODE_A
-  - _TYPE_PROTANOPIA
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -91,7 +89,7 @@ Material:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _Amount: 0
+    - _Amount: 1
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1

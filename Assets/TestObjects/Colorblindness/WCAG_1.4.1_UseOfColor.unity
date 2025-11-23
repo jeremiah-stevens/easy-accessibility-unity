@@ -1179,7 +1179,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &445122025
 Transform:
   m_ObjectHideFlags: 0
@@ -1835,6 +1835,7 @@ GameObject:
   - component: {fileID: 593232240}
   - component: {fileID: 593232242}
   - component: {fileID: 593232241}
+  - component: {fileID: 593232243}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2106,7 +2107,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 593232235}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74868216cc7a5044da49ae5bc140c491, type: 3}
   m_Name: 
@@ -2132,6 +2133,21 @@ MonoBehaviour:
   textureProtanopia: {fileID: 11700000, guid: 9c634bf88f819344a8c17e63f43fb780, type: 2}
   textureDeutranopia: {fileID: 11700000, guid: 555e478cc2c686f478aca007bb83d2b1, type: 2}
   textureTritanopia: {fileID: 11700000, guid: 9d4b5ef605a227149a7f46918f286e69, type: 2}
+--- !u!114 &593232243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593232235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d511fe83fb69346a409b8c064e09a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.xx.easyaccessibility.Runtime::EasyAccessibility.ColorblindSimulationBuiltIn
+  overrideSettings: 0
+  mode: 0
+  amount: 1
 --- !u!1 &640464650
 GameObject:
   m_ObjectHideFlags: 0
@@ -2582,7 +2598,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &844075553
 Transform:
   m_ObjectHideFlags: 0

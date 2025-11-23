@@ -714,6 +714,8 @@ MonoBehaviour:
             Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
           - EasyAccessibility.ColorblindCorrectionProceduralHDRP, com.xx.easyaccessibility.Runtime,
             Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+          - EasyAccessibility.ColorblindSimulationHDRP, com.xx.easyaccessibility.Runtime,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     - rid: 922328982618112327
       type: {class: HDRenderPipelineEditorTextures, ns: UnityEngine.Rendering.HighDefinition, asm: Unity.RenderPipelines.HighDefinition.Runtime}
       data:

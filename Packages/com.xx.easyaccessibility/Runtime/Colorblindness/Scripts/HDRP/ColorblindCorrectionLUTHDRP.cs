@@ -12,12 +12,12 @@ namespace EasyAccessibility
     /// </summary>
     [Serializable]
     [VolumeComponentMenu("Easy Accessibility/Colorblind Correction (LUT)")]
-    public class ColorblindCorrectionLUTHDRP : CustomPostProcessVolumeComponent, IPostProcessComponent
+    public class ColorblindCorrectionLUTHDRP : ColorblindCorrectionHDRP
     {
         public MaterialParameter materialParameter = new MaterialParameter(null);
 
         public BoolParameter overrideSettings = new BoolParameter(false);
-        public VolumeParameter<AccessibilitySettings.ColorblindMode> mode = new VolumeParameter<AccessibilitySettings.ColorblindMode>();
+        public VolumeParameter<AccessibilitySettings.ColorblindCorrectionMode> mode = new VolumeParameter<AccessibilitySettings.ColorblindCorrectionMode>();
         public ClampedFloatParameter amount = new ClampedFloatParameter(0f, 0f, 1f);
         public TextureParameter textureProtanopia = new TextureParameter(null, TextureDimension.Tex3D);
         public TextureParameter textureDeutranopia = new TextureParameter(null, TextureDimension.Tex3D);
@@ -26,20 +26,18 @@ namespace EasyAccessibility
 
 
 
-        public bool IsActive() => materialParameter.value != null && amount.value > 0f;
-
-        private void SetMode(AccessibilitySettings.ColorblindMode mode)
+        private void SetMode(AccessibilitySettings.ColorblindCorrectionMode mode)
         {
             Texture tex = null;
             switch (mode)
             {
-                case AccessibilitySettings.ColorblindMode.Protanopia:
+                case AccessibilitySettings.ColorblindCorrectionMode.Protanopia:
                     tex = textureProtanopia.value;
                     break;
-                case AccessibilitySettings.ColorblindMode.Deuteranopia:
+                case AccessibilitySettings.ColorblindCorrectionMode.Deuteranopia:
                     tex = textureDeutranopia.value;
                     break;
-                case AccessibilitySettings.ColorblindMode.Tritanopia:
+                case AccessibilitySettings.ColorblindCorrectionMode.Tritanopia:
                     tex = textureTritanopia.value;
                     break;
                 default:
@@ -51,6 +49,8 @@ namespace EasyAccessibility
 
 
 
+
+        public override bool IsActive() => materialParameter.value != null;
 
         public override void Setup()
         {                

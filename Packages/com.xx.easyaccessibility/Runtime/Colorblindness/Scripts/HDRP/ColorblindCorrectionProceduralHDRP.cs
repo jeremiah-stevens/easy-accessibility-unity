@@ -10,36 +10,36 @@ namespace EasyAccessibility
     /// </summary>
     [Serializable]
     [VolumeComponentMenu("Easy Accessibility/Colorblind Correction (Procedural)")]
-    public class ColorblindCorrectionProceduralHDRP : CustomPostProcessVolumeComponent, IPostProcessComponent
+    public class ColorblindCorrectionProceduralHDRP : ColorblindCorrectionHDRP
     {
         public MaterialParameter materialParameter = new MaterialParameter(null);
         public BoolParameter overrideSettings = new BoolParameter(false);
-        public VolumeParameter<AccessibilitySettings.ColorblindMode> mode = new VolumeParameter<AccessibilitySettings.ColorblindMode>();
+        public VolumeParameter<AccessibilitySettings.ColorblindCorrectionMode> mode = new VolumeParameter<AccessibilitySettings.ColorblindCorrectionMode>();
         public ClampedFloatParameter amount = new ClampedFloatParameter(0f, 0f, 1f);
         
 
 
 
-        private void SetMode(AccessibilitySettings.ColorblindMode mode)
+        private void SetMode(AccessibilitySettings.ColorblindCorrectionMode mode)
         {
             switch (mode)
             {
-                case AccessibilitySettings.ColorblindMode.Protanopia:
+                case AccessibilitySettings.ColorblindCorrectionMode.Protanopia:
                     materialParameter.value.EnableKeyword("_MODE_PROTANOPIA");
                     materialParameter.value.DisableKeyword("_MODE_DEUTERANOPIA");
                     materialParameter.value.DisableKeyword("_MODE_TRITANOPIA");
                     break;
-                case AccessibilitySettings.ColorblindMode.Deuteranopia:
+                case AccessibilitySettings.ColorblindCorrectionMode.Deuteranopia:
                     materialParameter.value.DisableKeyword("_MODE_PROTANOPIA");
                     materialParameter.value.EnableKeyword("_MODE_DEUTERANOPIA");
                     materialParameter.value.DisableKeyword("_MODE_TRITANOPIA");
                     break;
-                case AccessibilitySettings.ColorblindMode.Tritanopia:
+                case AccessibilitySettings.ColorblindCorrectionMode.Tritanopia:
                     materialParameter.value.DisableKeyword("_MODE_PROTANOPIA");
                     materialParameter.value.DisableKeyword("_MODE_DEUTERANOPIA");
                     materialParameter.value.EnableKeyword("_MODE_TRITANOPIA");
                     break;
-                case AccessibilitySettings.ColorblindMode.None:
+                case AccessibilitySettings.ColorblindCorrectionMode.None:
                 default:
                     materialParameter.value.DisableKeyword("_MODE_PROTANOPIA");
                     materialParameter.value.DisableKeyword("_MODE_DEUTERANOPIA");
@@ -51,7 +51,7 @@ namespace EasyAccessibility
 
 
 
-        public bool IsActive() => materialParameter.value != null && amount.value > 0f;
+        public override bool IsActive() => materialParameter.value != null;
 
         public override void Setup()
         {

@@ -10,7 +10,7 @@ namespace EasyAccessibility
     {
         [Header("Override")]
         [SerializeField] bool overrideSettings;
-        [SerializeField] AccessibilitySettings.ColorblindMode mode;
+        [SerializeField] AccessibilitySettings.ColorblindCorrectionMode mode;
         [SerializeField][Range(0f, 1f)] float amount = 1;
         [SerializeField] Texture3D textureProtanopia;
         [SerializeField] Texture3D textureDeutranopia;
@@ -22,17 +22,17 @@ namespace EasyAccessibility
 
 
 
-        private void SetLUT(AccessibilitySettings.ColorblindMode mode)
+        private void SetLUT(AccessibilitySettings.ColorblindCorrectionMode mode)
         {
             switch (mode)
             {
-                case AccessibilitySettings.ColorblindMode.Protanopia:
+                case AccessibilitySettings.ColorblindCorrectionMode.Protanopia:
                     m_renderMaterial.SetTexture("_LUT", textureProtanopia);
                     break;
-                case AccessibilitySettings.ColorblindMode.Deuteranopia:
+                case AccessibilitySettings.ColorblindCorrectionMode.Deuteranopia:
                     m_renderMaterial.SetTexture("_LUT", textureDeutranopia);
                     break;
-                case AccessibilitySettings.ColorblindMode.Tritanopia:
+                case AccessibilitySettings.ColorblindCorrectionMode.Tritanopia:
                     m_renderMaterial.SetTexture("_LUT", textureTritanopia);
                     break;
                 default:
