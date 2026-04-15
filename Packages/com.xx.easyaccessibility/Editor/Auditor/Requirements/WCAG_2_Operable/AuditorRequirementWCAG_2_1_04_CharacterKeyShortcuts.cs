@@ -1,5 +1,10 @@
 namespace EasyAccessibility
 {
+    /*TODO:
+     * * Evaluate for usage of rebindable keys (Roslyn analyzer?)
+     * * Recommend usage of new Input System
+     * * Recommend using static references to input system (static class)
+     */
     public class AuditorRequirementWCAG_2_1_04_CharacterKeyShortcuts : AuditorRequirementWCAG_2_1_01_Keyboard
     {
         public AuditorRequirementWCAG_2_1_04_CharacterKeyShortcuts()
@@ -8,31 +13,6 @@ namespace EasyAccessibility
             name = AuditorRequirementKeys.GetTitle(2,1,4);
             description = AuditorRequirementKeys.GetDescription(2,1,4);
             referenceLink = AuditorRequirementKeys.GetUrl(2,1,4);
-        }
-    }
-
-    /*TODO:
-     * - Finish implementing
-     * - Find way of evaluating for functionality (ex: QTEs, is it possible to offer this for real-time content?)
-     */
-    public class AuditorRequirementWCAG_2_2_01_TimingAdjustable : AuditorRequirement
-    {
-        public override void Audit()
-        {
-            base.Audit();
-
-            AuditForInstanceWithCamera<TimingSettings>("has no TimingSettings provider.");
-        }
-
-
-
-
-        public AuditorRequirementWCAG_2_2_01_TimingAdjustable()
-        {
-            source = AuditorRequirementKeys.Source_WCAG;
-            name = AuditorRequirementKeys.GetTitle(2, 2, 1);
-            description = AuditorRequirementKeys.GetDescription(2, 2, 1);
-            referenceLink = AuditorRequirementKeys.GetUrl(2, 2, 1);
         }
     }
 }
