@@ -105,6 +105,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -258,7 +259,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3318172080661531082}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6784704455709406075}
+        m_TargetAssemblyTypeName: EasyAccessibility.RebindableAction, com.xx.easyaccessibility.Runtime
+        m_MethodName: StartRebind
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3945328859979644410
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,6 +375,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -515,7 +529,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8031939814889291199}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6784704455709406075}
+        m_TargetAssemblyTypeName: EasyAccessibility.RebindableAction, com.xx.easyaccessibility.Runtime
+        m_MethodName: ResetBinding
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5282982674891280638
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,6 +645,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -662,7 +689,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3845180728047977339}
   - component: {fileID: 4781471861888923544}
-  - component: {fileID: 1219133402125645209}
+  - component: {fileID: 6784704455709406075}
+  - component: {fileID: 2550432490982167073}
   m_Layer: 5
   m_Name: Entry
   m_TagString: Untagged
@@ -719,7 +747,36 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &1219133402125645209
+--- !u!114 &6784704455709406075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5763956373327055048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ebc3e9d2d4157d4487122b25a6d4736, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.xx.easyaccessibility.Runtime::EasyAccessibility.RebindableAction
+  m_action: {fileID: 0}
+  bindingId: 
+  onRebindStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  onRebindCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  onRebindCancelled:
+    m_PersistentCalls:
+      m_Calls: []
+  onRebindReset:
+    m_PersistentCalls:
+      m_Calls: []
+  onDisplayStringChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &2550432490982167073
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -731,10 +788,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b887399c466a694d82b639bb8abd7df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EasyAccessibility.RebindableUIEntry
-  action: {fileID: 8201460032976148233}
-  binding: {fileID: 3107525092435001513}
-  rebindButton: {fileID: 5435723687927576628}
-  resetButton: {fileID: 7949037804021570302}
+  m_rebindableAction: {fileID: 6784704455709406075}
+  m_actionName: {fileID: 8201460032976148233}
+  m_bindingDisplay: {fileID: 3107525092435001513}
+  m_rebindButton: {fileID: 5435723687927576628}
+  m_resetButton: {fileID: 7949037804021570302}
 --- !u!1 &7241468388255284046
 GameObject:
   m_ObjectHideFlags: 0
@@ -838,6 +896,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
