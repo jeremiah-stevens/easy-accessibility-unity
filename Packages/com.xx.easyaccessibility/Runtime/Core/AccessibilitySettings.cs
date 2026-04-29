@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 
 namespace EasyAccessibility
@@ -5,6 +6,8 @@ namespace EasyAccessibility
     [CreateAssetMenu(fileName = "Settings", menuName = "Easy Accessibility/Settings")]
     public class AccessibilitySettings : ScriptableObject
     {
+        private static string SavePath => Path.Combine(Application.persistentDataPath, "accessibility_settings.json");
+
         [Header("Colorblind")]
         public ColorblindCorrectionMode colorblindCorrectionMode;
         [Range(0f, 1f)] public float colorblindCorrectionAmount;
@@ -12,6 +15,9 @@ namespace EasyAccessibility
         public ColorblindSimulationMode colorblindSimulationMode;
         [Range(0f, 1f)] public float colorblindSimulationAmount;
 #endif
+
+        [Header("Rebindable Keys")]
+        public string rebindableKeys;
 
 
         private static AccessibilitySettings m_instance;
@@ -25,6 +31,17 @@ namespace EasyAccessibility
                 }
                 return m_instance;
             }
+        }
+
+        public void Save()
+        {
+            File.WriteAllText(SavePath, JsonUtility.ToJson(this));
+        }
+
+        public void Load()
+        {
+            if (!File.Exists(SavePath)) return;
+            JsonUtility.FromJsonOverwrite(File.ReadAllText(SavePath), this);
         }
 
 

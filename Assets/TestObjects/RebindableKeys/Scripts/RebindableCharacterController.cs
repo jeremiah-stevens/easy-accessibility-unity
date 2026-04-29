@@ -8,8 +8,8 @@ namespace EasyAccessibility
     {
         CharacterController characterController;
 
-        InputAction moveAction;
-        InputAction jumpAction;
+        [SerializeField] InputActionReference moveAction;
+        [SerializeField] InputActionReference jumpAction;
 
         [SerializeField] [Range(0f, 20f)] float moveSpeed = 1f;
         [SerializeField] [Range(0f, 1f)] float jumpSpeed = 0.5f;
@@ -19,17 +19,15 @@ namespace EasyAccessibility
         private void Start()
         {
             characterController = GetComponent<CharacterController>();
-            moveAction = InputSystem.actions.FindAction("Move");
-            jumpAction = InputSystem.actions.FindAction("Jump");
         }
 
         void Update()
         {
             //movement
-            var input = moveAction.ReadValue<Vector2>();
+            var input = moveAction.action.ReadValue<Vector2>();
             Vector3 movement = new Vector3(input.x, 0f, input.y);
 
-            if(jumpAction.IsPressed())
+            if(jumpAction.action.IsPressed())
             {
                 movement.y = jumpSpeed;
             }
