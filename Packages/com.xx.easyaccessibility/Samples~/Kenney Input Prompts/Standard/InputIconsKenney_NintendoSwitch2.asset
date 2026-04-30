@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7354f04f3e864245af7b66578823144, type: 3}
+  m_Name: InputIconsKenney_NintendoSwitch2
+  m_EditorClassIdentifier: com.xx.easyaccessibility.Runtime::EasyAccessibility.InputIconSetNintendoSwitch2
+  m_atlas: {fileID: 4343727234628468602, guid: 481a4e551ad73254e8037cb562ab3eaa, type: 2}
+  m_overrides: {fileID: 0}
+  suffix: 

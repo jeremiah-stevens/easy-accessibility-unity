@@ -7,5 +7,12 @@
     "author": {
         "name": "Jeremiah Stevens",
         "email": "jerdstevens@gmail.com"
-    }
+    },
+    "samples": [
+        {
+            "displayName": "Kenney Input Prompts",
+            "description": "Pre-configured icon sets using Kenney's CC0 Input Prompts asset pack.",
+            "path": "Samples~/Kenney Input Prompts"
+        }
+    ]
 }

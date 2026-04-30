@@ -10,6 +10,7 @@ namespace EasyAccessibility
         [SerializeField] private RebindableAction m_rebindableAction;
         [SerializeField] private TMP_Text m_actionName;
         [SerializeField] private TMP_Text m_bindingDisplay;
+        [SerializeField] private Image m_bindingIcon;
         [SerializeField] private Button m_rebindButton;
         [SerializeField] private Button m_resetButton;
 
@@ -22,9 +23,12 @@ namespace EasyAccessibility
             m_resetButton.onClick.AddListener(m_rebindableAction.ResetBinding);
 
             m_rebindableAction.onDisplayStringChanged.AddListener(OnDisplayStringChanged);
+            m_rebindableAction.onIconChanged.AddListener(OnIconChanged);
             m_rebindableAction.onRebindStarted.AddListener(OnRebindStarted);
             m_rebindableAction.onRebindCompleted.AddListener(OnRebindFinished);
             m_rebindableAction.onRebindCancelled.AddListener(OnRebindFinished);
+
+            OnIconChanged(m_rebindableAction.BindingIcon);
         }
 
         private void OnDestroy()
@@ -33,6 +37,7 @@ namespace EasyAccessibility
             m_resetButton.onClick.RemoveListener(m_rebindableAction.ResetBinding);
 
             m_rebindableAction.onDisplayStringChanged.RemoveListener(OnDisplayStringChanged);
+            m_rebindableAction.onIconChanged.RemoveListener(OnIconChanged);
             m_rebindableAction.onRebindStarted.RemoveListener(OnRebindStarted);
             m_rebindableAction.onRebindCompleted.RemoveListener(OnRebindFinished);
             m_rebindableAction.onRebindCancelled.RemoveListener(OnRebindFinished);
@@ -41,6 +46,13 @@ namespace EasyAccessibility
         private void OnDisplayStringChanged(string displayString)
         {
             m_bindingDisplay.text = displayString;
+        }
+
+        private void OnIconChanged(Sprite sprite)
+        {
+            if (m_bindingIcon == null) return;
+            m_bindingIcon.sprite = sprite;
+            m_bindingIcon.enabled = sprite != null;
         }
 
         private void OnRebindStarted()

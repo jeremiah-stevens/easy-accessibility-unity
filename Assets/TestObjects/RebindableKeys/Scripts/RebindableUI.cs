@@ -6,10 +6,14 @@ namespace EasyAccessibility
     public class RebindableUI : MonoBehaviour
     {
         private InputAction m_menuAction;
+        private InputActionMap m_playerMap;
 
         private void Start()
         {
-            m_menuAction = InputSystem.actions.FindAction("Menu");
+            var actions = InputSystem.actions;
+            m_playerMap = actions.FindActionMap("Player");
+
+            m_menuAction = actions.FindAction("Menu");
             m_menuAction.performed += OnMenuToggled;
             gameObject.SetActive(false);
         }
@@ -21,7 +25,17 @@ namespace EasyAccessibility
 
         private void OnMenuToggled(InputAction.CallbackContext ctx)
         {
-            gameObject.SetActive(!gameObject.activeInHierarchy);
+            var open = !gameObject.activeInHierarchy;
+            gameObject.SetActive(open);
+
+            if (open)
+            {
+                m_playerMap?.Disable();
+            }
+            else
+            {
+                m_playerMap?.Enable();
+            }
         }
     }
 }
