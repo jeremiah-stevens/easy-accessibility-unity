@@ -1,0 +1,166 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Generic
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 4
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 6527f271b232e45428fd50683bedeea9, type: 3}
+    bindAsDefault: 0
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - 69e22620d95efec4cb5e51f037d99653: 21300000
+    - 11a15f5009b6c6542b6de658f3c1c01e: 21300000
+    - d9bf1160d1628fc46ba0cde20579796e: 21300000
+    - 8fdd49807483e2a418d9f4c12d9c66fb: 21300000
+    - 25e871b0b37ee2648a9f43db44b1968a: 21300000
+    - 08df4461050ead64d8d828b37f0ec358: 21300000
+    - 2da92a220107eab48be3ed8f1cd6ff67: 21300000
+    - 9cec29622328be54bbfc04f81bc44313: 21300000
+    - 9b5f349279fbcf9429107647a73e91e6: 21300000
+    - b6c75a63476601445a1828fad1e11b1f: 21300000
+    - 6bce7a739efdca0468a7e02ed2e2b1f5: 21300000
+    - ddccb2a3ab6fc1b4d88c87acb41210c8: 21300000
+    - 9abeb484aadfefd4a9ce5f60f230491e: 21300000
+    - 743172e4deecb254e90039328e2f86dd: 21300000
+    - a7e3c845b59ce1d41bcd140416b65e9b: 21300000
+    - 5a5e2b45e926bbd47801f67091e5223c: 21300000
+    - 8435a37609375ec4c8b9d07e805d0dd3: 21300000
+    - 8a94a85712b0fd74b908e036ee6551db: 21300000
+    - d10e2377c2ede3346aace59425fe4d58: 21300000
+    - d8fec487f8064184e8b7b04f10da8ad4: 21300000
+    - 3b66885805e06d04d857ebbfb5c3ce9a: 21300000
+    - 14a6fde83a7ed094d9a574d8bf20681e: 21300000
+    - 4bc9ea191c92d2d49bf8adce7738c321: 21300000
+    - 0a273959af4737b42b0d182ae93cb70a: 21300000
+    - efa2f8990e020214e8f49f21afae76a3: 21300000
+    - 0d65bac9e3aee824daa2762d3fd3b6f1: 21300000
+    - 4f30640ad839c5e48b6d950e568df0c6: 21300000
+    - 881f5e8b103b9e7428a4476a34ba4540: 21300000
+    - 96df346dcf65e814abcb17b10eb47d60: 21300000
+    - 1c7ceb9df36f9fc4daf5f35838ea0047: 21300000
+    - 12e23aed980a4024593423e5813f9cd7: 21300000
+    - db94dd1e94ca8c347ac01084d0017ad4: 21300000
+    - 32c6ae8e23b2e7148b23568283099973: 21300000
+    - e8cc72be4caab46478ea3db91bec67d4: 21300000
+    - 7c70ef0fa9cae5544935496a00f2fff1: 21300000
+    - aa3fd4dfe7be633409e95d5fd9dbf4ca: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 69e22620d95efec4cb5e51f037d99653, type: 3}
+  - {fileID: 21300000, guid: 11a15f5009b6c6542b6de658f3c1c01e, type: 3}
+  - {fileID: 21300000, guid: d9bf1160d1628fc46ba0cde20579796e, type: 3}
+  - {fileID: 21300000, guid: 8fdd49807483e2a418d9f4c12d9c66fb, type: 3}
+  - {fileID: 21300000, guid: 25e871b0b37ee2648a9f43db44b1968a, type: 3}
+  - {fileID: 21300000, guid: 08df4461050ead64d8d828b37f0ec358, type: 3}
+  - {fileID: 21300000, guid: 2da92a220107eab48be3ed8f1cd6ff67, type: 3}
+  - {fileID: 21300000, guid: 9cec29622328be54bbfc04f81bc44313, type: 3}
+  - {fileID: 21300000, guid: 9b5f349279fbcf9429107647a73e91e6, type: 3}
+  - {fileID: 21300000, guid: b6c75a63476601445a1828fad1e11b1f, type: 3}
+  - {fileID: 21300000, guid: 6bce7a739efdca0468a7e02ed2e2b1f5, type: 3}
+  - {fileID: 21300000, guid: ddccb2a3ab6fc1b4d88c87acb41210c8, type: 3}
+  - {fileID: 21300000, guid: 9abeb484aadfefd4a9ce5f60f230491e, type: 3}
+  - {fileID: 21300000, guid: 743172e4deecb254e90039328e2f86dd, type: 3}
+  - {fileID: 21300000, guid: a7e3c845b59ce1d41bcd140416b65e9b, type: 3}
+  - {fileID: 21300000, guid: 5a5e2b45e926bbd47801f67091e5223c, type: 3}
+  - {fileID: 21300000, guid: 8435a37609375ec4c8b9d07e805d0dd3, type: 3}
+  - {fileID: 21300000, guid: 8a94a85712b0fd74b908e036ee6551db, type: 3}
+  - {fileID: 21300000, guid: d10e2377c2ede3346aace59425fe4d58, type: 3}
+  - {fileID: 21300000, guid: d8fec487f8064184e8b7b04f10da8ad4, type: 3}
+  - {fileID: 21300000, guid: 3b66885805e06d04d857ebbfb5c3ce9a, type: 3}
+  - {fileID: 21300000, guid: 14a6fde83a7ed094d9a574d8bf20681e, type: 3}
+  - {fileID: 21300000, guid: 4bc9ea191c92d2d49bf8adce7738c321, type: 3}
+  - {fileID: 21300000, guid: 0a273959af4737b42b0d182ae93cb70a, type: 3}
+  - {fileID: 21300000, guid: efa2f8990e020214e8f49f21afae76a3, type: 3}
+  - {fileID: 21300000, guid: 0d65bac9e3aee824daa2762d3fd3b6f1, type: 3}
+  - {fileID: 21300000, guid: 4f30640ad839c5e48b6d950e568df0c6, type: 3}
+  - {fileID: 21300000, guid: 881f5e8b103b9e7428a4476a34ba4540, type: 3}
+  - {fileID: 21300000, guid: 96df346dcf65e814abcb17b10eb47d60, type: 3}
+  - {fileID: 21300000, guid: 1c7ceb9df36f9fc4daf5f35838ea0047, type: 3}
+  - {fileID: 21300000, guid: 12e23aed980a4024593423e5813f9cd7, type: 3}
+  - {fileID: 21300000, guid: db94dd1e94ca8c347ac01084d0017ad4, type: 3}
+  - {fileID: 21300000, guid: 32c6ae8e23b2e7148b23568283099973, type: 3}
+  - {fileID: 21300000, guid: e8cc72be4caab46478ea3db91bec67d4, type: 3}
+  - {fileID: 21300000, guid: 7c70ef0fa9cae5544935496a00f2fff1, type: 3}
+  - {fileID: 21300000, guid: aa3fd4dfe7be633409e95d5fd9dbf4ca, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - generic_button_finger
+  - generic_stick_right
+  - generic_joystick_red_horizontal
+  - generic_button_square_fill
+  - generic_button_square_outline
+  - generic_button_finger_pressed
+  - generic_joystick_horizontal
+  - generic_button
+  - generic_button_circle
+  - generic_stick_horizontal
+  - generic_button_trigger_b_fill
+  - generic_button_trigger_b_outline
+  - generic_joystick_red
+  - generic_joystick_left
+  - generic_button_trigger_a_fill
+  - generic_button_circle_fill
+  - generic_stick_side
+  - generic_stick_up
+  - generic_button_trigger_b
+  - generic_button_trigger_c_outline
+  - generic_stick_vertical
+  - generic_joystick_right
+  - generic_button_trigger_c_fill
+  - generic_button_circle_outline
+  - generic_button_trigger_a
+  - generic_button_square
+  - generic_button_trigger_a_outline
+  - generic_joystick
+  - generic_stick_down
+  - generic_joystick_red_left
+  - generic_joystick_red_right
+  - generic_button_pressed
+  - generic_button_trigger_c
+  - generic_stick
+  - generic_stick_left
+  - generic_stick_press
+  m_RenderDataMap: {}
+  m_Tag: Generic
+  m_IsVariant: 0

@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -28,7 +30,6 @@ namespace EasyAccessibility
 
 
         [Header("Bindings")]
-
         InputActionRebindingExtensions.RebindingOperation m_currentRebindOperation;
 
         [Header("Events")]
@@ -49,12 +50,26 @@ namespace EasyAccessibility
         /// </summary>
         public UnityEvent onBindingChanged = new UnityEvent();
 
+        /// <summary>
+        /// Event fired when the user changes device (e.g. from keyboard to gamepad). This can be used to update input icons
+        /// or other UI elements that reflect the current input device.
+        /// </summary>
+        public event Action<InputDevice> OnDeviceChanged;
+
         public event Action<InputAction, int> OnBindingChanged; // RebindableAction internal use
 
         /// <summary>
         /// The current 
         /// </summary>
         public BindingConflict CurrentConflict { get; private set; }
+
+        [Header("Icons")]
+        public InputIconSet iconSet;
+        public InputDevice LastUsedDevice { get; private set; }
+
+        [Header("Excluded Paths")]
+        public ExcludedControl excludedControls = ExcludedControl.MousePosition | ExcludedControl.MouseDelta | ExcludedControl.PointerPosition;
+        public string[] additionalExcludedPaths;
 
         
 
@@ -74,10 +89,17 @@ namespace EasyAccessibility
             //store the prior keybind, in case we want to reject the new one
             var oldPath = input.bindings[bindingIndex].effectivePath;
 
+            //disable our current input action map so we don't interfere with gameplay
             input.actionMap.Disable();
 
+            //initialize the rebind operation
             var operation = input.PerformInteractiveRebinding(bindingIndex);
 
+            //exclude the controls we don't want the user to be able to bind
+            foreach (var path in GetExcludedPaths())
+                operation.WithControlsExcluding(path);
+
+            //if part of a composite, make sure we keep the expected structure
             if (input.bindings[bindingIndex].isPartOfComposite)
             {
                 var path = input.bindings[bindingIndex].effectivePath;
@@ -110,6 +132,7 @@ namespace EasyAccessibility
                     operation.WithExpectedControlType("Button");
             }
 
+            //perform the rebind and handle the results
             m_currentRebindOperation = operation
                 .OnCancel(op =>
                 {
@@ -131,6 +154,20 @@ namespace EasyAccessibility
                     OnBindingChanged?.Invoke(input, bindingIndex);
                 })
                 .Start();
+        }
+
+        private IEnumerable<string> GetExcludedPaths()
+        {
+            if (excludedControls.HasFlag(ExcludedControl.MousePosition))   yield return "<Mouse>/position";
+            if (excludedControls.HasFlag(ExcludedControl.MouseDelta))      yield return "<Mouse>/delta";
+            if (excludedControls.HasFlag(ExcludedControl.MouseScroll))     yield return "<Mouse>/scroll";
+            if (excludedControls.HasFlag(ExcludedControl.PointerPosition)) yield return "<Pointer>/position";
+            if (excludedControls.HasFlag(ExcludedControl.TouchPosition))   yield return "<Touchscreen>/touch*/position";
+
+            //adds synthetics controls to the exclusion set
+            yield return "<Keyboard>/anyKey";
+
+            foreach (var path in additionalExcludedPaths) yield return path;
         }
 
         #region Conflict Resolution
@@ -200,8 +237,11 @@ namespace EasyAccessibility
             foreach (var action in reboundAction.actionMap.actions)
             {
                 for (int i = 0; i < action.bindings.Count; i++)
+                {
+                    if (action == reboundAction && i == reboundIndex) continue;
                     if (action.bindings[i].effectivePath == newPath)
                         return (action, i);
+                }
             }
             return null;
         }
@@ -285,6 +325,14 @@ namespace EasyAccessibility
             asset.LoadBindingOverridesFromJson(AccessibilitySettings.Instance.rebindableKeys);
         }
 
+        private void HandleActionChange(object obj, InputActionChange change) {
+            if (change != InputActionChange.ActionPerformed) return;
+            var device = ((InputAction)obj).activeControl?.device;
+            if (device == null || device == LastUsedDevice) return;
+            LastUsedDevice = device;
+            OnDeviceChanged?.Invoke(device);
+        }
+
 
 
 
@@ -303,6 +351,10 @@ namespace EasyAccessibility
             DontDestroyOnLoad(gameObject);
 
             OnBindingChanged += (a, i) => onBindingChanged?.Invoke();
+            InputSystem.onActionChange += HandleActionChange;
+
+            if (iconSet == null)
+                Debug.LogWarning("RebindableInputManager: No icon set assigned. Input icons will not be shown.", this);
 
             LoadBindings();
         }
@@ -311,6 +363,16 @@ namespace EasyAccessibility
         {
             if(m_instance == this) m_instance = null;
             CancelRebind();
+
+            InputSystem.onActionChange -= HandleActionChange;
         }
+
+#if UNITY_EDITOR
+        void OnValidate()
+        {
+            if (iconSet == null)
+                Debug.LogWarning("RebindableInputManager: iconSet is not assigned. Input icons will not be shown.", this);
+        }
+#endif
     }
 }

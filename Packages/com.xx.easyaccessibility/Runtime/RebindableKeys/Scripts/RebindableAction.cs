@@ -52,12 +52,30 @@ namespace EasyAccessibility
             }
         }
 
+        /// <summary>
+        /// Gets the icon sprite for the current binding from the RebindableInputManager's active icon set.
+        /// Returns null if no icon set is assigned or no icon is mapped for this binding.
+        /// </summary>
+        public Sprite BindingIcon
+        {
+            get
+            {
+                if (!RebindableInputManager.IsInitialized || RebindableInputManager.Instance.iconSet == null)
+                    return null;
+                var bindingIndex = GetBindingIndex();
+                if (bindingIndex < 0) return null;
+                var path = m_resolvedAction.bindings[bindingIndex].effectivePath;
+                return RebindableInputManager.Instance.iconSet.GetIcon(path);
+            }
+        }
+
         [Header("Events")]
         public UnityEvent onRebindStarted;
         public UnityEvent onRebindCompleted;
         public UnityEvent onRebindCancelled;
         public UnityEvent onRebindReset;
         public UnityEvent<string> onDisplayStringChanged;
+        public UnityEvent<Sprite> onIconChanged;
 
 
 
@@ -111,10 +129,16 @@ namespace EasyAccessibility
             onRebindCancelled.Invoke();
         }
 
+        private Sprite m_lastIcon;
+
         private void RefreshDisplayString()
         {
-            var display = BindingDisplayString;
-            onDisplayStringChanged.Invoke(display);
+            onDisplayStringChanged.Invoke(BindingDisplayString);
+
+            var icon = BindingIcon;
+            if (icon == m_lastIcon) return;
+            m_lastIcon = icon;
+            onIconChanged.Invoke(icon);
         }
 
         private int GetBindingIndex()
@@ -122,6 +146,25 @@ namespace EasyAccessibility
             if (string.IsNullOrEmpty(bindingId)) return -1;
             var bindingGuid = new Guid(bindingId);
             return m_action.action.bindings.IndexOf(b => b.id == bindingGuid);
+        }
+
+        private void HandleDeviceChanged(InputDevice device)
+        {
+            var bindingIndex = GetBindingIndex();
+            if (bindingIndex < 0) return;
+
+            var path = m_resolvedAction.bindings[bindingIndex].effectivePath;
+            if (string.IsNullOrEmpty(path)) return;
+
+            var layoutEnd = path.IndexOf('>');
+            if (layoutEnd > 0)
+            {
+                var layoutName = path[1..layoutEnd];
+                if (!InputSystem.IsFirstLayoutBasedOnSecond(device.layout, layoutName))
+                    return;
+            }
+
+            RefreshDisplayString();
         }
 
 
@@ -134,6 +177,7 @@ namespace EasyAccessibility
             if(!RebindableInputManager.IsInitialized) return;
             RebindableInputManager.Instance.OnBindingChanged += HandleBindingChanged;
             RebindableInputManager.Instance.onBindingCancelled.AddListener(HandleRebindCancelled);
+            RebindableInputManager.Instance.OnDeviceChanged += HandleDeviceChanged;
             RefreshDisplayString();
         }
 
@@ -142,6 +186,7 @@ namespace EasyAccessibility
             if(!RebindableInputManager.IsInitialized) return;
             RebindableInputManager.Instance.OnBindingChanged -= HandleBindingChanged;
             RebindableInputManager.Instance.onBindingCancelled.RemoveListener(HandleRebindCancelled);
+            RebindableInputManager.Instance.OnDeviceChanged -= HandleDeviceChanged;
         }
     }
 }

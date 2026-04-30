@@ -1,96 +1,67 @@
-using UnityEngine;
-using UnityEditor;
-using UnityEngine.UIElements;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine.InputSystem;
 
-namespace EasyAccessibility
+namespace EasyAccessibility.Editor
 {
+    /// <summary>
+    /// Custom editor for the RebindableAction component. Provides a dropdown for selecting which binding
+    /// of the InputAction to rebind.
+    /// </summary>
     [CustomEditor(typeof(RebindableAction))]
-    public class RebindableActionEditor : Editor
+    [CanEditMultipleObjects]
+    public class RebindableActionEditor : UnityEditor.Editor
     {
-        SerializedProperty propertyAction;
-        SerializedProperty propertyBindingId;
-
-        GUIContent[] bindingOptions;
-        string[] bindingOptionValues;
-        int bindingOptionSelection;
-
-
-
-
-        private void RefreshBindings()
+        private void DrawBindingPicker(InputAction action)
         {
-            var inputActionReference = (InputActionReference)propertyAction.objectReferenceValue;
-            var action = inputActionReference?.action;
+            var labels = new List<string>();
+            var ids = new List<string>();
 
-            Debug.Log(action);
-            if(action == null)
+            foreach (var binding in action.bindings)
             {
-                bindingOptions = new GUIContent[0];
-                bindingOptionValues = new string[0];
-                bindingOptionSelection = -1;
-                return;
+                if (binding.isComposite) continue;
+
+                var scheme = string.IsNullOrEmpty(binding.groups) ? "Any" : binding.groups.Replace(";", ", ");
+                var display = binding.isPartOfComposite
+                    ? $"{binding.name}: {binding.ToDisplayString()} [{scheme}]"
+                    : $"{binding.ToDisplayString()} [{scheme}]";
+
+                labels.Add(display);
+                ids.Add(binding.id.ToString());
             }
 
-            bindingOptions = new GUIContent[action.bindings.Count];
-            bindingOptionValues = new string[action.bindings.Count];
-            bindingOptionSelection = -1;
+            if (ids.Count == 0) return;
 
-            var curr = propertyBindingId.stringValue;
-            for(int i = 0; i < action.bindings.Count; i++)
+            var target = (RebindableAction)this.target;
+            var currentIndex = ids.IndexOf(target.bindingId);
+            if (currentIndex < 0) currentIndex = 0;
+
+            var newIndex = EditorGUILayout.Popup("Binding", currentIndex, labels.ToArray());
+
+            if (newIndex != currentIndex || string.IsNullOrEmpty(target.bindingId))
             {
-                var currBinding = action.bindings[i];
-                var currId = currBinding.id.ToString();
-                var currIsGroup = !string.IsNullOrEmpty(currBinding.groups);
-
-                if(currIsGroup)
-                {
-                    //TODO: append 
-                }
-
-                var displayString = action.GetBindingDisplayString(i);
-                displayString = displayString.Replace('/', '\\');
-
-                bindingOptions[i] = new GUIContent(displayString);
-                bindingOptionValues[i] = currId;
-
-                Debug.Log($"binding: {currBinding}, value: {bindingOptionValues[i]}");
-
-                if (curr == currId)
-                    bindingOptionSelection = i;
+                target.bindingId = ids[newIndex];
+                EditorUtility.SetDirty(target);
             }
         }
 
 
 
-
-        protected void OnEnable()
-        {
-            propertyAction = serializedObject.FindProperty("action");
-            propertyBindingId = serializedObject.FindProperty("bindingId");
-
-            RefreshBindings();
-        }
 
         public override void OnInspectorGUI()
         {
-            base.OnInspectorGUI();
+            serializedObject.Update();
 
-            EditorGUI.BeginChangeCheck();
+            var actionProp = serializedObject.FindProperty("m_action");
+            EditorGUILayout.PropertyField(actionProp);
 
-            var bindingSelection = EditorGUILayout.Popup(new GUIContent("Binding"), bindingOptionSelection, bindingOptions);
-            if(bindingSelection != bindingOptionSelection) //new selection
-            {
-                propertyBindingId.stringValue = bindingOptionValues[bindingSelection];
-                bindingOptionSelection = bindingSelection;
-            }
+            var actionRef = actionProp.objectReferenceValue as InputActionReference;
+            if (actionRef?.action != null)
+                DrawBindingPicker(actionRef.action);
 
-            if (EditorGUI.EndChangeCheck())
-            {
-                serializedObject.ApplyModifiedProperties();
-                RefreshBindings();
-            }
+            DrawPropertiesExcluding(serializedObject, "m_action", "bindingId");
+
+            serializedObject.ApplyModifiedProperties();
         }
     }
 }
