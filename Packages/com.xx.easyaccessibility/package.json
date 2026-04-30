@@ -1,8 +1,8 @@
 {
-    "name": "com.xx.easyaccessibility",
+    "name": "com.a-la-code.easyaccessibility",
     "version": "0.0.1",
     "displayName": "Easy Accessibility",
-    "description": "An open-source tool for making accessibility easy.",
+    "description": "Easy Accessibility is an open-source Unity package that brings WCAG compliance tooling to Unity. It provides ready-to-use implementations, an automated auditor, and an extensible framework so developers can ship accessible Unity applications without starting from scratch.",
     "unity": "6000.2",
     "author": {
         "name": "Jeremiah Stevens",
