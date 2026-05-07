@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace EasyAccessibility
 {
     public class RebindableUI : MonoBehaviour
     {
+        [SerializeField] GameObject firstObject;
         private InputAction m_menuAction;
         private InputActionMap m_playerMap;
 
@@ -30,6 +32,7 @@ namespace EasyAccessibility
 
             if (open)
             {
+                EventSystem.current.SetSelectedGameObject(firstObject);
                 m_playerMap?.Disable();
             }
             else
