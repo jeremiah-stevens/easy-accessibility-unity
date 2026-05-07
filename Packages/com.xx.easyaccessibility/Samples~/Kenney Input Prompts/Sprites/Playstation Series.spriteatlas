@@ -1,0 +1,460 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Playstation Series
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 4
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: dc324f920a82dcc4a9a02783a88df7f9, type: 3}
+    bindAsDefault: 0
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - 80457c10b2bb0c648b748de7cf211130: 21300000
+    - aeb141407068c9b4e8db2636ad0cf1a5: 21300000
+    - bfa5ef506755170408e58fd75680bf1e: 21300000
+    - 62dad270258b08b47a6f75d9907ac2b5: 21300000
+    - 90a6ac11234adf9479fa31607e9a3df8: 21300000
+    - bdc2fb412ffa3c941abb547f8dad9471: 21300000
+    - cb392061c3614b341bb48e49eba06553: 21300000
+    - 84bb0681b71bd864e8aa5750b35b4560: 21300000
+    - 84b63aa1fabf4d74da463e19412b3e78: 21300000
+    - 55249ed1d7d8d234eb038f52198f123e: 21300000
+    - 455929e1438b5934b8fd74bc55757481: 21300000
+    - 93096fe1ea558b84ba32a4c5c74220d1: 21300000
+    - c932adf1ba12e324386f8b8ee7a91a9a: 21300000
+    - 63e2651237d32f2468c3db693a911e2b: 21300000
+    - f565df32662f192409300f0b45d5b637: 21300000
+    - ac29b7522d7e966458fa344b7fed8392: 21300000
+    - 57ee5b623424324489f6dcac952683c8: 21300000
+    - d1c62d72f16b5794f9054ea57e7870df: 21300000
+    - 15d53182896f0ae4fa920241bc5d832f: 21300000
+    - f6ffcb8205b6d9b47b94451411beaed0: 21300000
+    - 8980a503df8d77d4d99157dc7b9dc37a: 21300000
+    - 9b46ca435ef6b004491de6d679da4dc4: 21300000
+    - 295524b3e526da3429207d5f8e25f268: 21300000
+    - e5f999b3cf3ea7e47a1da30536747bf3: 21300000
+    - b3d68eb3c08e0b14997b2d701940b294: 21300000
+    - a5120fc36a570f5479ebeca00f903e1e: 21300000
+    - 08ec551489d70ed4fb908170d60c783d: 21300000
+    - 41f9b37431dc52a40be8a9109e540b8c: 21300000
+    - 5c6ebf947d9f6f14f98e3a358d0e0517: 21300000
+    - 2f6937d4dd24bc34389d482796b43e5e: 21300000
+    - 74ef720526b30a74686d6c5cbe89b112: 21300000
+    - d379ca15591fd95488f947890368c6e3: 21300000
+    - 1cee073513416df4789aaee2dfffa643: 21300000
+    - beb9ab35ab64e9a4998a8a8e199e7289: 21300000
+    - 1ab55855782fd464a9c096ba18cb449a: 21300000
+    - 58ee1d657c74cc547962f101bad60bef: 21300000
+    - 4764a9a51ce533f4ab9eff9cf71a5f7c: 21300000
+    - ac911ab595ef8a04daa3b9eb3a762184: 21300000
+    - 7857adb5045857b469f2fa18421a5407: 21300000
+    - 850c21c5e4075da42b79a273ac7ffc59: 21300000
+    - eb5f29d53142e444b9bb45da016418b6: 21300000
+    - f2cd26f5f13fe57448c86080ae226d45: 21300000
+    - cb491bf5152011d459c75df17cf95ffa: 21300000
+    - eb32ac26df2a6564ba393ea6ee2932a8: 21300000
+    - 34b1ad26f8490b74c9634154363440f5: 21300000
+    - 42035746807f2ef4e8227bb0e52bb63b: 21300000
+    - 4332f8568b06c564fab1993c2795555c: 21300000
+    - d78d39667ccdcda459883756d479b54a: 21300000
+    - af7a6ec6b73dc1b4eba601fd15096c04: 21300000
+    - d614c5d65895ec94f9660bc97da95469: 21300000
+    - 576756d6599ed54409fcf1b67af26ed4: 21300000
+    - 817c62f685276fa4e802b84a0a564d1c: 21300000
+    - 65856a17675283f478ed23095aa8581a: 21300000
+    - dfde08377fe57f04689101f853566cc6: 21300000
+    - 9de3dd37a0aa71d4d92bfdd26f3a5856: 21300000
+    - eecbcb77e2f7d0e4ba50bc1b5d5d589a: 21300000
+    - 965a6a87d5f3f94478791969fb6d2516: 21300000
+    - a45c40b7fafdbc34b985f508ba989dd4: 21300000
+    - 5f1b52c7499e40646a382cb8e4524151: 21300000
+    - c72776d70b65f2f4a99c6aad43e95e39: 21300000
+    - 5480e3f7f6570d14f95b571609736ed7: 21300000
+    - 9de97af79e807d84aad2a4de54743da4: 21300000
+    - 5298721813fe12142ae4b16abd7d05a4: 21300000
+    - f0693e1879e4d5746abd60d4376257b4: 21300000
+    - dc16b148adf2ebd458e8b66a9f322661: 21300000
+    - f2760d882ebd75446ad079a623d13b93: 21300000
+    - 29759ed821be32d4091b115c4290e32e: 21300000
+    - 0197c9e87458490499323dbaba1c2a9d: 21300000
+    - a7d1791937d3a124a86e0ecc95d8653f: 21300000
+    - 402fa4293fc181047b1cb8f3cacbb6bb: 21300000
+    - c78abd59865a00b4e9d78cecfc22b859: 21300000
+    - b420ab696054fd44e8950660d1733276: 21300000
+    - 20bd6c792c875fa4bb2b41028fd2e84c: 21300000
+    - 70741f89b5e113047b8dae79d87b863a: 21300000
+    - 54ec8e99a01ebbf4494701be6ddaf79c: 21300000
+    - 49e4ef99296f44c448862b1c558abe07: 21300000
+    - 16af98a9eef8ab147931b0c6d5891343: 21300000
+    - a672c2c9dc77d7f4d818591f0e8adbd0: 21300000
+    - 8cb5eaf9b87d97847ab4b068a28b8eab: 21300000
+    - 19c95a3a65cefd94185000e15c1f9e9b: 21300000
+    - 91abd45a6fc2f024a84149ffddd2ae6b: 21300000
+    - a2f9686a4ab849f4ba882b64655cfcb1: 21300000
+    - 0a62e2aad6e1e7547bf1f89f5a463f48: 21300000
+    - 3d4464aab6225634eb0b718db044dc82: 21300000
+    - 3889dfbafcb92534d97ec0d220ad3cab: 21300000
+    - ed3dcccacc7663f42ad3eeeb08b9c498: 21300000
+    - 504e57ea9aef42540a182e979228438e: 21300000
+    - a97dc9ea745830a4d89d1f58391600dd: 21300000
+    - b457421b53d48c049b149d21d8a95388: 21300000
+    - 8cf35b2b029c2bc4ab05afa982976538: 21300000
+    - da087e2bc728b474a951e8d1cf1df250: 21300000
+    - c21a994b8007e524e8eb496a6963690a: 21300000
+    - ab6eee4bd3aaf5b48bb2ede636121a06: 21300000
+    - c202278bc46a3cf4f8e1ba3fcbf71b89: 21300000
+    - 66cfcb8be59e241498b3c92720ce8f4e: 21300000
+    - 0895589b53d22d0418d72b49ac4de86a: 21300000
+    - c0bdfebb5debe394fbdfbf4206d7fad7: 21300000
+    - f1fd1c2c38c707f4fb9759d2157b4d10: 21300000
+    - 3024ce2c2ec40804f900987ad6d3b0d4: 21300000
+    - 2b50653c50ec9094da8782fd7da63d50: 21300000
+    - 03f3505c565729347910f21d050c9b8c: 21300000
+    - b0a6166c4afcd9d4599bc059713c85d8: 21300000
+    - 1b5be47c2afab654eb3fc16f1df7f002: 21300000
+    - e1a6308c002303a42b997d9b0dfceb41: 21300000
+    - 3e595b8cf1ee3bc4b95d570291a57078: 21300000
+    - d1629dac01049594990efdeea49fc5bb: 21300000
+    - b7387dbcb11c03445aacc7e1e5bbe16b: 21300000
+    - f70597cc8f0e7524cb2b8653675344d5: 21300000
+    - beb03accd725236469d70bbeabf43df4: 21300000
+    - 56861adc88d45264cb22a02790eef3cb: 21300000
+    - a6f86edc21668244983a3b33745d71a9: 21300000
+    - 94d17edc3cd830446a404a38783e313c: 21300000
+    - effb39ec99857114282c6e44852bba68: 21300000
+    - e9e92b1dde596b7438959a266b485498: 21300000
+    - 17393f1d23bce9e419ef718325d5855e: 21300000
+    - 83bdde2d00e9d2040badab9abae56544: 21300000
+    - 7132c43dce8dc8b459ee0dec186d2687: 21300000
+    - a90cbe4da92d6c244afe6aaae89b7370: 21300000
+    - 94fdeb6d98af8d243ba18f6a65ca547a: 21300000
+    - 22491d6d0828bb7498e50beef171c7fd: 21300000
+    - 67c3a0bd9fefcfd4197ba121fbd96ee0: 21300000
+    - 7bff93cd32847284ebb80feea46b576b: 21300000
+    - 17a6b5cddf1837a4dbdab9ce99af4125: 21300000
+    - f3e973edd46f3b24383a1108df64b6d9: 21300000
+    - 4d70743e9b644794e99c488089418a40: 21300000
+    - 951d115e82dfd47498c30e5cc5f8dbbb: 21300000
+    - 6647195ee1269294299170a617ebd5af: 21300000
+    - 8edcb58e8793fc8478e3b2f90bca774d: 21300000
+    - 57665c9ecf2717b4fb25dc0d97b4acf2: 21300000
+    - 29f2b0ced6431134ca1dfd764866943b: 21300000
+    - 5033ee7fc414e464e9492b7a2068e72f: 21300000
+    - d1387faf8c38bd544a343352f165108c: 21300000
+    - 2be2addfcd44a194fb0a91da1c2ed995: 21300000
+    - 88aa62ff5d209774b89e28508a64e1d5: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 80457c10b2bb0c648b748de7cf211130, type: 3}
+  - {fileID: 21300000, guid: aeb141407068c9b4e8db2636ad0cf1a5, type: 3}
+  - {fileID: 21300000, guid: bfa5ef506755170408e58fd75680bf1e, type: 3}
+  - {fileID: 21300000, guid: 62dad270258b08b47a6f75d9907ac2b5, type: 3}
+  - {fileID: 21300000, guid: 90a6ac11234adf9479fa31607e9a3df8, type: 3}
+  - {fileID: 21300000, guid: bdc2fb412ffa3c941abb547f8dad9471, type: 3}
+  - {fileID: 21300000, guid: cb392061c3614b341bb48e49eba06553, type: 3}
+  - {fileID: 21300000, guid: 84bb0681b71bd864e8aa5750b35b4560, type: 3}
+  - {fileID: 21300000, guid: 84b63aa1fabf4d74da463e19412b3e78, type: 3}
+  - {fileID: 21300000, guid: 55249ed1d7d8d234eb038f52198f123e, type: 3}
+  - {fileID: 21300000, guid: 455929e1438b5934b8fd74bc55757481, type: 3}
+  - {fileID: 21300000, guid: 93096fe1ea558b84ba32a4c5c74220d1, type: 3}
+  - {fileID: 21300000, guid: c932adf1ba12e324386f8b8ee7a91a9a, type: 3}
+  - {fileID: 21300000, guid: 63e2651237d32f2468c3db693a911e2b, type: 3}
+  - {fileID: 21300000, guid: f565df32662f192409300f0b45d5b637, type: 3}
+  - {fileID: 21300000, guid: ac29b7522d7e966458fa344b7fed8392, type: 3}
+  - {fileID: 21300000, guid: 57ee5b623424324489f6dcac952683c8, type: 3}
+  - {fileID: 21300000, guid: d1c62d72f16b5794f9054ea57e7870df, type: 3}
+  - {fileID: 21300000, guid: 15d53182896f0ae4fa920241bc5d832f, type: 3}
+  - {fileID: 21300000, guid: f6ffcb8205b6d9b47b94451411beaed0, type: 3}
+  - {fileID: 21300000, guid: 8980a503df8d77d4d99157dc7b9dc37a, type: 3}
+  - {fileID: 21300000, guid: 9b46ca435ef6b004491de6d679da4dc4, type: 3}
+  - {fileID: 21300000, guid: 295524b3e526da3429207d5f8e25f268, type: 3}
+  - {fileID: 21300000, guid: e5f999b3cf3ea7e47a1da30536747bf3, type: 3}
+  - {fileID: 21300000, guid: b3d68eb3c08e0b14997b2d701940b294, type: 3}
+  - {fileID: 21300000, guid: a5120fc36a570f5479ebeca00f903e1e, type: 3}
+  - {fileID: 21300000, guid: 08ec551489d70ed4fb908170d60c783d, type: 3}
+  - {fileID: 21300000, guid: 41f9b37431dc52a40be8a9109e540b8c, type: 3}
+  - {fileID: 21300000, guid: 5c6ebf947d9f6f14f98e3a358d0e0517, type: 3}
+  - {fileID: 21300000, guid: 2f6937d4dd24bc34389d482796b43e5e, type: 3}
+  - {fileID: 21300000, guid: 74ef720526b30a74686d6c5cbe89b112, type: 3}
+  - {fileID: 21300000, guid: d379ca15591fd95488f947890368c6e3, type: 3}
+  - {fileID: 21300000, guid: 1cee073513416df4789aaee2dfffa643, type: 3}
+  - {fileID: 21300000, guid: beb9ab35ab64e9a4998a8a8e199e7289, type: 3}
+  - {fileID: 21300000, guid: 1ab55855782fd464a9c096ba18cb449a, type: 3}
+  - {fileID: 21300000, guid: 58ee1d657c74cc547962f101bad60bef, type: 3}
+  - {fileID: 21300000, guid: 4764a9a51ce533f4ab9eff9cf71a5f7c, type: 3}
+  - {fileID: 21300000, guid: ac911ab595ef8a04daa3b9eb3a762184, type: 3}
+  - {fileID: 21300000, guid: 7857adb5045857b469f2fa18421a5407, type: 3}
+  - {fileID: 21300000, guid: 850c21c5e4075da42b79a273ac7ffc59, type: 3}
+  - {fileID: 21300000, guid: eb5f29d53142e444b9bb45da016418b6, type: 3}
+  - {fileID: 21300000, guid: f2cd26f5f13fe57448c86080ae226d45, type: 3}
+  - {fileID: 21300000, guid: cb491bf5152011d459c75df17cf95ffa, type: 3}
+  - {fileID: 21300000, guid: eb32ac26df2a6564ba393ea6ee2932a8, type: 3}
+  - {fileID: 21300000, guid: 34b1ad26f8490b74c9634154363440f5, type: 3}
+  - {fileID: 21300000, guid: 42035746807f2ef4e8227bb0e52bb63b, type: 3}
+  - {fileID: 21300000, guid: 4332f8568b06c564fab1993c2795555c, type: 3}
+  - {fileID: 21300000, guid: d78d39667ccdcda459883756d479b54a, type: 3}
+  - {fileID: 21300000, guid: af7a6ec6b73dc1b4eba601fd15096c04, type: 3}
+  - {fileID: 21300000, guid: d614c5d65895ec94f9660bc97da95469, type: 3}
+  - {fileID: 21300000, guid: 576756d6599ed54409fcf1b67af26ed4, type: 3}
+  - {fileID: 21300000, guid: 817c62f685276fa4e802b84a0a564d1c, type: 3}
+  - {fileID: 21300000, guid: 65856a17675283f478ed23095aa8581a, type: 3}
+  - {fileID: 21300000, guid: dfde08377fe57f04689101f853566cc6, type: 3}
+  - {fileID: 21300000, guid: 9de3dd37a0aa71d4d92bfdd26f3a5856, type: 3}
+  - {fileID: 21300000, guid: eecbcb77e2f7d0e4ba50bc1b5d5d589a, type: 3}
+  - {fileID: 21300000, guid: 965a6a87d5f3f94478791969fb6d2516, type: 3}
+  - {fileID: 21300000, guid: a45c40b7fafdbc34b985f508ba989dd4, type: 3}
+  - {fileID: 21300000, guid: 5f1b52c7499e40646a382cb8e4524151, type: 3}
+  - {fileID: 21300000, guid: c72776d70b65f2f4a99c6aad43e95e39, type: 3}
+  - {fileID: 21300000, guid: 5480e3f7f6570d14f95b571609736ed7, type: 3}
+  - {fileID: 21300000, guid: 9de97af79e807d84aad2a4de54743da4, type: 3}
+  - {fileID: 21300000, guid: 5298721813fe12142ae4b16abd7d05a4, type: 3}
+  - {fileID: 21300000, guid: f0693e1879e4d5746abd60d4376257b4, type: 3}
+  - {fileID: 21300000, guid: dc16b148adf2ebd458e8b66a9f322661, type: 3}
+  - {fileID: 21300000, guid: f2760d882ebd75446ad079a623d13b93, type: 3}
+  - {fileID: 21300000, guid: 29759ed821be32d4091b115c4290e32e, type: 3}
+  - {fileID: 21300000, guid: 0197c9e87458490499323dbaba1c2a9d, type: 3}
+  - {fileID: 21300000, guid: a7d1791937d3a124a86e0ecc95d8653f, type: 3}
+  - {fileID: 21300000, guid: 402fa4293fc181047b1cb8f3cacbb6bb, type: 3}
+  - {fileID: 21300000, guid: c78abd59865a00b4e9d78cecfc22b859, type: 3}
+  - {fileID: 21300000, guid: b420ab696054fd44e8950660d1733276, type: 3}
+  - {fileID: 21300000, guid: 20bd6c792c875fa4bb2b41028fd2e84c, type: 3}
+  - {fileID: 21300000, guid: 70741f89b5e113047b8dae79d87b863a, type: 3}
+  - {fileID: 21300000, guid: 54ec8e99a01ebbf4494701be6ddaf79c, type: 3}
+  - {fileID: 21300000, guid: 49e4ef99296f44c448862b1c558abe07, type: 3}
+  - {fileID: 21300000, guid: 16af98a9eef8ab147931b0c6d5891343, type: 3}
+  - {fileID: 21300000, guid: a672c2c9dc77d7f4d818591f0e8adbd0, type: 3}
+  - {fileID: 21300000, guid: 8cb5eaf9b87d97847ab4b068a28b8eab, type: 3}
+  - {fileID: 21300000, guid: 19c95a3a65cefd94185000e15c1f9e9b, type: 3}
+  - {fileID: 21300000, guid: 91abd45a6fc2f024a84149ffddd2ae6b, type: 3}
+  - {fileID: 21300000, guid: a2f9686a4ab849f4ba882b64655cfcb1, type: 3}
+  - {fileID: 21300000, guid: 0a62e2aad6e1e7547bf1f89f5a463f48, type: 3}
+  - {fileID: 21300000, guid: 3d4464aab6225634eb0b718db044dc82, type: 3}
+  - {fileID: 21300000, guid: 3889dfbafcb92534d97ec0d220ad3cab, type: 3}
+  - {fileID: 21300000, guid: ed3dcccacc7663f42ad3eeeb08b9c498, type: 3}
+  - {fileID: 21300000, guid: 504e57ea9aef42540a182e979228438e, type: 3}
+  - {fileID: 21300000, guid: a97dc9ea745830a4d89d1f58391600dd, type: 3}
+  - {fileID: 21300000, guid: b457421b53d48c049b149d21d8a95388, type: 3}
+  - {fileID: 21300000, guid: 8cf35b2b029c2bc4ab05afa982976538, type: 3}
+  - {fileID: 21300000, guid: da087e2bc728b474a951e8d1cf1df250, type: 3}
+  - {fileID: 21300000, guid: c21a994b8007e524e8eb496a6963690a, type: 3}
+  - {fileID: 21300000, guid: ab6eee4bd3aaf5b48bb2ede636121a06, type: 3}
+  - {fileID: 21300000, guid: c202278bc46a3cf4f8e1ba3fcbf71b89, type: 3}
+  - {fileID: 21300000, guid: 66cfcb8be59e241498b3c92720ce8f4e, type: 3}
+  - {fileID: 21300000, guid: 0895589b53d22d0418d72b49ac4de86a, type: 3}
+  - {fileID: 21300000, guid: c0bdfebb5debe394fbdfbf4206d7fad7, type: 3}
+  - {fileID: 21300000, guid: f1fd1c2c38c707f4fb9759d2157b4d10, type: 3}
+  - {fileID: 21300000, guid: 3024ce2c2ec40804f900987ad6d3b0d4, type: 3}
+  - {fileID: 21300000, guid: 2b50653c50ec9094da8782fd7da63d50, type: 3}
+  - {fileID: 21300000, guid: 03f3505c565729347910f21d050c9b8c, type: 3}
+  - {fileID: 21300000, guid: b0a6166c4afcd9d4599bc059713c85d8, type: 3}
+  - {fileID: 21300000, guid: 1b5be47c2afab654eb3fc16f1df7f002, type: 3}
+  - {fileID: 21300000, guid: e1a6308c002303a42b997d9b0dfceb41, type: 3}
+  - {fileID: 21300000, guid: 3e595b8cf1ee3bc4b95d570291a57078, type: 3}
+  - {fileID: 21300000, guid: d1629dac01049594990efdeea49fc5bb, type: 3}
+  - {fileID: 21300000, guid: b7387dbcb11c03445aacc7e1e5bbe16b, type: 3}
+  - {fileID: 21300000, guid: f70597cc8f0e7524cb2b8653675344d5, type: 3}
+  - {fileID: 21300000, guid: beb03accd725236469d70bbeabf43df4, type: 3}
+  - {fileID: 21300000, guid: 56861adc88d45264cb22a02790eef3cb, type: 3}
+  - {fileID: 21300000, guid: a6f86edc21668244983a3b33745d71a9, type: 3}
+  - {fileID: 21300000, guid: 94d17edc3cd830446a404a38783e313c, type: 3}
+  - {fileID: 21300000, guid: effb39ec99857114282c6e44852bba68, type: 3}
+  - {fileID: 21300000, guid: e9e92b1dde596b7438959a266b485498, type: 3}
+  - {fileID: 21300000, guid: 17393f1d23bce9e419ef718325d5855e, type: 3}
+  - {fileID: 21300000, guid: 83bdde2d00e9d2040badab9abae56544, type: 3}
+  - {fileID: 21300000, guid: 7132c43dce8dc8b459ee0dec186d2687, type: 3}
+  - {fileID: 21300000, guid: a90cbe4da92d6c244afe6aaae89b7370, type: 3}
+  - {fileID: 21300000, guid: 94fdeb6d98af8d243ba18f6a65ca547a, type: 3}
+  - {fileID: 21300000, guid: 22491d6d0828bb7498e50beef171c7fd, type: 3}
+  - {fileID: 21300000, guid: 67c3a0bd9fefcfd4197ba121fbd96ee0, type: 3}
+  - {fileID: 21300000, guid: 7bff93cd32847284ebb80feea46b576b, type: 3}
+  - {fileID: 21300000, guid: 17a6b5cddf1837a4dbdab9ce99af4125, type: 3}
+  - {fileID: 21300000, guid: f3e973edd46f3b24383a1108df64b6d9, type: 3}
+  - {fileID: 21300000, guid: 4d70743e9b644794e99c488089418a40, type: 3}
+  - {fileID: 21300000, guid: 951d115e82dfd47498c30e5cc5f8dbbb, type: 3}
+  - {fileID: 21300000, guid: 6647195ee1269294299170a617ebd5af, type: 3}
+  - {fileID: 21300000, guid: 8edcb58e8793fc8478e3b2f90bca774d, type: 3}
+  - {fileID: 21300000, guid: 57665c9ecf2717b4fb25dc0d97b4acf2, type: 3}
+  - {fileID: 21300000, guid: 29f2b0ced6431134ca1dfd764866943b, type: 3}
+  - {fileID: 21300000, guid: 5033ee7fc414e464e9492b7a2068e72f, type: 3}
+  - {fileID: 21300000, guid: d1387faf8c38bd544a343352f165108c, type: 3}
+  - {fileID: 21300000, guid: 2be2addfcd44a194fb0a91da1c2ed995, type: 3}
+  - {fileID: 21300000, guid: 88aa62ff5d209774b89e28508a64e1d5, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - playstation5_touchpad_swipe_right
+  - playstation4_touchpad_touch
+  - playstation3_button_start_outline
+  - playstation_trigger_r1
+  - playstation_dpad_up
+  - playstation_trigger_r2
+  - playstation_button_circle
+  - playstation_trigger_l2_alternative_outline
+  - playstation_trigger_l2
+  - playstation_dpad_horizontal
+  - playstation_stick_l_press
+  - playstation_stick_r_press
+  - playstation4_touchpad_swipe_horizontal
+  - playstation5_elite_rb_outline
+  - playstation_button_color_triangle
+  - playstation_button_color_cross_outline
+  - playstation3_button_select_outline
+  - playstation_dpad_horizontal_outline
+  - playstation_trigger_r2_alternative_outline
+  - playstation4_touchpad_press
+  - playstation5_touchpad_swipe_left
+  - playstation5_touchpad
+  - playstation_stick_l_down
+  - playstation_trigger_r1_outline
+  - playstation_stick_l_horizontal
+  - playstation_button_square_outline
+  - playstation_stick_l_left
+  - playstation_button_r3_outline
+  - playstation4_touchpad_swipe_up
+  - playstation_dpad_left
+  - playstation_trigger_l1
+  - controller_playstation3
+  - playstation_stick_r
+  - playstation_trigger_l1_alternative_outline
+  - playstation_dpad
+  - playstation_button_color_circle_outline
+  - playstation5_button_mute
+  - playstation_button_analog
+  - playstation5_elite_fn_r_outline
+  - playstation4_touchpad_swipe_right
+  - playstation_stick_side_r
+  - playstation5_elite_fn_l_outline
+  - playstation5_elite_fn_r
+  - playstation_dpad_vertical
+  - playstation4_touchpad_outline
+  - playstation4_button_options_outline
+  - playstation5_button_create_outline
+  - playstation_button_l3
+  - playstation_stick_l_up
+  - playstation5_touchpad_touch_outline
+  - playstation_button_analog_outline
+  - playstation5_touchpad_outline
+  - playstation5_button_mute_outline
+  - playstation_dpad_vertical_outline
+  - playstation_button_color_circle
+  - playstation_trigger_r2_outline
+  - playstation_stick_side_l
+  - playstation_stick_l_right
+  - playstation_dpad_down_outline
+  - playstation_button_triangle
+  - playstation_button_square
+  - playstation5_button_create
+  - playstation5_touchpad_swipe_horizontal
+  - playstation_button_cross
+  - playstation5_touchpad_press_right
+  - playstation_dpad_all
+  - playstation4_touchpad_swipe_down
+  - controller_playstation2
+  - playstation5_button_options_alternative_outline
+  - playstation4_button_options
+  - playstation_trigger_l2_outline
+  - playstation_button_color_cross
+  - playstation_stick_r_right
+  - playstation5_touchpad_swipe_vertical
+  - playstation_button_color_square_outline
+  - playstation_dpad_up_outline
+  - playstation_stick_top_r
+  - playstation4_touchpad_swipe_left
+  - playstation5_button_options_alternative
+  - playstation_stick_top_l
+  - playstation_button_triangle_outline
+  - playstation4_button_share
+  - playstation5_touchpad_touch
+  - playstation_stick_r_down
+  - playstation_button_color_triangle_outline
+  - playstation4_touchpad
+  - playstation3_button_select
+  - playstation4_touchpad_press_right
+  - playstation_trigger_l2_alternative
+  - playstation_dpad_right
+  - playstation_trigger_r1_alternative_outline
+  - playstation5_elite_rb
+  - playstation4_touchpad_touch_outline
+  - playstation5_button_options
+  - playstation_button_cross_outline
+  - playstation5_touchpad_press_left
+  - playstation_dpad_right_outline
+  - playstation_button_circle_outline
+  - playstation5_touchpad_swipe_up
+  - playstation5_touchpad_press_center
+  - playstation_trigger_r2_alternative
+  - playstation_button_color_square
+  - playstation_trigger_r1_alternative
+  - playstation_button_r3
+  - playstation_stick_l
+  - playstation4_button_share_outline
+  - playstation3_button_start
+  - playstation5_touchpad_press
+  - playstation5_button_options_outline
+  - playstation_trigger_l1_alternative
+  - playstation4_touchpad_selected
+  - playstation5_button_create_alternative_outline
+  - playstation_stick_r_left
+  - playstation5_touchpad_swipe_down
+  - playstation_stick_l_vertical
+  - playstation_trigger_l1_outline
+  - playstation5_touchpad_selected
+  - playstation_stick_r_vertical
+  - playstation_stick_r_up
+  - playstation4_touchpad_press_left
+  - controller_playstation5
+  - playstation_stick_r_horizontal
+  - playstation_dpad_none
+  - playstation_dpad_left_outline
+  - controller_playstation4
+  - playstation4_touchpad_swipe_vertical
+  - playstation4_touchpad_press_center
+  - playstation5_elite_lb_outline
+  - playstation_dpad_down
+  - controller_playstation1
+  - playstation5_elite_lb
+  - playstation5_button_create_alternative
+  - playstation_button_l3_outline
+  - playstation5_elite_fn_l
+  m_RenderDataMap: {}
+  m_Tag: Playstation Series
+  m_IsVariant: 0

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3eb5d052ad6e1f439eca7426de88419, type: 3}
+  m_Name: InputIconSetPlatformKenney
+  m_EditorClassIdentifier: com.xx.easyaccessibility.Runtime::EasyAccessibility.InputIconSetPlatform
+  m_entries:
+  - deviceLayout: Keyboard
+    iconSet: {fileID: 11400000, guid: 42460ee4283132e4e90bb95afedb6c50, type: 2}
+  - deviceLayout: Mouse
+    iconSet: {fileID: 11400000, guid: 42460ee4283132e4e90bb95afedb6c50, type: 2}
+  - deviceLayout: SwitchProControllerHID
+    iconSet: {fileID: 11400000, guid: b45978bd1c4b00041ac6a3dbc96efce2, type: 2}
+  - deviceLayout: SwitchJoyconPair
+    iconSet: {fileID: 11400000, guid: b45978bd1c4b00041ac6a3dbc96efce2, type: 2}
+  - deviceLayout: DualShock3GamepadHID
+    iconSet: {fileID: 11400000, guid: a27eea54b6a10124c9ca0ac19c8e9a25, type: 2}
+  - deviceLayout: DualShock4GamepadHID
+    iconSet: {fileID: 11400000, guid: 71775fb021c8929408a30d14229fd614, type: 2}
+  - deviceLayout: DualSenseGamepadHID
+    iconSet: {fileID: 11400000, guid: 5e7096656bfd15148bab5eb20b4e9e3a, type: 2}
+  - deviceLayout: XInputController
+    iconSet: {fileID: 11400000, guid: f2125a1071bd5bd4bb4b064686cd4897, type: 2}
+  m_fallback: {fileID: 0}

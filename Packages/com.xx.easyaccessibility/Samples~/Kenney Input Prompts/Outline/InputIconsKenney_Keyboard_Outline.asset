@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1e78aa86a2c7de4f8c8058d7d79832e, type: 3}
+  m_Name: InputIconsKenney_Keyboard_Outline
+  m_EditorClassIdentifier: com.xx.easyaccessibility.Runtime::EasyAccessibility.InputIconSetKeyboard
+  m_atlas: {fileID: 4343727234628468602, guid: aa472542a3004584681713d27251749a, type: 2}
+  m_overrides: {fileID: 0}
+  suffix: _outline
