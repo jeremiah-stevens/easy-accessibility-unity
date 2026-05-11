@@ -9,7 +9,7 @@ namespace EasyAccessibility
     /// resolved sprite, so missing entries are immediately visible.
     ///
     /// Paths that a controller intentionally does not support (e.g. select on GameCube)
-    /// should return null from GetIcon — they will show "N/A" rather than "Missing".
+    /// should return null from GetIcon: they will show "N/A" rather than "Missing".
     /// Mark those with InputIconSetGamepadEditor.k_NotApplicable if you need to
     /// distinguish them from genuinely unmapped paths.
     /// </summary>
@@ -104,7 +104,7 @@ namespace EasyAccessibility
             var total   = k_Keys.Length;
             var missing = total - found;
             EditorGUILayout.HelpBox(
-                $"{found}/{total} icons assigned{(missing > 0 ? $" — {missing} null (unsupported or missing)" : ".")}",
+                $"{found}/{total} icons assigned{(missing > 0 ? $"- {missing} null (unsupported or missing)" : ".")}",
                 missing > 0 ? MessageType.Warning : MessageType.Info
             );
         }

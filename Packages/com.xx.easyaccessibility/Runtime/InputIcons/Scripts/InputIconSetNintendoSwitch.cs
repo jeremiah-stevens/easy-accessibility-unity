@@ -13,7 +13,7 @@ namespace EasyAccessibility
     ///   start → +  |  select → -
     ///   leftStickPress → Left Stick (L)  |  rightStickPress → Right Stick (R)
     ///
-    /// Expected sprite names follow the pattern "switch_*" — set the suffix field
+    /// Expected sprite names follow the pattern "switch_*" : set the suffix field
     /// to switch between style variants (e.g. "" vs "_dark").
     /// Falls back to the unsuffixed name if the suffixed sprite is not found in the atlas.
     /// </summary>

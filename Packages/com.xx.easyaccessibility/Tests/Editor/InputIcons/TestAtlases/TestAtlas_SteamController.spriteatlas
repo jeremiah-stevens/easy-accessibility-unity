@@ -1,0 +1,126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TestAtlas_SteamController
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 2
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: a308a59cbea4e4a418e4007d7a3d4147, type: 3}
+    bindAsDefault: 0
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - f7912d207ed1b234ca5ae69a47e8afcc: 21300000
+    - 743bd290e59a9a9419f2102eef7e3cef: 21300000
+    - dfeb1d90ff64e1f4585d7d9423d21e67: 21300000
+    - 4e41c411d02373b41b823ecd8844b72f: 21300000
+    - 124ce4429206d3142ba2e79c85bbea0d: 21300000
+    - 8db686f2afd225b41922719d358b8569: 21300000
+    - 3ea76023b7836484ab3ab4a79124016b: 21300000
+    - 9e7b0e7548473be4b84956f858a0e097: 21300000
+    - 21d532d5550a53748abb8a4d4b489a53: 21300000
+    - ee66713672e6c3b4496f590a919a4041: 21300000
+    - ba9080271aab73640a65c68a2411badf: 21300000
+    - 576b6c779c74c1b4395a554f6a2bd5dc: 21300000
+    - 23399d18f465a8546b68dfda3c71d52e: 21300000
+    - 9e061e283a6d9d74e97eb236f4568cae: 21300000
+    - 4a661288cad4f694db900157e237882a: 21300000
+    - aefaa4a8c986fe54dbb9721e6c8562f4: 21300000
+    - 0176dac822f6e9c489f7a1fa39c2c8da: 21300000
+    - b4a7edd8f811bc849b3416de3577f214: 21300000
+    - 9aefbe494d4600449a793c468feab262: 21300000
+    - 14c47b79d0af7d3488ce0ce13f11df75: 21300000
+    - 78189099191acba43831f2f891c66ee1: 21300000
+    - ac9bacea443dff84280e05990f63723f: 21300000
+    - 6b41d99b11788c84a978e0b89240a915: 21300000
+    - eacdc0dca491c6a4ca8e1b106cac655a: 21300000
+    - f04f721dad083424ca501d3b4523b9c7: 21300000
+    - 2dbd291e55349f447abeb7995fa7cd0f: 21300000
+    - b931028fb4c49ee4f8ec41f3892b446d: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: f7912d207ed1b234ca5ae69a47e8afcc, type: 3}
+  - {fileID: 21300000, guid: 743bd290e59a9a9419f2102eef7e3cef, type: 3}
+  - {fileID: 21300000, guid: dfeb1d90ff64e1f4585d7d9423d21e67, type: 3}
+  - {fileID: 21300000, guid: 4e41c411d02373b41b823ecd8844b72f, type: 3}
+  - {fileID: 21300000, guid: 124ce4429206d3142ba2e79c85bbea0d, type: 3}
+  - {fileID: 21300000, guid: 8db686f2afd225b41922719d358b8569, type: 3}
+  - {fileID: 21300000, guid: 3ea76023b7836484ab3ab4a79124016b, type: 3}
+  - {fileID: 21300000, guid: 9e7b0e7548473be4b84956f858a0e097, type: 3}
+  - {fileID: 21300000, guid: 21d532d5550a53748abb8a4d4b489a53, type: 3}
+  - {fileID: 21300000, guid: ee66713672e6c3b4496f590a919a4041, type: 3}
+  - {fileID: 21300000, guid: ba9080271aab73640a65c68a2411badf, type: 3}
+  - {fileID: 21300000, guid: 576b6c779c74c1b4395a554f6a2bd5dc, type: 3}
+  - {fileID: 21300000, guid: 23399d18f465a8546b68dfda3c71d52e, type: 3}
+  - {fileID: 21300000, guid: 9e061e283a6d9d74e97eb236f4568cae, type: 3}
+  - {fileID: 21300000, guid: 4a661288cad4f694db900157e237882a, type: 3}
+  - {fileID: 21300000, guid: aefaa4a8c986fe54dbb9721e6c8562f4, type: 3}
+  - {fileID: 21300000, guid: 0176dac822f6e9c489f7a1fa39c2c8da, type: 3}
+  - {fileID: 21300000, guid: b4a7edd8f811bc849b3416de3577f214, type: 3}
+  - {fileID: 21300000, guid: 9aefbe494d4600449a793c468feab262, type: 3}
+  - {fileID: 21300000, guid: 14c47b79d0af7d3488ce0ce13f11df75, type: 3}
+  - {fileID: 21300000, guid: 78189099191acba43831f2f891c66ee1, type: 3}
+  - {fileID: 21300000, guid: ac9bacea443dff84280e05990f63723f, type: 3}
+  - {fileID: 21300000, guid: 6b41d99b11788c84a978e0b89240a915, type: 3}
+  - {fileID: 21300000, guid: eacdc0dca491c6a4ca8e1b106cac655a, type: 3}
+  - {fileID: 21300000, guid: f04f721dad083424ca501d3b4523b9c7, type: 3}
+  - {fileID: 21300000, guid: 2dbd291e55349f447abeb7995fa7cd0f, type: 3}
+  - {fileID: 21300000, guid: b931028fb4c49ee4f8ec41f3892b446d, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - steam_pad_center
+  - steam_pad_down
+  - steam_dpad_up
+  - steam_lb
+  - steam_button_x
+  - steam_button_b
+  - steam_rt
+  - steam_stick_up
+  - steam_dpad
+  - steam_button_back_icon
+  - steam_pad
+  - steam_pad_left
+  - steam_stick
+  - steam_button_a
+  - steam_dpad_right
+  - steam_lt
+  - steam_stick_l_press
+  - steam_pad_up
+  - steam_stick_right
+  - steam_stick_down
+  - steam_pad_right
+  - steam_button_y
+  - steam_rb
+  - steam_dpad_left
+  - steam_dpad_down
+  - steam_stick_left
+  - steam_button_start_icon
+  m_RenderDataMap: {}
+  m_Tag: TestAtlas_SteamController
+  m_IsVariant: 0

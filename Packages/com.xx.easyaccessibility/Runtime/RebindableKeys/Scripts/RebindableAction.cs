@@ -14,6 +14,7 @@ namespace EasyAccessibility
         [SerializeField] private InputActionReference m_action;
         [HideInInspector] public string bindingId;
         public InputAction Action => m_action?.action;
+        private Sprite m_lastIcon;
 
         /// <summary>
         /// Gets the display name of the action, including the name of the composite part if this is a composite binding.
@@ -70,12 +71,12 @@ namespace EasyAccessibility
         }
 
         [Header("Events")]
-        public UnityEvent onRebindStarted;
-        public UnityEvent onRebindCompleted;
-        public UnityEvent onRebindCancelled;
-        public UnityEvent onRebindReset;
-        public UnityEvent<string> onDisplayStringChanged;
-        public UnityEvent<Sprite> onIconChanged;
+        public UnityEvent onRebindStarted = new();
+        public UnityEvent onRebindCompleted = new();
+        public UnityEvent onRebindCancelled = new();
+        public UnityEvent onRebindReset = new();
+        public UnityEvent<string> onDisplayStringChanged = new();
+        public UnityEvent<Sprite> onIconChanged = new();
 
 
 
@@ -129,8 +130,6 @@ namespace EasyAccessibility
             onRebindCancelled.Invoke();
         }
 
-        private Sprite m_lastIcon;
-
         private void RefreshDisplayString()
         {
             onDisplayStringChanged.Invoke(BindingDisplayString);
@@ -170,7 +169,7 @@ namespace EasyAccessibility
 
 
 
-        private void OnEnable()
+        public void OnEnable()
         {
             m_resolvedAction = m_action?.action;
             
@@ -181,7 +180,7 @@ namespace EasyAccessibility
             RefreshDisplayString();
         }
 
-        private void OnDisable()
+        public void OnDisable()
         {
             if(!RebindableInputManager.IsInitialized) return;
             RebindableInputManager.Instance.OnBindingChanged -= HandleBindingChanged;

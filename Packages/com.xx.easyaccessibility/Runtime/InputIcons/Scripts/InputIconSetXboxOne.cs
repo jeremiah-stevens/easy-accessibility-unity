@@ -4,7 +4,7 @@ namespace EasyAccessibility
 {
     /// <summary>
     /// InputIconSet for the Xbox One controller and Xbox One Elite (Series 1).
-    /// Elite Series 1 paddle paths are included — they return null if no atlas
+    /// Elite Series 1 paddle paths are included : they return null if no atlas
     /// sprite is assigned, so this class is safe to use for non-Elite controllers.
     /// </summary>
     [CreateAssetMenu(menuName = "Easy Accessibility/Icon Set/Xbox One")]

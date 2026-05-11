@@ -9,7 +9,7 @@ namespace EasyAccessibility
     /// Unlike the Steam Controller, the Steam Deck has physical left/right sticks,
     /// a physical D-pad, AND two trackpads, so all standard <Gamepad> paths map
     /// to their natural physical equivalents. The trackpads and back grip buttons
-    /// (L4/L5/R4/R5) have no standard <Gamepad> path — bind them via Steam Input's
+    /// (L4/L5/R4/R5) have no standard <Gamepad> path : bind them via Steam Input's
     /// action set remapping or handle through m_overrides with device-specific paths.
     ///
     /// Expected sprite names follow the pattern "steamdeck_*".

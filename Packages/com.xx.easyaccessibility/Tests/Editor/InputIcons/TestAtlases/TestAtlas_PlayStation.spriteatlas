@@ -1,0 +1,153 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TestAtlas_PlayStation
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 2
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: ca24af0f77655a7438ea23e1c38ab1ff, type: 3}
+    bindAsDefault: 0
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - 99077d1001f34d14b901fc1ad84e3e20: 21300000
+    - 3a8400403c584e7488241e26bd57f60f: 21300000
+    - 29583650163c3b949a7a357872f8b4f6: 21300000
+    - b7023b50348035940a227cf31efd3e0e: 21300000
+    - 7d3fd5700963c2e4b9d7ae90820c88a1: 21300000
+    - ba0be9413ed847842863b34d2aa5e769: 21300000
+    - 29a8cb71160948745b0351772669073c: 21300000
+    - 75693fc186b2a9746899cae77efad3f0: 21300000
+    - 381c8ef1d9f27dc47ba997679815aa93: 21300000
+    - e96834220dc41f84da2d49c55573ad39: 21300000
+    - 27c72742e83451d468bef7899ab49a23: 21300000
+    - ce248d62486bc7c459859a2a4b03e24e: 21300000
+    - a9713a444e566a749849feb45ca53473: 21300000
+    - 7831d8c4116255e4aa3b8136de51e941: 21300000
+    - 407b09e4b00d0ec4087b29eb838770d3: 21300000
+    - be742685a2e504841aaeb3e54bd5661e: 21300000
+    - b95c60c69101cfe4d983d9ee97db6c28: 21300000
+    - 41440a470f541f642b37da86c58a70c0: 21300000
+    - ce2593c7c21d13349bae44b301a129bb: 21300000
+    - 9db0e6d7e52fff24bbd200ac4bea6f77: 21300000
+    - bf915309e6ebc92489cd0940d764a014: 21300000
+    - 8547fce9d086da04eadf376a7aa851ba: 21300000
+    - 4d4cbd7a5e1481c459edce71a8ca54bb: 21300000
+    - 7ca393aa722fd724b96c0edb47a572f2: 21300000
+    - 5a38ac6bd0dfcfa45b9b4290330b3715: 21300000
+    - 5d4b64bba103a394285462a8b0f13c62: 21300000
+    - 1e4f603d2b762e2469753c052bec73d6: 21300000
+    - 8c03bc5da9a715f4abc43b43e8131173: 21300000
+    - 3709e9ad5c2b9174384c89ed89c96dd7: 21300000
+    - 1a3ebb0edc42436428907e6e86110d6f: 21300000
+    - b8d3f0be18086104887d8f6e54b74a44: 21300000
+    - c2df3cce4724b124a833c7682fafe1bc: 21300000
+    - c85fbf8ffcb53b34fb465839c915c6e0: 21300000
+    - a714f39f5975bd042b93bf05e7ddac22: 21300000
+    - 5fa73f9f8760cbb449de68bec72394c1: 21300000
+    - 6a4b8fefcbad3a346af8ee9272e3aae2: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 99077d1001f34d14b901fc1ad84e3e20, type: 3}
+  - {fileID: 21300000, guid: 3a8400403c584e7488241e26bd57f60f, type: 3}
+  - {fileID: 21300000, guid: 29583650163c3b949a7a357872f8b4f6, type: 3}
+  - {fileID: 21300000, guid: b7023b50348035940a227cf31efd3e0e, type: 3}
+  - {fileID: 21300000, guid: 7d3fd5700963c2e4b9d7ae90820c88a1, type: 3}
+  - {fileID: 21300000, guid: ba0be9413ed847842863b34d2aa5e769, type: 3}
+  - {fileID: 21300000, guid: 29a8cb71160948745b0351772669073c, type: 3}
+  - {fileID: 21300000, guid: 75693fc186b2a9746899cae77efad3f0, type: 3}
+  - {fileID: 21300000, guid: 381c8ef1d9f27dc47ba997679815aa93, type: 3}
+  - {fileID: 21300000, guid: e96834220dc41f84da2d49c55573ad39, type: 3}
+  - {fileID: 21300000, guid: 27c72742e83451d468bef7899ab49a23, type: 3}
+  - {fileID: 21300000, guid: ce248d62486bc7c459859a2a4b03e24e, type: 3}
+  - {fileID: 21300000, guid: a9713a444e566a749849feb45ca53473, type: 3}
+  - {fileID: 21300000, guid: 7831d8c4116255e4aa3b8136de51e941, type: 3}
+  - {fileID: 21300000, guid: 407b09e4b00d0ec4087b29eb838770d3, type: 3}
+  - {fileID: 21300000, guid: be742685a2e504841aaeb3e54bd5661e, type: 3}
+  - {fileID: 21300000, guid: b95c60c69101cfe4d983d9ee97db6c28, type: 3}
+  - {fileID: 21300000, guid: 41440a470f541f642b37da86c58a70c0, type: 3}
+  - {fileID: 21300000, guid: ce2593c7c21d13349bae44b301a129bb, type: 3}
+  - {fileID: 21300000, guid: 9db0e6d7e52fff24bbd200ac4bea6f77, type: 3}
+  - {fileID: 21300000, guid: bf915309e6ebc92489cd0940d764a014, type: 3}
+  - {fileID: 21300000, guid: 8547fce9d086da04eadf376a7aa851ba, type: 3}
+  - {fileID: 21300000, guid: 4d4cbd7a5e1481c459edce71a8ca54bb, type: 3}
+  - {fileID: 21300000, guid: 7ca393aa722fd724b96c0edb47a572f2, type: 3}
+  - {fileID: 21300000, guid: 5a38ac6bd0dfcfa45b9b4290330b3715, type: 3}
+  - {fileID: 21300000, guid: 5d4b64bba103a394285462a8b0f13c62, type: 3}
+  - {fileID: 21300000, guid: 1e4f603d2b762e2469753c052bec73d6, type: 3}
+  - {fileID: 21300000, guid: 8c03bc5da9a715f4abc43b43e8131173, type: 3}
+  - {fileID: 21300000, guid: 3709e9ad5c2b9174384c89ed89c96dd7, type: 3}
+  - {fileID: 21300000, guid: 1a3ebb0edc42436428907e6e86110d6f, type: 3}
+  - {fileID: 21300000, guid: b8d3f0be18086104887d8f6e54b74a44, type: 3}
+  - {fileID: 21300000, guid: c2df3cce4724b124a833c7682fafe1bc, type: 3}
+  - {fileID: 21300000, guid: c85fbf8ffcb53b34fb465839c915c6e0, type: 3}
+  - {fileID: 21300000, guid: a714f39f5975bd042b93bf05e7ddac22, type: 3}
+  - {fileID: 21300000, guid: 5fa73f9f8760cbb449de68bec72394c1, type: 3}
+  - {fileID: 21300000, guid: 6a4b8fefcbad3a346af8ee9272e3aae2, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - playstation_stick_r_left
+  - playstation_trigger_r1
+  - playstation_trigger_l2
+  - playstation_stick_r_right
+  - playstation4_touchpad
+  - playstation_dpad_right
+  - playstation3_button_select
+  - playstation_stick_r_down
+  - playstation_dpad_up
+  - playstation5_button_mute
+  - playstation4_button_options
+  - playstation5_touchpad_press
+  - playstation5_button_options
+  - playstation_button_circle
+  - playstation_trigger_l1
+  - playstation_stick_l_down
+  - playstation5_button_create
+  - playstation_button_cross
+  - playstation4_button_share
+  - playstation_trigger_r2
+  - playstation_button_triangle
+  - playstation_dpad_left
+  - playstation_stick_r_up
+  - playstation_dpad
+  - playstation_button_square
+  - playstation_button_r3
+  - playstation_stick_l_up
+  - playstation_stick_l_left
+  - playstation_stick_r
+  - playstation_stick_l_right
+  - playstation3_button_start
+  - playstation_button_l3
+  - playstation_stick_l
+  - playstation5_touchpad
+  - playstation_dpad_down
+  - playstation4_touchpad_press
+  m_RenderDataMap: {}
+  m_Tag: TestAtlas_PlayStation
+  m_IsVariant: 0

@@ -1,0 +1,126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TestAtlas_Switch
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 2
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: ac414fbb1959a80439a00cd5e294e4c5, type: 3}
+    bindAsDefault: 0
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - edea3c00cabf15a43a44bdbe34015b50: 21300000
+    - a4785b300651e6c42989bc60e5ab8d6a: 21300000
+    - 74d66f806e22dc444afc572245b96ee4: 21300000
+    - f978d3e02b4efd14f9b237eb823eb2c8: 21300000
+    - 94a4faf073a882e4b92688036f5918ed: 21300000
+    - fe621b810aa017f4b8a115877867f64f: 21300000
+    - 21eb5bc3ca5f9f54c8ebddbf48ca58c6: 21300000
+    - 681868e32674a434187410a9f9bec6e8: 21300000
+    - 5b2f39845166dd2419923a52ca118fb4: 21300000
+    - 8c85fe75d55d935419f118bc7e5167cb: 21300000
+    - 951e3637cfa6c7842a5350d8ea5b1a82: 21300000
+    - fd23e067939e2054a8b38f574cf2980c: 21300000
+    - 04d46887e961d0541ac8835d614230eb: 21300000
+    - 0a2974b727b7d854ba8b43e62b78478e: 21300000
+    - 1f6db4c7f01ded943bbba62978286000: 21300000
+    - f59106e81b4b582419a7ac1d2280fdc6: 21300000
+    - 6c90cd6b44792d94ba84a4e7e95967d1: 21300000
+    - 420f3e7cc9f53144aae6da64c50836d2: 21300000
+    - 8d62beccf366cfd49802199b8bb44eb0: 21300000
+    - d5db4b0d244b38b41bd28ca883dbac34: 21300000
+    - b4a0d83dd3f3ca04ca5718131e83fd6b: 21300000
+    - 2c8e5b7d9ee338248b09ef429f6ca68f: 21300000
+    - 2cb2c76ef5fe63d40bcfb8aa0d3ec4d8: 21300000
+    - 9a0acedef8ae67349b2f4b403af55d26: 21300000
+    - e18537ee33ff74a49bcc0b56690df751: 21300000
+    - e8b4f90fba8bd3e4789b4a7d2bc3a7c5: 21300000
+    - 49a7867fe29cb8849aaccac717e768ef: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: edea3c00cabf15a43a44bdbe34015b50, type: 3}
+  - {fileID: 21300000, guid: a4785b300651e6c42989bc60e5ab8d6a, type: 3}
+  - {fileID: 21300000, guid: 74d66f806e22dc444afc572245b96ee4, type: 3}
+  - {fileID: 21300000, guid: f978d3e02b4efd14f9b237eb823eb2c8, type: 3}
+  - {fileID: 21300000, guid: 94a4faf073a882e4b92688036f5918ed, type: 3}
+  - {fileID: 21300000, guid: fe621b810aa017f4b8a115877867f64f, type: 3}
+  - {fileID: 21300000, guid: 21eb5bc3ca5f9f54c8ebddbf48ca58c6, type: 3}
+  - {fileID: 21300000, guid: 681868e32674a434187410a9f9bec6e8, type: 3}
+  - {fileID: 21300000, guid: 5b2f39845166dd2419923a52ca118fb4, type: 3}
+  - {fileID: 21300000, guid: 8c85fe75d55d935419f118bc7e5167cb, type: 3}
+  - {fileID: 21300000, guid: 951e3637cfa6c7842a5350d8ea5b1a82, type: 3}
+  - {fileID: 21300000, guid: fd23e067939e2054a8b38f574cf2980c, type: 3}
+  - {fileID: 21300000, guid: 04d46887e961d0541ac8835d614230eb, type: 3}
+  - {fileID: 21300000, guid: 0a2974b727b7d854ba8b43e62b78478e, type: 3}
+  - {fileID: 21300000, guid: 1f6db4c7f01ded943bbba62978286000, type: 3}
+  - {fileID: 21300000, guid: f59106e81b4b582419a7ac1d2280fdc6, type: 3}
+  - {fileID: 21300000, guid: 6c90cd6b44792d94ba84a4e7e95967d1, type: 3}
+  - {fileID: 21300000, guid: 420f3e7cc9f53144aae6da64c50836d2, type: 3}
+  - {fileID: 21300000, guid: 8d62beccf366cfd49802199b8bb44eb0, type: 3}
+  - {fileID: 21300000, guid: d5db4b0d244b38b41bd28ca883dbac34, type: 3}
+  - {fileID: 21300000, guid: b4a0d83dd3f3ca04ca5718131e83fd6b, type: 3}
+  - {fileID: 21300000, guid: 2c8e5b7d9ee338248b09ef429f6ca68f, type: 3}
+  - {fileID: 21300000, guid: 2cb2c76ef5fe63d40bcfb8aa0d3ec4d8, type: 3}
+  - {fileID: 21300000, guid: 9a0acedef8ae67349b2f4b403af55d26, type: 3}
+  - {fileID: 21300000, guid: e18537ee33ff74a49bcc0b56690df751, type: 3}
+  - {fileID: 21300000, guid: e8b4f90fba8bd3e4789b4a7d2bc3a7c5, type: 3}
+  - {fileID: 21300000, guid: 49a7867fe29cb8849aaccac717e768ef, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - switch_dpad_up
+  - switch_button_sl
+  - switch_button_x
+  - switch_stick_l_down
+  - switch_dpad_left
+  - switch_button_sr
+  - switch_button_l
+  - switch_stick_r_left
+  - switch_button_y
+  - switch_button_r
+  - switch_stick_r_down
+  - switch_stick_l_up
+  - switch_button_plus
+  - switch_button_minus
+  - switch_stick_r_right
+  - switch_dpad_down
+  - switch_stick_r_press
+  - switch_stick_l
+  - switch_dpad
+  - switch_dpad_right
+  - switch_stick_r_up
+  - switch_stick_l_right
+  - switch_stick_r
+  - switch_button_b
+  - switch_button_a
+  - switch_stick_l_left
+  - switch_stick_l_press
+  m_RenderDataMap: {}
+  m_Tag: TestAtlas_Switch
+  m_IsVariant: 0
