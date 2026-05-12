@@ -11,12 +11,18 @@ namespace EasyAccessibility.Tests.InputIcons
     {
         InputIconSetKeyboard m_iconSet;
 
-        static readonly FieldInfo k_Atlas =
-            typeof(InputIconSetKeyboard).GetField("m_atlas", BindingFlags.NonPublic | BindingFlags.Instance);
-        static readonly FieldInfo k_Overrides =
-            typeof(InputIconSetKeyboard).GetField("m_overrides", BindingFlags.NonPublic | BindingFlags.Instance);
-        static readonly FieldInfo k_Suffix =
-            typeof(InputIconSetKeyboard).GetField("suffix", BindingFlags.NonPublic | BindingFlags.Instance);
+        static readonly FieldInfo k_Atlas = typeof(InputIconSetKeyboard).GetField(
+            "m_atlas",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
+        static readonly FieldInfo k_Overrides = typeof(InputIconSetKeyboard).GetField(
+            "m_overrides",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
+        static readonly FieldInfo k_Suffix = typeof(InputIconSetKeyboard).GetField(
+            "suffix",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
 
         [SetUp]
         public void SetUp()
@@ -29,7 +35,8 @@ namespace EasyAccessibility.Tests.InputIcons
         public void TearDown()
         {
             var overrides = k_Overrides.GetValue(m_iconSet) as InputIconSet;
-            if (overrides != null) DestroyImmediate(overrides);
+            if (overrides != null)
+                DestroyImmediate(overrides);
             DestroyImmediate(m_iconSet);
             // atlas is a project asset loaded via AssetDatabase : do not destroy
         }
@@ -39,15 +46,20 @@ namespace EasyAccessibility.Tests.InputIcons
         static SpriteAtlas LoadKeyboardAtlas()
         {
             var guids = AssetDatabase.FindAssets("TestAtlas_Keyboard t:SpriteAtlas");
-            if (guids.Length == 0) return null;
-            return AssetDatabase.LoadAssetAtPath<SpriteAtlas>(AssetDatabase.GUIDToAssetPath(guids[0]));
+            if (guids.Length == 0)
+                return null;
+            return AssetDatabase.LoadAssetAtPath<SpriteAtlas>(
+                AssetDatabase.GUIDToAssetPath(guids[0])
+            );
         }
 
         Sprite MakeSprite() =>
             Sprite.Create(new Texture2D(1, 1), new Rect(0, 0, 1, 1), Vector2.zero);
 
         void InjectAtlas(SpriteAtlas atlas) => k_Atlas.SetValue(m_iconSet, atlas);
+
         void InjectOverrides(InputIconSet overrides) => k_Overrides.SetValue(m_iconSet, overrides);
+
         void InjectSuffix(string suffix) => k_Suffix.SetValue(m_iconSet, suffix);
 
         #endregion
@@ -56,58 +68,119 @@ namespace EasyAccessibility.Tests.InputIcons
 
         static readonly string[] k_LetterKeys =
         {
-            "<Keyboard>/a", "<Keyboard>/b", "<Keyboard>/c", "<Keyboard>/d", "<Keyboard>/e",
-            "<Keyboard>/f", "<Keyboard>/g", "<Keyboard>/h", "<Keyboard>/i", "<Keyboard>/j",
-            "<Keyboard>/k", "<Keyboard>/l", "<Keyboard>/m", "<Keyboard>/n", "<Keyboard>/o",
-            "<Keyboard>/p", "<Keyboard>/q", "<Keyboard>/r", "<Keyboard>/s", "<Keyboard>/t",
-            "<Keyboard>/u", "<Keyboard>/v", "<Keyboard>/w", "<Keyboard>/x", "<Keyboard>/y",
-            "<Keyboard>/z"
+            "<Keyboard>/a",
+            "<Keyboard>/b",
+            "<Keyboard>/c",
+            "<Keyboard>/d",
+            "<Keyboard>/e",
+            "<Keyboard>/f",
+            "<Keyboard>/g",
+            "<Keyboard>/h",
+            "<Keyboard>/i",
+            "<Keyboard>/j",
+            "<Keyboard>/k",
+            "<Keyboard>/l",
+            "<Keyboard>/m",
+            "<Keyboard>/n",
+            "<Keyboard>/o",
+            "<Keyboard>/p",
+            "<Keyboard>/q",
+            "<Keyboard>/r",
+            "<Keyboard>/s",
+            "<Keyboard>/t",
+            "<Keyboard>/u",
+            "<Keyboard>/v",
+            "<Keyboard>/w",
+            "<Keyboard>/x",
+            "<Keyboard>/y",
+            "<Keyboard>/z",
         };
 
         static readonly string[] k_DigitKeys =
         {
-            "<Keyboard>/digit0", "<Keyboard>/digit1", "<Keyboard>/digit2", "<Keyboard>/digit3",
-            "<Keyboard>/digit4", "<Keyboard>/digit5", "<Keyboard>/digit6", "<Keyboard>/digit7",
-            "<Keyboard>/digit8", "<Keyboard>/digit9"
+            "<Keyboard>/digit0",
+            "<Keyboard>/digit1",
+            "<Keyboard>/digit2",
+            "<Keyboard>/digit3",
+            "<Keyboard>/digit4",
+            "<Keyboard>/digit5",
+            "<Keyboard>/digit6",
+            "<Keyboard>/digit7",
+            "<Keyboard>/digit8",
+            "<Keyboard>/digit9",
         };
 
         static readonly string[] k_FunctionKeys =
         {
-            "<Keyboard>/f1",  "<Keyboard>/f2",  "<Keyboard>/f3",  "<Keyboard>/f4",
-            "<Keyboard>/f5",  "<Keyboard>/f6",  "<Keyboard>/f7",  "<Keyboard>/f8",
-            "<Keyboard>/f9",  "<Keyboard>/f10", "<Keyboard>/f11", "<Keyboard>/f12"
+            "<Keyboard>/f1",
+            "<Keyboard>/f2",
+            "<Keyboard>/f3",
+            "<Keyboard>/f4",
+            "<Keyboard>/f5",
+            "<Keyboard>/f6",
+            "<Keyboard>/f7",
+            "<Keyboard>/f8",
+            "<Keyboard>/f9",
+            "<Keyboard>/f10",
+            "<Keyboard>/f11",
+            "<Keyboard>/f12",
         };
 
         static readonly string[] k_NavigationKeys =
         {
-            "<Keyboard>/upArrow",  "<Keyboard>/downArrow", "<Keyboard>/leftArrow", "<Keyboard>/rightArrow",
-            "<Keyboard>/home",     "<Keyboard>/end",       "<Keyboard>/pageUp",    "<Keyboard>/pageDown",
-            "<Keyboard>/insert",   "<Keyboard>/delete"
+            "<Keyboard>/upArrow",
+            "<Keyboard>/downArrow",
+            "<Keyboard>/leftArrow",
+            "<Keyboard>/rightArrow",
+            "<Keyboard>/home",
+            "<Keyboard>/end",
+            "<Keyboard>/pageUp",
+            "<Keyboard>/pageDown",
+            "<Keyboard>/insert",
+            "<Keyboard>/delete",
         };
 
         static readonly string[] k_ModifierKeys =
         {
-            "<Keyboard>/leftShift",  "<Keyboard>/rightShift",
-            "<Keyboard>/leftCtrl",   "<Keyboard>/rightCtrl",
-            "<Keyboard>/leftAlt",    "<Keyboard>/rightAlt",
-            "<Keyboard>/leftMeta",   "<Keyboard>/rightMeta"
+            "<Keyboard>/leftShift",
+            "<Keyboard>/rightShift",
+            "<Keyboard>/leftCtrl",
+            "<Keyboard>/rightCtrl",
+            "<Keyboard>/leftAlt",
+            "<Keyboard>/rightAlt",
+            "<Keyboard>/leftMeta",
+            "<Keyboard>/rightMeta",
         };
 
         static readonly string[] k_CommonKeys =
         {
-            "<Keyboard>/space", "<Keyboard>/enter", "<Keyboard>/backspace",
-            "<Keyboard>/tab",   "<Keyboard>/escape", "<Keyboard>/capsLock"
+            "<Keyboard>/space",
+            "<Keyboard>/enter",
+            "<Keyboard>/backspace",
+            "<Keyboard>/tab",
+            "<Keyboard>/escape",
+            "<Keyboard>/capsLock",
         };
 
         static readonly string[] k_NumpadKeys =
         {
-            "<Keyboard>/numpad0",        "<Keyboard>/numpad1",    "<Keyboard>/numpad2",
-            "<Keyboard>/numpad3",        "<Keyboard>/numpad4",    "<Keyboard>/numpad5",
-            "<Keyboard>/numpad6",        "<Keyboard>/numpad7",    "<Keyboard>/numpad8",
-            "<Keyboard>/numpad9",        "<Keyboard>/numpadEnter",
-            "<Keyboard>/numpadPlus",     "<Keyboard>/numpadMinus",
-            "<Keyboard>/numpadMultiply", "<Keyboard>/numpadDivide",
-            "<Keyboard>/numpadPeriod",   "<Keyboard>/numpadEquals"
+            "<Keyboard>/numpad0",
+            "<Keyboard>/numpad1",
+            "<Keyboard>/numpad2",
+            "<Keyboard>/numpad3",
+            "<Keyboard>/numpad4",
+            "<Keyboard>/numpad5",
+            "<Keyboard>/numpad6",
+            "<Keyboard>/numpad7",
+            "<Keyboard>/numpad8",
+            "<Keyboard>/numpad9",
+            "<Keyboard>/numpadEnter",
+            "<Keyboard>/numpadPlus",
+            "<Keyboard>/numpadMinus",
+            "<Keyboard>/numpadMultiply",
+            "<Keyboard>/numpadDivide",
+            "<Keyboard>/numpadPeriod",
+            "<Keyboard>/numpadEquals",
         };
 
         [TestCaseSource(nameof(k_LetterKeys))]
@@ -204,6 +277,7 @@ namespace EasyAccessibility.Tests.InputIcons
         {
             public Sprite sprite;
             public string matchPath;
+
             public override Sprite GetIcon(string controlPath) =>
                 controlPath == matchPath ? sprite : null;
         }

@@ -8,8 +8,5 @@ namespace EasyAccessibility
      *   - Reduce flashing
      *   - Disable motion animation/tweening
      */
-    public class AnimationSettings : MonoBehaviour
-    {
-
-    }
+    public class AnimationSettings : MonoBehaviour { }
 }

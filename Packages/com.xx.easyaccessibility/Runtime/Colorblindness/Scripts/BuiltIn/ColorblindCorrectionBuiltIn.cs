@@ -1,10 +1,6 @@
 using UnityEngine;
 
-
 namespace EasyAccessibility
 {
-    public class ColorblindCorrectionBuiltIn : MonoBehaviour
-    {
-        
-    }
+    public class ColorblindCorrectionBuiltIn : MonoBehaviour { }
 }

@@ -8,9 +8,9 @@ namespace EasyAccessibility
         public AuditorRequirementWCAG_4_1_02_NameRoleValue()
         {
             source = AuditorRequirementKeys.Source_WCAG;
-            name = AuditorRequirementKeys.GetTitle(4,1,2);
-            description = AuditorRequirementKeys.GetDescription(4,1,2);
-            referenceLink = AuditorRequirementKeys.GetUrl(4,1,2);
+            name = AuditorRequirementKeys.GetTitle(4, 1, 2);
+            description = AuditorRequirementKeys.GetDescription(4, 1, 2);
+            referenceLink = AuditorRequirementKeys.GetUrl(4, 1, 2);
         }
     }
 }

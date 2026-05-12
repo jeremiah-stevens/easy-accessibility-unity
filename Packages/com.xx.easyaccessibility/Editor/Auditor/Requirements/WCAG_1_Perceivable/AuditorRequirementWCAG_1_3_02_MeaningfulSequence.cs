@@ -8,10 +8,9 @@ namespace EasyAccessibility
         public AuditorRequirementWCAG_1_3_02_MeaningfulSequence()
         {
             source = AuditorRequirementKeys.Source_WCAG;
-            name = AuditorRequirementKeys.GetTitle(1,3,2);
-            description = AuditorRequirementKeys.GetDescription(1,3,2);
-            referenceLink = AuditorRequirementKeys.GetUrl(1,3,2);
-            
+            name = AuditorRequirementKeys.GetTitle(1, 3, 2);
+            description = AuditorRequirementKeys.GetDescription(1, 3, 2);
+            referenceLink = AuditorRequirementKeys.GetUrl(1, 3, 2);
         }
     }
 }

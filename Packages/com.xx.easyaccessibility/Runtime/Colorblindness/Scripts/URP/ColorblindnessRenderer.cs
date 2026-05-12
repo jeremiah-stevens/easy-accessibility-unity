@@ -12,13 +12,12 @@ namespace EasyAccessibility
     /// </summary>
     public abstract class ColorblindnessRendererFeature : ScriptableRendererFeature
     {
-        public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
-        {
-        }
+        public override void AddRenderPasses(
+            ScriptableRenderer renderer,
+            ref RenderingData renderingData
+        ) { }
 
-        public override void Create()
-        {
-        }
+        public override void Create() { }
     }
 }
 #endif

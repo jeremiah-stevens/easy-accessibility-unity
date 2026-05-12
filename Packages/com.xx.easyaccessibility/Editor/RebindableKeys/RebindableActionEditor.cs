@@ -19,9 +19,12 @@ namespace EasyAccessibility.Editor
 
             foreach (var binding in action.bindings)
             {
-                if (binding.isComposite) continue;
+                if (binding.isComposite)
+                    continue;
 
-                var scheme = string.IsNullOrEmpty(binding.groups) ? "Any" : binding.groups.Replace(";", ", ");
+                var scheme = string.IsNullOrEmpty(binding.groups)
+                    ? "Any"
+                    : binding.groups.Replace(";", ", ");
                 var display = binding.isPartOfComposite
                     ? $"{binding.name}: {binding.ToDisplayString()} [{scheme}]"
                     : $"{binding.ToDisplayString()} [{scheme}]";
@@ -30,11 +33,13 @@ namespace EasyAccessibility.Editor
                 ids.Add(binding.id.ToString());
             }
 
-            if (ids.Count == 0) return;
+            if (ids.Count == 0)
+                return;
 
             var target = (RebindableAction)this.target;
             var currentIndex = ids.IndexOf(target.bindingId);
-            if (currentIndex < 0) currentIndex = 0;
+            if (currentIndex < 0)
+                currentIndex = 0;
 
             var newIndex = EditorGUILayout.Popup("Binding", currentIndex, labels.ToArray());
 
@@ -44,9 +49,6 @@ namespace EasyAccessibility.Editor
                 EditorUtility.SetDirty(target);
             }
         }
-
-
-
 
         public override void OnInspectorGUI()
         {

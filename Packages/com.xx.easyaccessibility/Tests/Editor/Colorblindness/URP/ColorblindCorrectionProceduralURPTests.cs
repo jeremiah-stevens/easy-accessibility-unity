@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Reflection;
 using NUnit.Framework;
 using UnityEngine;
-using static UnityEngine.Object;
 using static EasyAccessibility.AccessibilitySettings.ColorblindCorrectionMode;
+using static UnityEngine.Object;
 
 namespace EasyAccessibility.Tests.Colorblind
 {
@@ -14,24 +14,39 @@ namespace EasyAccessibility.Tests.Colorblind
         AccessibilitySettings m_settings;
         List<UnityEngine.Object> m_cleanup;
 
-        static readonly FieldInfo k_Instance =
-            typeof(AccessibilitySettings).GetField("m_instance", BindingFlags.NonPublic | BindingFlags.Static);
-        static readonly FieldInfo k_Material =
-            typeof(ColorblindCorrectionProceduralURP).GetField("material", BindingFlags.NonPublic | BindingFlags.Instance);
+        static readonly FieldInfo k_Instance = typeof(AccessibilitySettings).GetField(
+            "m_instance",
+            BindingFlags.NonPublic | BindingFlags.Static
+        );
+        static readonly FieldInfo k_Material = typeof(ColorblindCorrectionProceduralURP).GetField(
+            "material",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
         static readonly FieldInfo k_OverrideSettings =
-            typeof(ColorblindCorrectionProceduralURP).GetField("overrideSettings", BindingFlags.NonPublic | BindingFlags.Instance);
-        static readonly FieldInfo k_Mode =
-            typeof(ColorblindCorrectionProceduralURP).GetField("mode", BindingFlags.NonPublic | BindingFlags.Instance);
-        static readonly FieldInfo k_Amount =
-            typeof(ColorblindCorrectionProceduralURP).GetField("amount", BindingFlags.NonPublic | BindingFlags.Instance);
+            typeof(ColorblindCorrectionProceduralURP).GetField(
+                "overrideSettings",
+                BindingFlags.NonPublic | BindingFlags.Instance
+            );
+        static readonly FieldInfo k_Mode = typeof(ColorblindCorrectionProceduralURP).GetField(
+            "mode",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
+        static readonly FieldInfo k_Amount = typeof(ColorblindCorrectionProceduralURP).GetField(
+            "amount",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
         static readonly MethodInfo k_AddRenderPasses =
-            typeof(ColorblindCorrectionProceduralURP).GetMethod("AddRenderPasses", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            typeof(ColorblindCorrectionProceduralURP).GetMethod(
+                "AddRenderPasses",
+                BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance
+            );
 
         [SetUp]
         public void SetUp()
         {
             m_cleanup = new List<UnityEngine.Object>();
-            m_feature = (ColorblindCorrectionProceduralURP)ScriptableObject.CreateInstance(typeof(ColorblindCorrectionProceduralURP));
+            m_feature = (ColorblindCorrectionProceduralURP)
+                ScriptableObject.CreateInstance(typeof(ColorblindCorrectionProceduralURP));
             m_settings = ScriptableObject.CreateInstance<AccessibilitySettings>();
             k_Instance.SetValue(null, m_settings);
             k_Material.SetValue(m_feature, null);
@@ -44,14 +59,21 @@ namespace EasyAccessibility.Tests.Colorblind
             DestroyImmediate(m_feature);
             DestroyImmediate(m_settings);
             foreach (var obj in m_cleanup)
-                if (obj != null) DestroyImmediate(obj);
+                if (obj != null)
+                    DestroyImmediate(obj);
         }
 
         #region Helpers
 
-        T Track<T>(T obj) where T : UnityEngine.Object { m_cleanup.Add(obj); return obj; }
+        T Track<T>(T obj)
+            where T : UnityEngine.Object
+        {
+            m_cleanup.Add(obj);
+            return obj;
+        }
 
-        Material MakeMaterial() => Track(new Material(Shader.Find("Shader Graphs/ColorblindCorrectionProcedural_URP")));
+        Material MakeMaterial() =>
+            Track(new Material(Shader.Find("Shader Graphs/ColorblindCorrectionProcedural_URP")));
 
         void InvokeAddRenderPasses()
         {
@@ -62,7 +84,10 @@ namespace EasyAccessibility.Tests.Colorblind
 
         void InvokeAddRenderPassesSafe()
         {
-            try { InvokeAddRenderPasses(); }
+            try
+            {
+                InvokeAddRenderPasses();
+            }
             catch (TargetInvocationException) { }
         }
 

@@ -10,30 +10,22 @@ namespace EasyAccessibility
     /// </summary>
     public class DaltonizationLUTGenerator : EditorWindow
     {
-        static double[] Protanope = {
-                0.0, 2.02344, -2.52581,
-                0.0, 1.0,      0.0,
-                0.0, 0.0,      1.0
-            };
+        static double[] Protanope = { 0.0, 2.02344, -2.52581, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0 };
 
-        static double[] Deuteranope = {
-		        1.0,      0.0, 0.0,
-                0.494207, 0.0, 1.24827,
-                0.0,      0.0, 1.0
-            };
+        static double[] Deuteranope = { 1.0, 0.0, 0.0, 0.494207, 0.0, 1.24827, 0.0, 0.0, 1.0 };
 
-        static double[] Tritanope = {
-                1.0,       0.0,      0.0,
-                0.0,       1.0,      0.0,
-                -0.395913, 0.801109, 0.0
-            };
+        static double[] Tritanope = { 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.395913, 0.801109, 0.0 };
 
         [MenuItem("Window/Easy Accessibility/Config/Generate LUTS")]
         public static void GenerateLUTS()
         {
-            foreach (var curr in Enum.GetValues(typeof(AccessibilitySettings.ColorblindCorrectionMode)).Cast<AccessibilitySettings.ColorblindCorrectionMode>())
+            foreach (
+                var curr in Enum.GetValues(typeof(AccessibilitySettings.ColorblindCorrectionMode))
+                    .Cast<AccessibilitySettings.ColorblindCorrectionMode>()
+            )
             {
-                if (curr == AccessibilitySettings.ColorblindCorrectionMode.None) continue; //skip basic
+                if (curr == AccessibilitySettings.ColorblindCorrectionMode.None)
+                    continue; //skip basic
                 GenerateLUT(curr);
             }
         }
@@ -47,7 +39,7 @@ namespace EasyAccessibility
         )
         {
             double[] cvdMatrix;
-            switch(mode)
+            switch (mode)
             {
                 case AccessibilitySettings.ColorblindCorrectionMode.Protanopia:
                     cvdMatrix = Protanope;
@@ -67,7 +59,7 @@ namespace EasyAccessibility
             float scale = resolution - 1;
 
             int i = 0;
-            for(float b = 0; b < resolution; b++)
+            for (float b = 0; b < resolution; b++)
             {
                 for (float g = 0; g < resolution; g++)
                 {
@@ -119,7 +111,11 @@ namespace EasyAccessibility
                         G = Mathf.Clamp((float)G, 0, scale);
                         B = Mathf.Clamp((float)B, 0, scale);
 
-                        data[id++] = new Color((float)R / scale, (float)G / scale, (float)B / scale);
+                        data[id++] = new Color(
+                            (float)R / scale,
+                            (float)G / scale,
+                            (float)B / scale
+                        );
                     }
                 }
             }
@@ -128,24 +124,34 @@ namespace EasyAccessibility
         }
 
         public static void GenerateLUT(
-            AccessibilitySettings.ColorblindCorrectionMode mode = AccessibilitySettings.ColorblindCorrectionMode.Protanopia,
+            AccessibilitySettings.ColorblindCorrectionMode mode =
+                AccessibilitySettings.ColorblindCorrectionMode.Protanopia,
             int resolution = 256,
             string outputPath = null
         )
         {
-            if(mode == AccessibilitySettings.ColorblindCorrectionMode.None)
+            if (mode == AccessibilitySettings.ColorblindCorrectionMode.None)
             {
                 Debug.Log("No need to generate a LUT for identity/normal vision.");
                 return;
             }
 
             var data = ComputeLUT(mode, resolution);
-            if (data == null) return;
+            if (data == null)
+                return;
 
             //TODO: write to Texture2D would be more performant, but runs into rendering issues right now
 
-            var assetPath = outputPath ?? $"Packages/com.xx.easyaccessibility/Runtime/Colorblindness/Rendering/LUT_{Enum.GetName(typeof(AccessibilitySettings.ColorblindCorrectionMode), mode)}.asset";
-            var output = new Texture3D(resolution, resolution, resolution, TextureFormat.RGBA32, false);
+            var assetPath =
+                outputPath
+                ?? $"Packages/com.xx.easyaccessibility/Runtime/Colorblindness/Rendering/LUT_{Enum.GetName(typeof(AccessibilitySettings.ColorblindCorrectionMode), mode)}.asset";
+            var output = new Texture3D(
+                resolution,
+                resolution,
+                resolution,
+                TextureFormat.RGBA32,
+                false
+            );
             output.SetPixels(data);
             output.Apply();
             AssetDatabase.CreateAsset(output, assetPath);

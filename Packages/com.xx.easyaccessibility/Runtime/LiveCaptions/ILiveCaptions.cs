@@ -1,7 +1,4 @@
 namespace EasyAccessibility
 {
-    public interface ILiveCaptions
-    {
-
-    }
+    public interface ILiveCaptions { }
 }

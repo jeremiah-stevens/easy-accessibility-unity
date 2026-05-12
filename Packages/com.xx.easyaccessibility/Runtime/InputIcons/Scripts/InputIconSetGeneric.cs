@@ -18,7 +18,8 @@ namespace EasyAccessibility
             public Sprite icon;
         }
 
-        [SerializeField] private List<IconEntry> m_icons;
+        [SerializeField]
+        private List<IconEntry> m_icons;
         private Dictionary<string, Sprite> m_lookup;
 
         public override Sprite GetIcon(string controlPath)

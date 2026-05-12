@@ -8,10 +8,9 @@ namespace EasyAccessibility
         public AuditorRequirementWCAG_2_1_02_NoKeyboardTrap()
         {
             source = AuditorRequirementKeys.Source_WCAG;
-            name = AuditorRequirementKeys.GetTitle(2,1,2);
-            description = AuditorRequirementKeys.GetDescription(2,1,2);
-            referenceLink = AuditorRequirementKeys.GetUrl(2,1,2);
-            
+            name = AuditorRequirementKeys.GetTitle(2, 1, 2);
+            description = AuditorRequirementKeys.GetDescription(2, 1, 2);
+            referenceLink = AuditorRequirementKeys.GetUrl(2, 1, 2);
         }
     }
 }

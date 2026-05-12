@@ -41,7 +41,7 @@ namespace EasyAccessibility.Tests.RebindableKeys
                 bindingIndex = 0,
                 conflictingAction = conflicting ?? m_conflictingAction,
                 conflictingBindingIndex = 0,
-                oldPath = "<Keyboard>/j"
+                oldPath = "<Keyboard>/j",
             };
 
         #endregion
@@ -57,7 +57,7 @@ namespace EasyAccessibility.Tests.RebindableKeys
                 bindingIndex = 1,
                 conflictingAction = m_conflictingAction,
                 conflictingBindingIndex = 2,
-                oldPath = "<Keyboard>/j"
+                oldPath = "<Keyboard>/j",
             };
 
             Assert.AreSame(m_action, conflict.action);
@@ -80,7 +80,10 @@ namespace EasyAccessibility.Tests.RebindableKeys
         [Test]
         public void GetConflictDescription_ContainsConflictingActionName()
         {
-            Assert.That(MakeConflict().GetConflictDescription(), Does.Contain(m_conflictingAction.name));
+            Assert.That(
+                MakeConflict().GetConflictDescription(),
+                Does.Contain(m_conflictingAction.name)
+            );
         }
 
         [Test]

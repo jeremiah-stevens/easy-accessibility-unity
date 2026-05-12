@@ -11,8 +11,5 @@ namespace EasyAccessibility
      *   - Line spacing at least 1.5
      *   - Can be resized up to 200%
      */
-    public class TextSettings : MonoBehaviour
-    {
-
-    }
+    public class TextSettings : MonoBehaviour { }
 }

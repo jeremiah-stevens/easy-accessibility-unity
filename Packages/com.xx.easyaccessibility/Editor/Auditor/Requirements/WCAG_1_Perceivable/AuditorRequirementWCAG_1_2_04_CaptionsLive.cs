@@ -22,16 +22,12 @@ namespace EasyAccessibility
             AuditForInstanceWithCamera<LiveCaptions>("has no LiveCaptions provider");
         }
 
-
-
-
         public AuditorRequirementWCAG_1_2_04_CaptionsLive()
         {
             source = AuditorRequirementKeys.Source_WCAG;
-            name = AuditorRequirementKeys.GetTitle(1,2,4);
-            description = AuditorRequirementKeys.GetDescription(1,2,4);
-            referenceLink = AuditorRequirementKeys.GetUrl(1,2,4);
-            
+            name = AuditorRequirementKeys.GetTitle(1, 2, 4);
+            description = AuditorRequirementKeys.GetDescription(1, 2, 4);
+            referenceLink = AuditorRequirementKeys.GetUrl(1, 2, 4);
         }
     }
 }

@@ -4,7 +4,6 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-
 namespace EasyAccessibility
 {
     /*TODO:
@@ -33,7 +32,8 @@ namespace EasyAccessibility
 
             string path = "Assets/Editor/Accessibility/AccessibilityReport.asset";
             System.IO.Directory.CreateDirectory(Path.GetDirectoryName(path));
-            AuditorRequirementsSO auditorRequirements = ScriptableObject.CreateInstance<AuditorRequirementsSO>();
+            AuditorRequirementsSO auditorRequirements =
+                ScriptableObject.CreateInstance<AuditorRequirementsSO>();
             auditorRequirements.report = report;
             AssetDatabase.CreateAsset(auditorRequirements, path);
             AssetDatabase.SaveAssets();

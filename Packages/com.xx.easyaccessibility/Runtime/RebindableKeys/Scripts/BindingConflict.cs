@@ -11,25 +11,26 @@ namespace EasyAccessibility
         /// The action that the user attempted to rebind.
         /// </summary>
         public InputAction action;
+
         /// <summary>
         /// The index of the binding that the user attempted to rebind.
         /// </summary>
         public int bindingIndex;
+
         /// <summary>
         /// The action that conflicts with the attempted rebind.
         /// </summary>
         public InputAction conflictingAction;
+
         /// <summary>
         /// The index of the binding that conflicts with the attempted rebind.
         /// </summary>
         public int conflictingBindingIndex;
+
         /// <summary>
         /// The path of the original binding.
         /// </summary>
         public string oldPath;
-
-
-
 
         public string GetConflictDescription()
         {

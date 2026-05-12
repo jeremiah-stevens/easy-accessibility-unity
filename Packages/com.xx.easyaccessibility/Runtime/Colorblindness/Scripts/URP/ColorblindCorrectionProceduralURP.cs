@@ -5,7 +5,6 @@ using UnityEngine.Rendering.RenderGraphModule;
 using UnityEngine.Rendering.RenderGraphModule.Util;
 using UnityEngine.Rendering.Universal;
 
-
 namespace EasyAccessibility
 {
     /// <summary>
@@ -13,18 +12,22 @@ namespace EasyAccessibility
     /// </summary>
     public class ColorblindCorrectionProceduralURP : ColorblindnessRendererFeature
     {
-        [SerializeField]Material material;
+        [SerializeField]
+        Material material;
 
         [Header("Override")]
-        [SerializeField] bool overrideSettings;
-        [SerializeField] AccessibilitySettings.ColorblindCorrectionMode mode;
-        [SerializeField][Range(0f, 1f)] float amount = 1;
+        [SerializeField]
+        bool overrideSettings;
+
+        [SerializeField]
+        AccessibilitySettings.ColorblindCorrectionMode mode;
+
+        [SerializeField]
+        [Range(0f, 1f)]
+        float amount = 1;
 
         //state
         ColorblindCorrectionRenderPassProcedural m_pass;
-
-
-
 
         public override void Create()
         {
@@ -32,14 +35,21 @@ namespace EasyAccessibility
             m_pass.renderPassEvent = RenderPassEvent.AfterRenderingPostProcessing;
         }
 
-        public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
+        public override void AddRenderPasses(
+            ScriptableRenderer renderer,
+            ref RenderingData renderingData
+        )
         {
-            if (material == null) return;
+            if (material == null)
+                return;
 
-            ColorblindMaterialUtils.SetCorrectionKeywords(material, AccessibilitySettings.Instance.colorblindCorrectionMode);
+            ColorblindMaterialUtils.SetCorrectionKeywords(
+                material,
+                AccessibilitySettings.Instance.colorblindCorrectionMode
+            );
             material.SetFloat("_Amount", AccessibilitySettings.Instance.colorblindCorrectionAmount);
 
-            if(overrideSettings)
+            if (overrideSettings)
             {
                 ColorblindMaterialUtils.SetCorrectionKeywords(material, mode);
                 material.SetFloat("_Amount", amount);
@@ -54,9 +64,6 @@ namespace EasyAccessibility
     {
         const string m_PassName = "ColorblindCorrectionPass";
         Material material;
-
-
-
 
         public void Setup(Material mat)
         {

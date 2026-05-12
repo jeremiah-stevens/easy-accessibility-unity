@@ -10,15 +10,16 @@ namespace EasyAccessibility
     [CreateAssetMenu(menuName = "Easy Accessibility/Icon Set/Xbox One")]
     public class InputIconSetXboxOne : InputIconSetXbox
     {
-        protected override string Base        => "xbox";
-        protected override string StartName   => "menu";
-        protected override string SelectName  => "view";
+        protected override string Base => "xbox";
+        protected override string StartName => "menu";
+        protected override string SelectName => "view";
 
-        protected override string GetDeviceSpriteName(string controlPath) => controlPath switch
-        {
-            // TODO: Xbox One Elite Series 1 back paddles (P1–P4)
+        protected override string GetDeviceSpriteName(string controlPath) =>
+            controlPath switch
+            {
+                // TODO: Xbox One Elite Series 1 back paddles (P1–P4)
 
-            _ => null
-        };
+                _ => null,
+            };
     }
 }

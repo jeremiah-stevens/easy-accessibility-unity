@@ -11,15 +11,16 @@ namespace EasyAccessibility
 
             AuditForInstanceWithCamera<PageLanguageProvider>("has no Page Language provider");
 
-            if (issues.Count > 0) status = Status.Fail;
+            if (issues.Count > 0)
+                status = Status.Fail;
         }
 
         public AuditorRequirementWCAG_3_1_01_LanguageOfPage()
         {
             source = AuditorRequirementKeys.Source_WCAG;
-            name = AuditorRequirementKeys.GetTitle(3,1,1);
-            description = AuditorRequirementKeys.GetDescription(3,1,1);
-            referenceLink = AuditorRequirementKeys.GetUrl(3,1,1);
+            name = AuditorRequirementKeys.GetTitle(3, 1, 1);
+            description = AuditorRequirementKeys.GetDescription(3, 1, 1);
+            referenceLink = AuditorRequirementKeys.GetUrl(3, 1, 1);
         }
     }
 }

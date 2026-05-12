@@ -3,8 +3,8 @@ using System.Reflection;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Rendering;
-using static UnityEngine.Object;
 using static EasyAccessibility.AccessibilitySettings.ColorblindCorrectionMode;
+using static UnityEngine.Object;
 
 namespace EasyAccessibility.Tests.Colorblind
 {
@@ -14,10 +14,14 @@ namespace EasyAccessibility.Tests.Colorblind
         AccessibilitySettings m_settings;
         List<Object> m_cleanup;
 
-        static readonly FieldInfo k_Instance =
-            typeof(AccessibilitySettings).GetField("m_instance", BindingFlags.NonPublic | BindingFlags.Static);
-        static readonly MethodInfo k_Render =
-            typeof(ColorblindCorrectionLUTHDRP).GetMethod("Render", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+        static readonly FieldInfo k_Instance = typeof(AccessibilitySettings).GetField(
+            "m_instance",
+            BindingFlags.NonPublic | BindingFlags.Static
+        );
+        static readonly MethodInfo k_Render = typeof(ColorblindCorrectionLUTHDRP).GetMethod(
+            "Render",
+            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance
+        );
 
         [SetUp]
         public void SetUp()
@@ -35,14 +39,21 @@ namespace EasyAccessibility.Tests.Colorblind
             DestroyImmediate(m_component);
             DestroyImmediate(m_settings);
             foreach (var obj in m_cleanup)
-                if (obj != null) DestroyImmediate(obj);
+                if (obj != null)
+                    DestroyImmediate(obj);
         }
 
         #region Helpers
 
-        T Track<T>(T obj) where T : Object { m_cleanup.Add(obj); return obj; }
+        T Track<T>(T obj)
+            where T : Object
+        {
+            m_cleanup.Add(obj);
+            return obj;
+        }
 
-        Material MakeMaterial() => Track(new Material(Shader.Find("Shader Graphs/ColorblindCorrectionLUT_HDRP")));
+        Material MakeMaterial() =>
+            Track(new Material(Shader.Find("Shader Graphs/ColorblindCorrectionLUT_HDRP")));
 
         Texture3D MakeTexture3D() => Track(new Texture3D(1, 1, 1, TextureFormat.RGBA32, false));
 
@@ -53,7 +64,10 @@ namespace EasyAccessibility.Tests.Colorblind
 
         void InvokeRenderSafe()
         {
-            try { InvokeRender(); }
+            try
+            {
+                InvokeRender();
+            }
             catch (TargetInvocationException) { }
         }
 
@@ -104,15 +118,17 @@ namespace EasyAccessibility.Tests.Colorblind
         [TestCase(Deuteranopia)]
         [TestCase(Tritanopia)]
         [TestCase(None)]
-        public void NormalPath_LUT_MatchesSettingsMode(AccessibilitySettings.ColorblindCorrectionMode mode)
+        public void NormalPath_LUT_MatchesSettingsMode(
+            AccessibilitySettings.ColorblindCorrectionMode mode
+        )
         {
             m_component.materialParameter.value = MakeMaterial();
             var texProto = MakeTexture3D();
-            var texDeut  = MakeTexture3D();
-            var texTrit  = MakeTexture3D();
-            m_component.textureProtanopia.value  = texProto;
+            var texDeut = MakeTexture3D();
+            var texTrit = MakeTexture3D();
+            m_component.textureProtanopia.value = texProto;
             m_component.textureDeutranopia.value = texDeut;
-            m_component.textureTritanopia.value  = texTrit;
+            m_component.textureTritanopia.value = texTrit;
             m_settings.colorblindCorrectionMode = mode;
 
             InvokeRenderSafe();
@@ -120,10 +136,18 @@ namespace EasyAccessibility.Tests.Colorblind
             Texture3D expected;
             switch (mode)
             {
-                case Protanopia:   expected = texProto; break;
-                case Deuteranopia: expected = texDeut;  break;
-                case Tritanopia:   expected = texTrit;  break;
-                default:           expected = null;     break;
+                case Protanopia:
+                    expected = texProto;
+                    break;
+                case Deuteranopia:
+                    expected = texDeut;
+                    break;
+                case Tritanopia:
+                    expected = texTrit;
+                    break;
+                default:
+                    expected = null;
+                    break;
             }
             Assert.AreSame(expected, m_component.materialParameter.value.GetTexture("_LUT"));
         }
@@ -150,8 +174,8 @@ namespace EasyAccessibility.Tests.Colorblind
         {
             m_component.materialParameter.value = MakeMaterial();
             var texProto = MakeTexture3D();
-            var texDeut  = MakeTexture3D();
-            m_component.textureProtanopia.value  = texProto;
+            var texDeut = MakeTexture3D();
+            m_component.textureProtanopia.value = texProto;
             m_component.textureDeutranopia.value = texDeut;
             m_settings.colorblindCorrectionMode = Protanopia;
             m_component.mode.value = Deuteranopia;
@@ -173,8 +197,8 @@ namespace EasyAccessibility.Tests.Colorblind
             m_settings.colorblindCorrectionAmount = 0.5f;
             m_component.amount.value = 0.9f;
             var texProto = MakeTexture3D();
-            var texDeut  = MakeTexture3D();
-            m_component.textureProtanopia.value  = texProto;
+            var texDeut = MakeTexture3D();
+            m_component.textureProtanopia.value = texProto;
             m_component.textureDeutranopia.value = texDeut;
             m_settings.colorblindCorrectionMode = Protanopia;
             m_component.mode.value = Deuteranopia;

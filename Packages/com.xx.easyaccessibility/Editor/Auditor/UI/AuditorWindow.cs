@@ -8,13 +8,12 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-
 namespace EasyAccessibility
 {
-
     public class AuditorWindow : EditorWindow
     {
-        [SerializeField] private int m_selectedIndex = -1;
+        [SerializeField]
+        private int m_selectedIndex = -1;
 
         [SerializeField]
         private VisualTreeAsset m_VisualTreeAsset = default;
@@ -27,18 +26,12 @@ namespace EasyAccessibility
 
         List<AuditorRequirement> m_selectedReqs = new();
 
-
-
-
         [MenuItem("Window/Easy Accessibility/Auditor")]
         public static void ShowWindow()
         {
             AuditorWindow wnd = GetWindow<AuditorWindow>();
             wnd.titleContent = new GUIContent("Accessibility Auditor");
         }
-
-
-
 
         public void CreateGUI()
         {
@@ -47,7 +40,9 @@ namespace EasyAccessibility
                 AccessibilityAuditor.Audit();
             }
 
-            auditorRequirements = AssetDatabase.LoadAssetByGUID<AuditorRequirementsSO>(new UnityEditor.GUID(AssetDatabase.FindAssets("t:auditorrequirementsso")[0]));
+            auditorRequirements = AssetDatabase.LoadAssetByGUID<AuditorRequirementsSO>(
+                new UnityEditor.GUID(AssetDatabase.FindAssets("t:auditorrequirementsso")[0])
+            );
             m_auditorRequirements = new SerializedObject(auditorRequirements);
 
             VisualElement root = rootVisualElement;
@@ -59,16 +54,21 @@ namespace EasyAccessibility
 
         private VisualElement CreateToolbar()
         {
-            var toolbar = new Toolbar()
-            {
-                style =
-                {
-                    justifyContent = Justify.FlexEnd
-                }
-            };
+            var toolbar = new Toolbar() { style = { justifyContent = Justify.FlexEnd } };
 
-            toolbar.Add(new ToolbarButton(() => AccessibilityAuditor.Audit()) { text = "Audit Project" });
-            toolbar.Add(new ToolbarButton(() => Application.OpenURL("https://gitlab.com/a-la-code-group/easy-accessibility-unity")) { iconImage = EditorGUIUtility.FindTexture("d__Help@2x") }); //TODO: change out icon for Gitlab repo
+            toolbar.Add(
+                new ToolbarButton(() => AccessibilityAuditor.Audit()) { text = "Audit Project" }
+            );
+            toolbar.Add(
+                new ToolbarButton(() =>
+                    Application.OpenURL(
+                        "https://gitlab.com/a-la-code-group/easy-accessibility-unity"
+                    )
+                )
+                {
+                    iconImage = EditorGUIUtility.FindTexture("d__Help@2x"),
+                }
+            ); //TODO: change out icon for Gitlab repo
             //TODO: link to docs
 
             return toolbar;
@@ -121,17 +121,14 @@ namespace EasyAccessibility
 
         private ListView CreateLayoutListView()
         {
-            var listView = new ListView
-            {
-                bindingPath = "report.requirements",
-            };
+            var listView = new ListView { bindingPath = "report.requirements" };
 
             listView.makeItem = () => new Label();
             listView.bindItem = (item, index) =>
             {
                 var label = item as Label;
                 string icon = "";
-                switch(m_selectedReqs[index].status) //TODO: these should be icons, not text characters
+                switch (m_selectedReqs[index].status) //TODO: these should be icons, not text characters
                 {
                     case AuditorRequirement.Status.Pass:
                         icon = "✓";
@@ -150,26 +147,31 @@ namespace EasyAccessibility
             listView.itemsSource = m_selectedReqs;
             listView.selectionChanged += OnRequirementSelected;
 
-            listView.selectionChanged += (items) => { m_selectedIndex = listView.selectedIndex; };
+            listView.selectionChanged += (items) =>
+            {
+                m_selectedIndex = listView.selectedIndex;
+            };
 
             return listView;
         }
 
-        private VisualElement CreateLayoutMultiColumnListView(List<AuditorRequirement.Issue> issues = null)
+        private VisualElement CreateLayoutMultiColumnListView(
+            List<AuditorRequirement.Issue> issues = null
+        )
         {
             var multiColumnListView = new MultiColumnListView
             {
                 bindingPath = "issues",
                 showBoundCollectionSize = false,
                 virtualizationMethod = CollectionVirtualizationMethod.DynamicHeight,
-                dataSourceType = typeof(AuditorRequirement.Issue)
+                dataSourceType = typeof(AuditorRequirement.Issue),
             };
 
             var assetCol = new Column
             {
                 title = "Asset",
                 width = 200,
-                sortable = true
+                sortable = true,
             };
             assetCol.makeCell += MakeObjectCell;
             assetCol.bindCell += BindObjectCell;
@@ -179,7 +181,7 @@ namespace EasyAccessibility
             {
                 title = "Issue",
                 width = 500,
-                sortable = true
+                sortable = true,
             };
             issueCol.makeCell += MakeLabelCell;
             issueCol.bindCell += BindLabelCell;
@@ -191,13 +193,21 @@ namespace EasyAccessibility
 
         private void OnSearchChanged(ChangeEvent<string> evt)
         {
-            if(string.IsNullOrEmpty(evt.newValue))
+            if (string.IsNullOrEmpty(evt.newValue))
             {
                 m_selectedReqs = auditorRequirements.report.requirements;
             }
             else
             {
-                var list = auditorRequirements.report.requirements.Where(item => item.name.ToLower().Contains(evt.newValue.ToLower(), StringComparison.InvariantCultureIgnoreCase)).ToList();
+                var list = auditorRequirements
+                    .report.requirements.Where(item =>
+                        item.name.ToLower()
+                            .Contains(
+                                evt.newValue.ToLower(),
+                                StringComparison.InvariantCultureIgnoreCase
+                            )
+                    )
+                    .ToList();
                 m_selectedReqs = list;
             }
             m_listView.itemsSource = m_selectedReqs;
@@ -206,10 +216,7 @@ namespace EasyAccessibility
 
         private VisualElement MakeObjectCell()
         {
-            var objectField = new ObjectField()
-            {
-                enabledSelf = false
-            };
+            var objectField = new ObjectField() { enabledSelf = false };
             return objectField;
         }
 
@@ -222,69 +229,62 @@ namespace EasyAccessibility
         private void BindObjectCell(VisualElement visualElement, int index)
         {
             var objectField = (ObjectField)visualElement;
-            objectField.bindingPath = $"report.requirements.Array.data[{m_selectedIndex}].issues.Array.data[{index}].asset";
+            objectField.bindingPath =
+                $"report.requirements.Array.data[{m_selectedIndex}].issues.Array.data[{index}].asset";
             objectField.Bind(m_auditorRequirements);
         }
 
         private void BindLabelCell(VisualElement visualElement, int index)
         {
             var labelCell = (Label)visualElement;
-            labelCell.bindingPath = $"report.requirements.Array.data[{m_selectedIndex}].issues.Array.data[{index}].issue";
+            labelCell.bindingPath =
+                $"report.requirements.Array.data[{m_selectedIndex}].issues.Array.data[{index}].issue";
             labelCell.Bind(m_auditorRequirements);
         }
-
-
 
         private void OnRequirementSelected(IEnumerable<object> selected)
         {
             m_rightPane.Clear();
 
             var enumerator = selected.GetEnumerator();
-            if(enumerator.MoveNext())
+            if (enumerator.MoveNext())
             {
                 var req = enumerator.Current as AuditorRequirement;
-                if(req != null)
+                if (req != null)
                 {
                     var headerGroup = new VisualElement()
                     {
                         style =
                         {
                             flexDirection = FlexDirection.Row,
-                            minHeight = 30 //TODO: code this to match with the header size and margin
-                        }
+                            minHeight = 30, //TODO: code this to match with the header size and margin
+                        },
                     };
-                    headerGroup.Add(new Label()
-                    {
-                        text = req.name,
-                        style =
+                    headerGroup.Add(new Label() { text = req.name, style = { fontSize = 24 } });
+                    headerGroup.Add(
+                        new Button(() => Application.OpenURL(req.referenceLink))
                         {
-                            fontSize = 24
+                            text = "",
+                            iconImage = EditorGUIUtility.FindTexture("d_Linked"),
+                            style =
+                            {
+                                backgroundColor = new Color(0, 0, 0, 0),
+                                borderTopWidth = 0,
+                                borderBottomWidth = 0,
+                                borderLeftWidth = 0,
+                                borderRightWidth = 0,
+                            },
                         }
-                    });
-                    headerGroup.Add(new Button(() => Application.OpenURL(req.referenceLink))
-                    {
-                        text = "",
-                        iconImage = EditorGUIUtility.FindTexture("d_Linked"),
-                        style =
-                        {
-                            backgroundColor = new Color(0,0,0,0),
-                            borderTopWidth = 0,
-                            borderBottomWidth = 0,
-                            borderLeftWidth = 0,
-                            borderRightWidth = 0,
-                        }
-                    });
+                    );
                     m_rightPane.Add(headerGroup);
 
-                    m_rightPane.Add(new Label()
-                    {
-                        text = req.description,
-                        style =
+                    m_rightPane.Add(
+                        new Label()
                         {
-                            whiteSpace = WhiteSpace.PreWrap,
-                            marginBottom = 20
+                            text = req.description,
+                            style = { whiteSpace = WhiteSpace.PreWrap, marginBottom = 20 },
                         }
-                    });
+                    );
                     var view = CreateLayoutMultiColumnListView(req.issues);
                     m_rightPane.Add(view);
                 }

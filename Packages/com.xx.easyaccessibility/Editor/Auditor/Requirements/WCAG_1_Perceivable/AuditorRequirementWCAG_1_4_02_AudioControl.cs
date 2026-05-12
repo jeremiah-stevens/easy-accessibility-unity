@@ -11,18 +11,16 @@ namespace EasyAccessibility
 
             AuditForInstanceWithCamera<AudioSettings>("has no AudioControls provider.");
 
-            if (issues.Count > 0) status = Status.Fail;
+            if (issues.Count > 0)
+                status = Status.Fail;
         }
-
-
 
         public AuditorRequirementWCAG_1_4_02_AudioControl()
         {
             source = AuditorRequirementKeys.Source_WCAG;
-            name = AuditorRequirementKeys.GetTitle(1,4,2);
-            description = AuditorRequirementKeys.GetDescription(1,4,2);
-            referenceLink = AuditorRequirementKeys.GetUrl(1,4,2);
-            
+            name = AuditorRequirementKeys.GetTitle(1, 4, 2);
+            description = AuditorRequirementKeys.GetDescription(1, 4, 2);
+            referenceLink = AuditorRequirementKeys.GetUrl(1, 4, 2);
         }
     }
 }

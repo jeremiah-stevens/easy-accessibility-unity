@@ -5,7 +5,6 @@ using UnityEngine.Rendering.RenderGraphModule;
 using UnityEngine.Rendering.RenderGraphModule.Util;
 using UnityEngine.Rendering.Universal;
 
-
 namespace EasyAccessibility
 {
     /// <summary>
@@ -15,18 +14,22 @@ namespace EasyAccessibility
     /// </summary>
     public class ColorblindSimulationURP : ColorblindnessRendererFeature
     {
-        [SerializeField]Material material;
+        [SerializeField]
+        Material material;
 
         [Header("Override")]
-        [SerializeField] bool overrideSettings;
-        [SerializeField] AccessibilitySettings.ColorblindSimulationMode mode;
-        [SerializeField][Range(0f, 1f)] float amount = 1;
+        [SerializeField]
+        bool overrideSettings;
+
+        [SerializeField]
+        AccessibilitySettings.ColorblindSimulationMode mode;
+
+        [SerializeField]
+        [Range(0f, 1f)]
+        float amount = 1;
 
         //state
         ColorblindSimulationRenderPassProcedural m_pass;
-
-
-
 
         public override void Create()
         {
@@ -34,14 +37,21 @@ namespace EasyAccessibility
             m_pass.renderPassEvent = RenderPassEvent.AfterRenderingPostProcessing;
         }
 
-        public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
+        public override void AddRenderPasses(
+            ScriptableRenderer renderer,
+            ref RenderingData renderingData
+        )
         {
-            if (material == null) return;
+            if (material == null)
+                return;
 
-            ColorblindMaterialUtils.SetSimulationKeywords(material, AccessibilitySettings.Instance.colorblindSimulationMode);
+            ColorblindMaterialUtils.SetSimulationKeywords(
+                material,
+                AccessibilitySettings.Instance.colorblindSimulationMode
+            );
             material.SetFloat("_Amount", AccessibilitySettings.Instance.colorblindSimulationAmount);
 
-            if(overrideSettings)
+            if (overrideSettings)
             {
                 ColorblindMaterialUtils.SetSimulationKeywords(material, mode);
                 material.SetFloat("_Amount", amount);
@@ -56,9 +66,6 @@ namespace EasyAccessibility
     {
         const string m_PassName = "ColorblindSimulationPass";
         Material material;
-
-
-
 
         public void Setup(Material mat)
         {

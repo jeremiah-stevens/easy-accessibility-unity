@@ -11,11 +11,9 @@ namespace EasyAccessibility
 
             AuditForInstanceWithCamera<AnimationSettings>("has no AnimationSettings provider");
 
-            if (issues.Count > 0) status = Status.Fail;
+            if (issues.Count > 0)
+                status = Status.Fail;
         }
-
-
-
 
         public AuditorRequirementWCAG_2_3_03_AnimationFromInteractions()
         {

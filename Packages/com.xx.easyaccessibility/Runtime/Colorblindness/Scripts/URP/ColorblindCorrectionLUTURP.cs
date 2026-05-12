@@ -12,20 +12,30 @@ namespace EasyAccessibility
     /// </summary>
     public class ColorblindCorrectionLUTURP : ColorblindnessRendererFeature
     {
-        [SerializeField] Material material;
+        [SerializeField]
+        Material material;
 
         [Header("Override")]
-        [SerializeField] bool overrideSettings;
-        [SerializeField] AccessibilitySettings.ColorblindCorrectionMode mode;
-        [SerializeField][Range(0f, 1f)] float amount = 1;
-        [SerializeField] Texture3D textureProtanopia;
-        [SerializeField] Texture3D textureDeutranopia;
-        [SerializeField] Texture3D textureTritanopia;
+        [SerializeField]
+        bool overrideSettings;
+
+        [SerializeField]
+        AccessibilitySettings.ColorblindCorrectionMode mode;
+
+        [SerializeField]
+        [Range(0f, 1f)]
+        float amount = 1;
+
+        [SerializeField]
+        Texture3D textureProtanopia;
+
+        [SerializeField]
+        Texture3D textureDeutranopia;
+
+        [SerializeField]
+        Texture3D textureTritanopia;
 
         ColorblindnessRenderPassLUT m_pass;
-
-
-
 
         public override void Create()
         {
@@ -33,18 +43,34 @@ namespace EasyAccessibility
             m_pass.renderPassEvent = RenderPassEvent.AfterRenderingPostProcessing;
         }
 
-        public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
+        public override void AddRenderPasses(
+            ScriptableRenderer renderer,
+            ref RenderingData renderingData
+        )
         {
-            if (material == null) return;
+            if (material == null)
+                return;
 
             var activeMode = AccessibilitySettings.Instance.colorblindCorrectionMode;
-            ColorblindMaterialUtils.SetLUT(material, activeMode, textureProtanopia, textureDeutranopia, textureTritanopia);
+            ColorblindMaterialUtils.SetLUT(
+                material,
+                activeMode,
+                textureProtanopia,
+                textureDeutranopia,
+                textureTritanopia
+            );
             material.SetInt("_Mode", (int)activeMode);
             material.SetFloat("_Amount", AccessibilitySettings.Instance.colorblindCorrectionAmount);
 
-            if(overrideSettings)
+            if (overrideSettings)
             {
-                ColorblindMaterialUtils.SetLUT(material, mode, textureProtanopia, textureDeutranopia, textureTritanopia);
+                ColorblindMaterialUtils.SetLUT(
+                    material,
+                    mode,
+                    textureProtanopia,
+                    textureDeutranopia,
+                    textureTritanopia
+                );
                 material.SetInt("_Mode", (int)mode);
                 material.SetFloat("_Amount", amount);
             }
@@ -58,9 +84,6 @@ namespace EasyAccessibility
     {
         const string m_PassName = "ColorblindnessPass";
         Material m_material;
-
-
-
 
         public void Setup(Material mat)
         {

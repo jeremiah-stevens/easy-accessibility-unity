@@ -8,7 +8,8 @@ namespace EasyAccessibility
 
             AuditForInstanceWithCamera<PageTitler>("has no PageTitler");
 
-            if (issues.Count > 0) status = Status.Fail;
+            if (issues.Count > 0)
+                status = Status.Fail;
         }
 
         public AuditorRequirementWCAG_2_4_02_PageTitled()

@@ -2,8 +2,5 @@ using UnityEngine;
 
 namespace EasyAccessibility
 {
-    public class PageLanguageProvider : MonoBehaviour
-    {
-
-    }
+    public class PageLanguageProvider : MonoBehaviour { }
 }

@@ -5,16 +5,25 @@ using UnityEngine.InputSystem;
 
 namespace EasyAccessibility
 {
-    [CreateAssetMenu(fileName = "InputIconSetPlatform", menuName = "Easy Accessibility/Input Icon Set Platform")]
+    [CreateAssetMenu(
+        fileName = "InputIconSetPlatform",
+        menuName = "Easy Accessibility/Input Icon Set Platform"
+    )]
     public class InputIconSetPlatform : InputIconSet
     {
-        [SerializeField] private List<DeviceIconEntry> m_entries;
-        [SerializeField] private InputIconSet m_fallback;
+        [SerializeField]
+        private List<DeviceIconEntry> m_entries;
 
-        public override Sprite GetIcon(string controlPath) {
+        [SerializeField]
+        private InputIconSet m_fallback;
+
+        public override Sprite GetIcon(string controlPath)
+        {
             var device = RebindableInputManager.Instance?.LastUsedDevice;
-            if (device != null) {
-                foreach (var entry in m_entries) {
+            if (device != null)
+            {
+                foreach (var entry in m_entries)
+                {
                     if (InputSystem.IsFirstLayoutBasedOnSecond(device.layout, entry.deviceLayout))
                         return entry.iconSet?.GetIcon(controlPath);
                 }
@@ -23,7 +32,8 @@ namespace EasyAccessibility
         }
 
         [Serializable]
-        public struct DeviceIconEntry {
+        public struct DeviceIconEntry
+        {
             public string deviceLayout; // e.g. "DualSenseGamepadHID", "Keyboard"
             public InputIconSet iconSet;
         }

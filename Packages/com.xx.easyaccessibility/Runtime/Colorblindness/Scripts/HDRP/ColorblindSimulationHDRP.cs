@@ -16,26 +16,34 @@ namespace EasyAccessibility
     {
         public MaterialParameter materialParameter = new MaterialParameter(null);
         public BoolParameter overrideSettings = new BoolParameter(false);
-        public VolumeParameter<AccessibilitySettings.ColorblindSimulationMode> mode = new VolumeParameter<AccessibilitySettings.ColorblindSimulationMode>();
+        public VolumeParameter<AccessibilitySettings.ColorblindSimulationMode> mode =
+            new VolumeParameter<AccessibilitySettings.ColorblindSimulationMode>();
         public ClampedFloatParameter amount = new ClampedFloatParameter(0f, 0f, 1f);
-        
-
-
 
         public bool IsActive() => materialParameter.value != null;
 
-        public override void Setup()
+        public override void Setup() { }
+
+        public override void Render(
+            CommandBuffer cmd,
+            HDCamera camera,
+            RTHandle source,
+            RTHandle destination
+        )
         {
-        }
+            if (materialParameter.value == null)
+                return;
 
-        public override void Render(CommandBuffer cmd, HDCamera camera, RTHandle source, RTHandle destination)
-        {
-            if (materialParameter.value == null) return;
+            ColorblindMaterialUtils.SetSimulationKeywords(
+                materialParameter.value,
+                AccessibilitySettings.Instance.colorblindSimulationMode
+            );
+            materialParameter.value.SetFloat(
+                "_Amount",
+                AccessibilitySettings.Instance.colorblindSimulationAmount
+            );
 
-            ColorblindMaterialUtils.SetSimulationKeywords(materialParameter.value, AccessibilitySettings.Instance.colorblindSimulationMode);
-            materialParameter.value.SetFloat("_Amount", AccessibilitySettings.Instance.colorblindSimulationAmount);
-
-            if(overrideSettings.value)
+            if (overrideSettings.value)
             {
                 ColorblindMaterialUtils.SetSimulationKeywords(materialParameter.value, mode.value);
                 materialParameter.value.SetFloat("_Amount", amount.value);

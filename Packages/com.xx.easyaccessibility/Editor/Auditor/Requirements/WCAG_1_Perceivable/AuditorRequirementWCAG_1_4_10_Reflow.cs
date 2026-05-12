@@ -18,7 +18,8 @@ namespace EasyAccessibility
             AuditPrefabs();
             AuditScenes();
 
-            if (issues.Count > 0) status = Status.Fail;
+            if (issues.Count > 0)
+                status = Status.Fail;
         }
 
         private void AuditPrefabs()
@@ -41,7 +42,10 @@ namespace EasyAccessibility
                 var path = AssetDatabase.GUIDToAssetPath(scene);
                 var currScene = EditorSceneManager.OpenScene(path, OpenSceneMode.Single);
 
-                var objs = GameObject.FindObjectsByType<GameObject>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+                var objs = GameObject.FindObjectsByType<GameObject>(
+                    FindObjectsInactive.Include,
+                    FindObjectsSortMode.None
+                );
                 foreach (var obj in objs)
                 {
                     AuditObject(obj, markScene: true);
@@ -62,9 +66,9 @@ namespace EasyAccessibility
 
             StringBuilder sb = new();
 
-            foreach(var curr in components)
+            foreach (var curr in components)
             {
-                if(curr.horizontal && curr.vertical)
+                if (curr.horizontal && curr.vertical)
                 {
                     sb.Clear();
                     sb.Append(curr.name);
@@ -76,25 +80,28 @@ namespace EasyAccessibility
                         parent = parent.parent;
                     }
 
-                    issues.Add(new Issue()
-                    {
-                        asset = (markScene) ? AssetDatabase.LoadAssetAtPath<SceneAsset>(gameObject.scene.path) : gameObject,
-                        issue = $"Object '{sb.ToString()}' must be scrollable along one axis."
-                    });
+                    issues.Add(
+                        new Issue()
+                        {
+                            asset =
+                                (markScene)
+                                    ? AssetDatabase.LoadAssetAtPath<SceneAsset>(
+                                        gameObject.scene.path
+                                    )
+                                    : gameObject,
+                            issue = $"Object '{sb.ToString()}' must be scrollable along one axis.",
+                        }
+                    );
                 }
             }
         }
 
-
-
-
         public AuditorRequirementWCAG_1_4_10_Reflow()
         {
             source = AuditorRequirementKeys.Source_WCAG;
-            name = AuditorRequirementKeys.GetTitle(1,4,10);
-            description = AuditorRequirementKeys.GetDescription(1,4,10);
-            referenceLink = AuditorRequirementKeys.GetUrl(1,4,10);
-            
+            name = AuditorRequirementKeys.GetTitle(1, 4, 10);
+            description = AuditorRequirementKeys.GetDescription(1, 4, 10);
+            referenceLink = AuditorRequirementKeys.GetUrl(1, 4, 10);
         }
     }
 }

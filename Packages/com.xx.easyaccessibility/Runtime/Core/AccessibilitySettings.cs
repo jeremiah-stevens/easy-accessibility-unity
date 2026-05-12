@@ -10,28 +10,34 @@ namespace EasyAccessibility
     [CreateAssetMenu(fileName = "Settings", menuName = "Easy Accessibility/Settings")]
     public class AccessibilitySettings : ScriptableObject
     {
-        private static string SavePath => Path.Combine(Application.persistentDataPath, "accessibility_settings.json");
+        private static string SavePath =>
+            Path.Combine(Application.persistentDataPath, "accessibility_settings.json");
 
         /// <summary>
         /// What type of colorblind correction to apply.
         /// </summary>
         [Header("Colorblind")]
         public ColorblindCorrectionMode colorblindCorrectionMode;
+
         /// <summary>
         /// The intensity of colorblind correction to apply.
         /// </summary>
-        [Range(0f, 1f)] public float colorblindCorrectionAmount;
+        [Range(0f, 1f)]
+        public float colorblindCorrectionAmount;
+
 #if UNITY_EDITOR //TODO: come up with a better way of warning the user against using colorblind simulation as their correction method
         /// <summary>
         /// What type of colorblind simulation to apply.
         /// </summary>
         /// <remarks>Should only be used for development purposes.</remarks>
         public ColorblindSimulationMode colorblindSimulationMode;
+
         /// <summary>
         /// The intensity of colorblind simulation to apply.
         /// </summary>
         /// <remarks>Should only be used for development purposes.</remarks>
-        [Range(0f, 1f)] public float colorblindSimulationAmount;
+        [Range(0f, 1f)]
+        public float colorblindSimulationAmount;
 #endif
 
         /// <summary>
@@ -40,8 +46,8 @@ namespace EasyAccessibility
         [Header("Rebindable Keys")]
         public string rebindableKeys;
 
-
         private static AccessibilitySettings m_instance;
+
         /// <summary>
         /// Active instance of settings. Loads from file storage.
         /// </summary>
@@ -49,9 +55,11 @@ namespace EasyAccessibility
         {
             get
             {
-                if(m_instance == null)
+                if (m_instance == null)
                 {
-                    m_instance = Resources.Load<AccessibilitySettings>("EasyAccessibility/AccessibilitySettings");
+                    m_instance = Resources.Load<AccessibilitySettings>(
+                        "EasyAccessibility/AccessibilitySettings"
+                    );
                 }
                 return m_instance;
             }
@@ -70,15 +78,17 @@ namespace EasyAccessibility
         /// </summary>
         public void Load()
         {
-            if (!File.Exists(SavePath)) return;
-            try { JsonUtility.FromJsonOverwrite(File.ReadAllText(SavePath), this); }
-            catch (Exception e) { Debug.LogWarning($"[EasyAccessibility] Failed to load settings: {e.Message}"); }
+            if (!File.Exists(SavePath))
+                return;
+            try
+            {
+                JsonUtility.FromJsonOverwrite(File.ReadAllText(SavePath), this);
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"[EasyAccessibility] Failed to load settings: {e.Message}");
+            }
         }
-
-
-
-
-
 
         /// <summary>
         /// Available modes for colorblind correction.

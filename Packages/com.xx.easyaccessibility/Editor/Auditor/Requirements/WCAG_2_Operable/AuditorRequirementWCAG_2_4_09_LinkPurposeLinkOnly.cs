@@ -3,7 +3,7 @@ namespace EasyAccessibility
     /*TODO:
      * - Find a way to test this; likely using accessibility elements
      */
-    public class AuditorRequirementWCAG_2_4_09_LinkPurposeLinkOnly: AuditorRequirement
+    public class AuditorRequirementWCAG_2_4_09_LinkPurposeLinkOnly : AuditorRequirement
     {
         public AuditorRequirementWCAG_2_4_09_LinkPurposeLinkOnly()
         {

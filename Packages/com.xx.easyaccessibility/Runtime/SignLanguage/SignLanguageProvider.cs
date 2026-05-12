@@ -2,8 +2,5 @@
 
 namespace EasyAccessibility
 {
-    public class SignLanguageProvider : MonoBehaviour
-    {
-
-    }
+    public class SignLanguageProvider : MonoBehaviour { }
 }

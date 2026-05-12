@@ -8,10 +8,9 @@ namespace EasyAccessibility
         public AuditorRequirementWCAG_1_4_07_LowOrNoBackgroundAudio()
         {
             source = AuditorRequirementKeys.Source_WCAG;
-            name = AuditorRequirementKeys.GetTitle(1,4,7);
-            description = AuditorRequirementKeys.GetDescription(1,4,7);
-            referenceLink = AuditorRequirementKeys.GetUrl(1,4,7);
-            
+            name = AuditorRequirementKeys.GetTitle(1, 4, 7);
+            description = AuditorRequirementKeys.GetDescription(1, 4, 7);
+            referenceLink = AuditorRequirementKeys.GetUrl(1, 4, 7);
         }
     }
 }

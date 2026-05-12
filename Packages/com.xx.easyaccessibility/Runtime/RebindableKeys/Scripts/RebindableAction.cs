@@ -11,8 +11,12 @@ namespace EasyAccessibility
     public class RebindableAction : MonoBehaviour
     {
         private InputAction m_resolvedAction;
-        [SerializeField] private InputActionReference m_action;
-        [HideInInspector] public string bindingId;
+
+        [SerializeField]
+        private InputActionReference m_action;
+
+        [HideInInspector]
+        public string bindingId;
         public InputAction Action => m_action?.action;
         private Sprite m_lastIcon;
 
@@ -41,7 +45,8 @@ namespace EasyAccessibility
             get
             {
                 var bindingIndex = GetBindingIndex();
-                if (bindingIndex < 0) return "";
+                if (bindingIndex < 0)
+                    return "";
 
                 var path = m_resolvedAction.bindings[bindingIndex].effectivePath;
                 var display = InputControlPath.ToHumanReadableString(
@@ -61,10 +66,14 @@ namespace EasyAccessibility
         {
             get
             {
-                if (!RebindableInputManager.IsInitialized || RebindableInputManager.Instance.iconSet == null)
+                if (
+                    !RebindableInputManager.IsInitialized
+                    || RebindableInputManager.Instance.iconSet == null
+                )
                     return null;
                 var bindingIndex = GetBindingIndex();
-                if (bindingIndex < 0) return null;
+                if (bindingIndex < 0)
+                    return null;
                 var path = m_resolvedAction.bindings[bindingIndex].effectivePath;
                 return RebindableInputManager.Instance.iconSet.GetIcon(path);
             }
@@ -77,9 +86,6 @@ namespace EasyAccessibility
         public UnityEvent onRebindReset = new();
         public UnityEvent<string> onDisplayStringChanged = new();
         public UnityEvent<Sprite> onIconChanged = new();
-
-
-
 
         /// <summary>
         /// Starts the rebind operation on the InputAction.
@@ -105,7 +111,8 @@ namespace EasyAccessibility
             {
                 for (int i = bindingIndex + 1; i < m_resolvedAction.bindings.Count; i++)
                 {
-                    if (!m_resolvedAction.bindings[i].isPartOfComposite) break;
+                    if (!m_resolvedAction.bindings[i].isPartOfComposite)
+                        break;
                     RebindableInputManager.Instance.ResetBinding(m_resolvedAction, i);
                 }
             }
@@ -120,7 +127,8 @@ namespace EasyAccessibility
 
         private void HandleBindingChanged(InputAction action, int bindingIndex)
         {
-            if (action != null && action.id != m_resolvedAction?.id) return;
+            if (action != null && action.id != m_resolvedAction?.id)
+                return;
             onRebindCompleted.Invoke();
             RefreshDisplayString();
         }
@@ -135,14 +143,16 @@ namespace EasyAccessibility
             onDisplayStringChanged.Invoke(BindingDisplayString);
 
             var icon = BindingIcon;
-            if (icon == m_lastIcon) return;
+            if (icon == m_lastIcon)
+                return;
             m_lastIcon = icon;
             onIconChanged.Invoke(icon);
         }
 
         private int GetBindingIndex()
         {
-            if (string.IsNullOrEmpty(bindingId)) return -1;
+            if (string.IsNullOrEmpty(bindingId))
+                return -1;
             var bindingGuid = new Guid(bindingId);
             return m_action.action.bindings.IndexOf(b => b.id == bindingGuid);
         }
@@ -150,10 +160,12 @@ namespace EasyAccessibility
         private void HandleDeviceChanged(InputDevice device)
         {
             var bindingIndex = GetBindingIndex();
-            if (bindingIndex < 0) return;
+            if (bindingIndex < 0)
+                return;
 
             var path = m_resolvedAction.bindings[bindingIndex].effectivePath;
-            if (string.IsNullOrEmpty(path)) return;
+            if (string.IsNullOrEmpty(path))
+                return;
 
             var layoutEnd = path.IndexOf('>');
             if (layoutEnd > 0)
@@ -166,14 +178,12 @@ namespace EasyAccessibility
             RefreshDisplayString();
         }
 
-
-
-
         public void OnEnable()
         {
             m_resolvedAction = m_action?.action;
-            
-            if(!RebindableInputManager.IsInitialized) return;
+
+            if (!RebindableInputManager.IsInitialized)
+                return;
             RebindableInputManager.Instance.OnBindingChanged += HandleBindingChanged;
             RebindableInputManager.Instance.onBindingCancelled.AddListener(HandleRebindCancelled);
             RebindableInputManager.Instance.OnDeviceChanged += HandleDeviceChanged;
@@ -182,9 +192,12 @@ namespace EasyAccessibility
 
         public void OnDisable()
         {
-            if(!RebindableInputManager.IsInitialized) return;
+            if (!RebindableInputManager.IsInitialized)
+                return;
             RebindableInputManager.Instance.OnBindingChanged -= HandleBindingChanged;
-            RebindableInputManager.Instance.onBindingCancelled.RemoveListener(HandleRebindCancelled);
+            RebindableInputManager.Instance.onBindingCancelled.RemoveListener(
+                HandleRebindCancelled
+            );
             RebindableInputManager.Instance.OnDeviceChanged -= HandleDeviceChanged;
         }
     }

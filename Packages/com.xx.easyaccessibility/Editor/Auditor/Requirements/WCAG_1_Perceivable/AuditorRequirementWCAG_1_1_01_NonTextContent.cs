@@ -1,13 +1,13 @@
-using UnityEngine;
-using UnityEditor;
-using UnityEngine.UI;
-using NUnit.Framework;
-using UnityEngine.UIElements;
 using System;
 using System.Collections.Generic;
-using TMPro;
 using System.Text;
+using NUnit.Framework;
+using TMPro;
+using UnityEditor;
 using UnityEditor.SceneManagement;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 namespace EasyAccessibility
 {
@@ -32,9 +32,6 @@ namespace EasyAccessibility
             this.status = (issues.Count == 0) ? Status.Unsure : Status.Fail;
         }
 
-
-
-
         #region Audit GameObjects (Prefabs, Scenes)
 
         private void AuditPrefabs()
@@ -57,7 +54,10 @@ namespace EasyAccessibility
                 var path = AssetDatabase.GUIDToAssetPath(scene);
                 var currScene = EditorSceneManager.OpenScene(path, OpenSceneMode.Single);
 
-                var objs = GameObject.FindObjectsByType<GameObject>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+                var objs = GameObject.FindObjectsByType<GameObject>(
+                    FindObjectsInactive.Include,
+                    FindObjectsSortMode.None
+                );
                 foreach (var obj in objs)
                 {
                     AuditObject(obj, markScene: true);
@@ -84,7 +84,8 @@ namespace EasyAccessibility
             AuditComponents<TMP_Dropdown>(gameObject, markScene);
         }
 
-        private void AuditComponents<T>(GameObject gameObject, bool markScene = false) where T : UnityEngine.Component
+        private void AuditComponents<T>(GameObject gameObject, bool markScene = false)
+            where T : UnityEngine.Component
         {
             var components = gameObject.GetComponentsInChildren<T>(includeInactive: true);
 
@@ -105,11 +106,19 @@ namespace EasyAccessibility
                         parent = parent.parent;
                     }
 
-                    issues.Add(new Issue()
-                    {
-                        asset = (markScene) ? AssetDatabase.LoadAssetAtPath<SceneAsset>(gameObject.scene.path) : gameObject,
-                        issue = $"Object '{sb.ToString()}' is missing an accessibility element."
-                    });
+                    issues.Add(
+                        new Issue()
+                        {
+                            asset =
+                                (markScene)
+                                    ? AssetDatabase.LoadAssetAtPath<SceneAsset>(
+                                        gameObject.scene.path
+                                    )
+                                    : gameObject,
+                            issue =
+                                $"Object '{sb.ToString()}' is missing an accessibility element.",
+                        }
+                    );
                 }
                 else
                 {
@@ -121,45 +130,55 @@ namespace EasyAccessibility
         #endregion
 
 
-
         #region Audit UIToolkit
 
         private void AuditUIToolkit()
         {
-            var visualTreeAssets = AssetDatabase.FindAssetGUIDs("t:visualtreeasset", new[] { "Assets" });
+            var visualTreeAssets = AssetDatabase.FindAssetGUIDs(
+                "t:visualtreeasset",
+                new[] { "Assets" }
+            );
             foreach (var asset in visualTreeAssets)
             {
                 var obj = AssetDatabase.LoadAssetByGUID<VisualTreeAsset>(asset);
 
-                foreach(var curr in obj.Instantiate().hierarchy.Children())
+                foreach (var curr in obj.Instantiate().hierarchy.Children())
                 {
                     AuditVisualElementsRecursive(curr, obj, "");
                 }
             }
         }
 
-        private void AuditVisualElementsRecursive(VisualElement rootElement, VisualTreeAsset asset, string subpath)
+        private void AuditVisualElementsRecursive(
+            VisualElement rootElement,
+            VisualTreeAsset asset,
+            string subpath
+        )
         {
             AuditVisualElement(rootElement, asset, subpath + $"/{rootElement.name}");
 
-            foreach(var curr in rootElement.Children())
+            foreach (var curr in rootElement.Children())
             {
                 AuditVisualElementsRecursive(curr, asset, subpath + $"/{rootElement.name}");
             }
         }
 
-        private void AuditVisualElement(VisualElement visualElement, VisualTreeAsset asset, string path)
+        private void AuditVisualElement(
+            VisualElement visualElement,
+            VisualTreeAsset asset,
+            string path
+        )
         {
-            issues.Add(new Issue() //TODO: should find some way of checking if was actually assigned to accessibility node, leaving as false positive as starting point
-            {
-                asset = asset,
-                issue = $"Visual Element '{path}' is not assigned to Accessibility Hierarchy"
-            });
+            issues.Add(
+                new Issue() //TODO: should find some way of checking if was actually assigned to accessibility node, leaving as false positive as starting point
+                {
+                    asset = asset,
+                    issue = $"Visual Element '{path}' is not assigned to Accessibility Hierarchy",
+                }
+            );
         }
 
         #endregion
-
-
 
 
         public AuditorRequirementWCAG_1_1_01_NonTextContent()
@@ -168,7 +187,6 @@ namespace EasyAccessibility
             name = AuditorRequirementKeys.GetTitle(1, 1, 1);
             description = AuditorRequirementKeys.GetDescription(1, 1, 1);
             referenceLink = AuditorRequirementKeys.GetUrl(1, 1, 1);
-            
         }
     }
 }

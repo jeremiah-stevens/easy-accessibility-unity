@@ -11,10 +11,14 @@ namespace EasyAccessibility.Tests.Transcript
         AssetTranscriptSO m_so;
         List<Object> m_cleanup;
 
-        static readonly FieldInfo k_Asset =
-            typeof(AssetTranscriptSO).GetField("asset", BindingFlags.NonPublic | BindingFlags.Instance);
-        static readonly FieldInfo k_Transcript =
-            typeof(AssetTranscriptSO).GetField("transcript", BindingFlags.NonPublic | BindingFlags.Instance);
+        static readonly FieldInfo k_Asset = typeof(AssetTranscriptSO).GetField(
+            "asset",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
+        static readonly FieldInfo k_Transcript = typeof(AssetTranscriptSO).GetField(
+            "transcript",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
 
         [SetUp]
         public void SetUp()
@@ -28,10 +32,16 @@ namespace EasyAccessibility.Tests.Transcript
         public void TearDown()
         {
             foreach (var obj in m_cleanup)
-                if (obj != null) DestroyImmediate(obj);
+                if (obj != null)
+                    DestroyImmediate(obj);
         }
 
-        T Track<T>(T obj) where T : Object { m_cleanup.Add(obj); return obj; }
+        T Track<T>(T obj)
+            where T : Object
+        {
+            m_cleanup.Add(obj);
+            return obj;
+        }
 
         #region Defaults
 
