@@ -20,7 +20,7 @@ namespace EasyAccessibility.Tests
     {
         const string k_OutputDir = "Packages/com.xx.easyaccessibility/Tests/Editor/InputIcons/TestAtlases";
 
-        [MenuItem("Easy Accessibility/Dev/Generate Test Atlases - 1 Create Sprites")]
+        //[MenuItem("Easy Accessibility/Dev/Generate Test Atlases - 1 Create Sprites")]
         public static void Step1_CreateSprites()
         {
             Directory.CreateDirectory(ToAbsolutePath(k_OutputDir));
@@ -57,7 +57,7 @@ namespace EasyAccessibility.Tests
             Debug.Log("[TestAtlasGenerator] Step 1 done: sprites created. Now run Step 2 to pack atlases.");
         }
 
-        [MenuItem("Easy Accessibility/Dev/Generate Test Atlases - 2 Pack Atlases")]
+        //[MenuItem("Easy Accessibility/Dev/Generate Test Atlases - 2 Pack Atlases")]
         public static void Step2_PackAtlases()
         {
             // Force AssetDatabase to discover anything Step 1 wrote to disk.

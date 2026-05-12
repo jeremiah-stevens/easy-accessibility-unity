@@ -26,46 +26,23 @@ namespace EasyAccessibility
 
 
 
-        private void SetMode(AccessibilitySettings.ColorblindCorrectionMode mode)
-        {
-            Texture tex = null;
-            switch (mode)
-            {
-                case AccessibilitySettings.ColorblindCorrectionMode.Protanopia:
-                    tex = textureProtanopia.value;
-                    break;
-                case AccessibilitySettings.ColorblindCorrectionMode.Deuteranopia:
-                    tex = textureDeutranopia.value;
-                    break;
-                case AccessibilitySettings.ColorblindCorrectionMode.Tritanopia:
-                    tex = textureTritanopia.value;
-                    break;
-                default:
-                    tex = null;
-                    break;
-            }
-            materialParameter.value.SetTexture("_LUT", tex);
-        }
-
-
-
-
         public override bool IsActive() => materialParameter.value != null;
 
         public override void Setup()
-        {                
+        {
         }
 
         public override void Render(CommandBuffer cmd, HDCamera camera, RTHandle source, RTHandle destination)
         {
             if (materialParameter.value == null) return;
 
-            SetMode(AccessibilitySettings.Instance.colorblindCorrectionMode);
+            var activeMode = AccessibilitySettings.Instance.colorblindCorrectionMode;
+            ColorblindMaterialUtils.SetLUT(materialParameter.value, activeMode, textureProtanopia.value, textureDeutranopia.value, textureTritanopia.value);
             materialParameter.value.SetFloat("_Amount", AccessibilitySettings.Instance.colorblindCorrectionAmount);
 
             if(overrideSettings.value)
             {
-                SetMode(mode.value);
+                ColorblindMaterialUtils.SetLUT(materialParameter.value, mode.value, textureProtanopia.value, textureDeutranopia.value, textureTritanopia.value);
                 materialParameter.value.SetFloat("_Amount", amount.value);
             }
 

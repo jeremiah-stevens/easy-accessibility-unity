@@ -26,35 +26,6 @@ namespace EasyAccessibility
 
 
 
-        private void SwapMode(AccessibilitySettings.ColorblindCorrectionMode mode)
-        {
-            switch(mode)
-            {
-                case AccessibilitySettings.ColorblindCorrectionMode.Protanopia:
-                    material.EnableKeyword("_MODE_PROTANOPIA");
-                    material.DisableKeyword("_MODE_DEUTERANOPIA");
-                    material.DisableKeyword("_MODE_TRITANOPIA");
-                    break;
-                case AccessibilitySettings.ColorblindCorrectionMode.Deuteranopia:
-                    material.DisableKeyword("_MODE_PROTANOPIA");
-                    material.EnableKeyword("_MODE_DEUTERANOPIA");
-                    material.DisableKeyword("_MODE_TRITANOPIA");
-                    break;
-                case AccessibilitySettings.ColorblindCorrectionMode.Tritanopia:
-                    material.DisableKeyword("_MODE_PROTANOPIA");
-                    material.DisableKeyword("_MODE_DEUTERANOPIA");
-                    material.EnableKeyword("_MODE_TRITANOPIA");
-                    break;
-                case AccessibilitySettings.ColorblindCorrectionMode.None:
-                default:
-                    material.DisableKeyword("_MODE_PROTANOPIA");
-                    material.DisableKeyword("_MODE_DEUTERANOPIA");
-                    material.DisableKeyword("_MODE_TRITANOPIA");
-                    break;
-            }
-        }
-
-
         public override void Create()
         {
             m_pass = new ColorblindCorrectionRenderPassProcedural();
@@ -65,12 +36,12 @@ namespace EasyAccessibility
         {
             if (material == null) return;
 
-            SwapMode(AccessibilitySettings.Instance.colorblindCorrectionMode);
+            ColorblindMaterialUtils.SetCorrectionKeywords(material, AccessibilitySettings.Instance.colorblindCorrectionMode);
             material.SetFloat("_Amount", AccessibilitySettings.Instance.colorblindCorrectionAmount);
 
             if(overrideSettings)
             {
-                SwapMode(mode);
+                ColorblindMaterialUtils.SetCorrectionKeywords(material, mode);
                 material.SetFloat("_Amount", amount);
             }
 

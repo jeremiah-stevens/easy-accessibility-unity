@@ -39,17 +39,13 @@ namespace EasyAccessibility
         }
 
         //source: https://miko.art/labs/Color-Vision/Javascript/Color.Vision.Daltonize.js
-        public static void GenerateLUT(AccessibilitySettings.ColorblindCorrectionMode mode = AccessibilitySettings.ColorblindCorrectionMode.Protanopia)
+        // Returns null and logs an error if mode is unrecognised.
+        // data[r + g*resolution + b*resolution*resolution] = daltonized(Color(r/scale, g/scale, b/scale))
+        public static Color[] ComputeLUT(
+            AccessibilitySettings.ColorblindCorrectionMode mode,
+            int resolution = 256
+        )
         {
-            int resolution = 256;
-            var data = new Color[resolution * resolution * resolution];
-
-            if(mode == AccessibilitySettings.ColorblindCorrectionMode.None)
-            {
-                Debug.Log("No need to generate a LUT for identity/normal vision.");
-                return;
-            }
-
             double[] cvdMatrix;
             switch(mode)
             {
@@ -64,8 +60,11 @@ namespace EasyAccessibility
                     break;
                 default:
                     Debug.LogError($"No matrix for {mode}.");
-                    return;
+                    return null;
             }
+
+            var data = new Color[resolution * resolution * resolution];
+            float scale = resolution - 1;
 
             int i = 0;
             for(float b = 0; b < resolution; b++)
@@ -74,11 +73,7 @@ namespace EasyAccessibility
                 {
                     for (float r = 0; r < resolution; r++)
                     {
-                        //TODO: part of approach for Texture2D
-                        //int uSpacer = Mathf.FloorToInt(b % 16) * 256;
-                        //int vSpacer = Mathf.FloorToInt(b / 16) * 256;
-                        //tex.SetPixel((int)g + uSpacer, (int)r + vSpacer, new Color(r / 255, g / 255, b / 255));
-                        data[i++] = new Color(r / 255, g / 255, b / 255);
+                        data[i++] = new Color(r / scale, g / scale, b / scale);
                     }
                 }
             }
@@ -91,9 +86,9 @@ namespace EasyAccessibility
                     for (int bIndex = 0; bIndex < resolution; bIndex++)
                     {
                         Color currCol = data[id];
-                        float r = currCol.r * 255;
-                        float g = currCol.g * 255;
-                        float b = currCol.b * 255;
+                        float r = currCol.r * scale;
+                        float g = currCol.g * scale;
+                        float b = currCol.b * scale;
 
                         //RGB to LMS matrix conversion
                         var L = (17.8824 * r) + (43.5161 * g) + (4.11935 * b);
@@ -120,29 +115,40 @@ namespace EasyAccessibility
                         G = GG + g;
                         B = BB + b;
 
-                        R = Mathf.Clamp((float)R, 0, 255);
-                        G = Mathf.Clamp((float)G, 0, 255);
-                        B = Mathf.Clamp((float)B, 0, 255);
+                        R = Mathf.Clamp((float)R, 0, scale);
+                        G = Mathf.Clamp((float)G, 0, scale);
+                        B = Mathf.Clamp((float)B, 0, scale);
 
-                        data[id++] = new Color((float)R / 255, (float)G / 255, (float)B / 255);
+                        data[id++] = new Color((float)R / scale, (float)G / scale, (float)B / scale);
                     }
                 }
             }
 
-            //TODO: better to write to a Texture2D and convert format for compression settings, but not working properly
-            //var output = new Texture2D(4096, 4096, TextureFormat.RGBA32, false);
-            //output.SetPixels(tex.GetPixels(0));//tex.GetPixelData<Color>(0).ToArray());
-            //output.Apply();
-            //byte[] bytes = output.EncodeToPNG();
-            //string path = Path.GetFullPath(Path.Combine(Application.dataPath, @"..\", $"Packages/com.xx.easyaccessibility/Runtime/Colorblindness/Rendering/LUT_{Enum.GetName(typeof(ColorblindSettings.ColorblindMode), mode)}.png"));
-            //Debug.Log(path);
-            //File.WriteAllBytes(path, bytes);
-            //AssetDatabase.CreateAsset(output, "Packages/com.xx.easyaccessibility/clut.png");
+            return data;
+        }
 
+        public static void GenerateLUT(
+            AccessibilitySettings.ColorblindCorrectionMode mode = AccessibilitySettings.ColorblindCorrectionMode.Protanopia,
+            int resolution = 256,
+            string outputPath = null
+        )
+        {
+            if(mode == AccessibilitySettings.ColorblindCorrectionMode.None)
+            {
+                Debug.Log("No need to generate a LUT for identity/normal vision.");
+                return;
+            }
+
+            var data = ComputeLUT(mode, resolution);
+            if (data == null) return;
+
+            //TODO: write to Texture2D would be more performant, but runs into rendering issues right now
+
+            var assetPath = outputPath ?? $"Packages/com.xx.easyaccessibility/Runtime/Colorblindness/Rendering/LUT_{Enum.GetName(typeof(AccessibilitySettings.ColorblindCorrectionMode), mode)}.asset";
             var output = new Texture3D(resolution, resolution, resolution, TextureFormat.RGBA32, false);
             output.SetPixels(data);
             output.Apply();
-            AssetDatabase.CreateAsset(output, $"Packages/com.xx.easyaccessibility/Runtime/Colorblindness/Rendering/LUT_{Enum.GetName(typeof(AccessibilitySettings.ColorblindCorrectionMode), mode)}.asset");
+            AssetDatabase.CreateAsset(output, assetPath);
         }
     }
 }

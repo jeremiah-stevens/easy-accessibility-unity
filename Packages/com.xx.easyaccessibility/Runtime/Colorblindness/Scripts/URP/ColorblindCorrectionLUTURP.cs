@@ -27,27 +27,6 @@ namespace EasyAccessibility
 
 
 
-        private void SetLUT(AccessibilitySettings.ColorblindCorrectionMode mode)
-        {
-            Texture3D tex = null;
-            switch(mode)
-            {
-                case AccessibilitySettings.ColorblindCorrectionMode.Protanopia:
-                    tex = textureProtanopia;
-                    break;
-                case AccessibilitySettings.ColorblindCorrectionMode.Deuteranopia:
-                    tex = textureDeutranopia;
-                    break;
-                case AccessibilitySettings.ColorblindCorrectionMode.Tritanopia:
-                    tex = textureTritanopia;
-                    break;
-            }
-            material.SetTexture("_LUT", tex);
-        }
-
-
-
-
         public override void Create()
         {
             m_pass = new ColorblindnessRenderPassLUT();
@@ -58,13 +37,14 @@ namespace EasyAccessibility
         {
             if (material == null) return;
 
-            SetLUT(AccessibilitySettings.Instance.colorblindCorrectionMode);
-            material.SetInt("_Mode", (int)AccessibilitySettings.Instance.colorblindCorrectionMode);
+            var activeMode = AccessibilitySettings.Instance.colorblindCorrectionMode;
+            ColorblindMaterialUtils.SetLUT(material, activeMode, textureProtanopia, textureDeutranopia, textureTritanopia);
+            material.SetInt("_Mode", (int)activeMode);
             material.SetFloat("_Amount", AccessibilitySettings.Instance.colorblindCorrectionAmount);
 
             if(overrideSettings)
             {
-                SetLUT(mode);
+                ColorblindMaterialUtils.SetLUT(material, mode, textureProtanopia, textureDeutranopia, textureTritanopia);
                 material.SetInt("_Mode", (int)mode);
                 material.SetFloat("_Amount", amount);
             }

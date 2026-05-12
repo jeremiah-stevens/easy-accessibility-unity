@@ -1,4 +1,4 @@
-#if EA_URP
+#if EA_URP && UNITY_EDITOR
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.RenderGraphModule;
@@ -28,57 +28,6 @@ namespace EasyAccessibility
 
 
 
-        private void SwapMode(AccessibilitySettings.ColorblindSimulationMode mode)
-        {
-            switch(mode)
-            {
-                case AccessibilitySettings.ColorblindSimulationMode.Protanopia:
-                    material.EnableKeyword("_MODE_PROTANOPIA");
-                    material.DisableKeyword("_MODE_DEUTERANOPIA");
-                    material.DisableKeyword("_MODE_TRITANOPIA");
-                    material.DisableKeyword("_MODE_CONE_MONOCHROMATISM");
-                    material.DisableKeyword("_MODE_ACHROMATOPSIA");
-                    break;
-                case AccessibilitySettings.ColorblindSimulationMode.Deuteranopia:
-                    material.DisableKeyword("_MODE_PROTANOPIA");
-                    material.EnableKeyword("_MODE_DEUTERANOPIA");
-                    material.DisableKeyword("_MODE_TRITANOPIA");
-                    material.DisableKeyword("_MODE_CONE_MONOCHROMATISM");
-                    material.DisableKeyword("_MODE_ACHROMATOPSIA");
-                    break;
-                case AccessibilitySettings.ColorblindSimulationMode.Tritanopia:
-                    material.DisableKeyword("_MODE_PROTANOPIA");
-                    material.DisableKeyword("_MODE_DEUTERANOPIA");
-                    material.EnableKeyword("_MODE_TRITANOPIA");
-                    material.DisableKeyword("_MODE_CONE_MONOCHROMATISM");
-                    material.DisableKeyword("_MODE_ACHROMATOPSIA");
-                    break;
-                case AccessibilitySettings.ColorblindSimulationMode.Monochromatism:
-                    material.DisableKeyword("_MODE_PROTANOPIA");
-                    material.DisableKeyword("_MODE_DEUTERANOPIA");
-                    material.DisableKeyword("_MODE_TRITANOPIA");
-                    material.EnableKeyword("_MODE_CONE_MONOCHROMATISM");
-                    material.DisableKeyword("_MODE_ACHROMATOPSIA");
-                    break;
-                case AccessibilitySettings.ColorblindSimulationMode.Achromatopsia:
-                    material.DisableKeyword("_MODE_PROTANOPIA");
-                    material.DisableKeyword("_MODE_DEUTERANOPIA");
-                    material.DisableKeyword("_MODE_TRITANOPIA");
-                    material.DisableKeyword("_MODE_CONE_MONOCHROMATISM");
-                    material.EnableKeyword("_MODE_ACHROMATOPSIA");
-                    break;
-                case AccessibilitySettings.ColorblindSimulationMode.None:
-                default:
-                    material.DisableKeyword("_MODE_PROTANOPIA");
-                    material.DisableKeyword("_MODE_DEUTERANOPIA");
-                    material.DisableKeyword("_MODE_TRITANOPIA");
-                    material.DisableKeyword("_MODE_CONE_MONOCHROMATISM");
-                    material.DisableKeyword("_MODE_ACHROMATOPSIA");
-                    break;
-            }
-        }
-
-
         public override void Create()
         {
             m_pass = new ColorblindSimulationRenderPassProcedural();
@@ -89,12 +38,12 @@ namespace EasyAccessibility
         {
             if (material == null) return;
 
-            SwapMode(AccessibilitySettings.Instance.colorblindSimulationMode);
+            ColorblindMaterialUtils.SetSimulationKeywords(material, AccessibilitySettings.Instance.colorblindSimulationMode);
             material.SetFloat("_Amount", AccessibilitySettings.Instance.colorblindSimulationAmount);
 
             if(overrideSettings)
             {
-                SwapMode(mode);
+                ColorblindMaterialUtils.SetSimulationKeywords(material, mode);
                 material.SetFloat("_Amount", amount);
             }
 

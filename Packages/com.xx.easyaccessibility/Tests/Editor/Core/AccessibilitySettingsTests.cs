@@ -3,7 +3,7 @@ using System.Reflection;
 using NUnit.Framework;
 using UnityEngine;
 
-namespace EasyAccessibility.Tests
+namespace EasyAccessibility.Tests.Core
 {
     public class AccessibilitySettingsTests
     {

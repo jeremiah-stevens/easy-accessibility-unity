@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.U2D;
 using static UnityEngine.Object;
 
-namespace EasyAccessibility.Tests
+namespace EasyAccessibility.Tests.InputIcons
 {
     public class InputIconSetSteamControllerTests
     {

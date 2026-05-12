@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEngine;
 
 
@@ -50,3 +51,4 @@ namespace EasyAccessibility
         }
     }
 }
+#endif

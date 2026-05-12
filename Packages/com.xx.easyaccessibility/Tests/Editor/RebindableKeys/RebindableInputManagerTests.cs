@@ -4,9 +4,8 @@ using System.Reflection;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.TestTools;
 
-namespace EasyAccessibility.Tests
+namespace EasyAccessibility.Tests.RebindableKeys
 {
     public class RebindableInputManagerTests
     {

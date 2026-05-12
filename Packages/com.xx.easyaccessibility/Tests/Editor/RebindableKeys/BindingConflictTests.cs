@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.Object;
 
-namespace EasyAccessibility.Tests
+namespace EasyAccessibility.Tests.RebindableKeys
 {
     public class BindingConflictTests
     {
