@@ -1,7 +1,9 @@
 ﻿<Solution>
+  <Project Path="com.xx.easyaccessibility.Editor.Tests.csproj" />
   <Project Path="com.xx.easyaccessibility.Runtime.csproj" />
   <Project Path="com.xx.easyaccessibility.Editor.csproj" />
+  <Project Path="com.xx.easyaccessibility.Editor.Tests.URP.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
-  <Project Path="com.xx.easyaccessibility.Editor.Tests.csproj" />
+  <Project Path="com.xx.easyaccessibility.Editor.Tests.HDRP.csproj" />
 </Solution>

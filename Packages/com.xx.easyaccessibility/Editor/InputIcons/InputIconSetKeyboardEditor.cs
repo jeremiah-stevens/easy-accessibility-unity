@@ -135,7 +135,7 @@ namespace EasyAccessibility
 
             var missing = k_Keys.Length - found;
             EditorGUILayout.HelpBox(
-                $"{found}/{k_Keys.Length} icons assigned{(missing > 0 ? $" — {missing} missing" : ".")}",
+                $"{found}/{k_Keys.Length} icons assigned{(missing > 0 ? $" : {missing} missing" : ".")}",
                 missing > 0 ? MessageType.Warning : MessageType.Info
             );
         }

@@ -1,0 +1,138 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TestAtlas_SteamDeck
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 2
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: e70a7b7b034ba93438905ff65edbcdf2, type: 3}
+    bindAsDefault: 0
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - 9c937b50db17e354197b06635b89af9a: 21300000
+    - 66d9b302981eeda4292d99b6b95f5fba: 21300000
+    - 1e0adf7261882c4408da2e49dc09568b: 21300000
+    - 9c8ff164de3c4794c8f68a03ea3fb871: 21300000
+    - b09d396487012a143bdac91cfed8a199: 21300000
+    - 4897bf05df7c2fd4a992afa6821292ef: 21300000
+    - 6169c7554e712974fa647c1f5fde1f35: 21300000
+    - 9efd64d5504a99e438db13f5f90946ae: 21300000
+    - 36d37b66747025d408393ce43f83865b: 21300000
+    - dad09b86fabfd814799fdb4e65ed0044: 21300000
+    - e2475cc6fd52ee14589787fa092aa50a: 21300000
+    - 370a3be6562b4214f9c7d702c7acff11: 21300000
+    - 1b2433873f491b04bbd602c35acca4e1: 21300000
+    - e6ce8387c36421f4abee07ba885489f7: 21300000
+    - dbe4cc87788ee0246bd9ce3c1ef47090: 21300000
+    - a21675f7b35cd214eba21e9026ce8505: 21300000
+    - 7a9d8d28d1b512e42b4f7718108ed555: 21300000
+    - 898211f82b6c7204caa3ab2b5250d3f1: 21300000
+    - b060c6294456dc248964ec07df30e3a7: 21300000
+    - b98229298737ae64c86ad798bf84c681: 21300000
+    - afb76d8927a704247960c9ad173b5a6c: 21300000
+    - 7a3542e9613a65b43b393931f6eae12e: 21300000
+    - ec8bd39a9be91534ea4f221a819bb6c5: 21300000
+    - aa24326b2f0bf004497262ae4eb2d0e6: 21300000
+    - 6878356b4957ab3409171e28f5e1fcd9: 21300000
+    - 32be16cb35a928d459c970a239d43d3a: 21300000
+    - 9ad758fb2a9d4bd4583c1c50fd5debd2: 21300000
+    - e1c4bbec591df864584cc9d0466bcf9c: 21300000
+    - f0740e6d82aee0f4eac25dc3e6630600: 21300000
+    - 6cf02deeaf6429d448bc447e95341b78: 21300000
+    - f68e9f1fc1e7da84f82338cd51d85171: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 9c937b50db17e354197b06635b89af9a, type: 3}
+  - {fileID: 21300000, guid: 66d9b302981eeda4292d99b6b95f5fba, type: 3}
+  - {fileID: 21300000, guid: 1e0adf7261882c4408da2e49dc09568b, type: 3}
+  - {fileID: 21300000, guid: 9c8ff164de3c4794c8f68a03ea3fb871, type: 3}
+  - {fileID: 21300000, guid: b09d396487012a143bdac91cfed8a199, type: 3}
+  - {fileID: 21300000, guid: 4897bf05df7c2fd4a992afa6821292ef, type: 3}
+  - {fileID: 21300000, guid: 6169c7554e712974fa647c1f5fde1f35, type: 3}
+  - {fileID: 21300000, guid: 9efd64d5504a99e438db13f5f90946ae, type: 3}
+  - {fileID: 21300000, guid: 36d37b66747025d408393ce43f83865b, type: 3}
+  - {fileID: 21300000, guid: dad09b86fabfd814799fdb4e65ed0044, type: 3}
+  - {fileID: 21300000, guid: e2475cc6fd52ee14589787fa092aa50a, type: 3}
+  - {fileID: 21300000, guid: 370a3be6562b4214f9c7d702c7acff11, type: 3}
+  - {fileID: 21300000, guid: 1b2433873f491b04bbd602c35acca4e1, type: 3}
+  - {fileID: 21300000, guid: e6ce8387c36421f4abee07ba885489f7, type: 3}
+  - {fileID: 21300000, guid: dbe4cc87788ee0246bd9ce3c1ef47090, type: 3}
+  - {fileID: 21300000, guid: a21675f7b35cd214eba21e9026ce8505, type: 3}
+  - {fileID: 21300000, guid: 7a9d8d28d1b512e42b4f7718108ed555, type: 3}
+  - {fileID: 21300000, guid: 898211f82b6c7204caa3ab2b5250d3f1, type: 3}
+  - {fileID: 21300000, guid: b060c6294456dc248964ec07df30e3a7, type: 3}
+  - {fileID: 21300000, guid: b98229298737ae64c86ad798bf84c681, type: 3}
+  - {fileID: 21300000, guid: afb76d8927a704247960c9ad173b5a6c, type: 3}
+  - {fileID: 21300000, guid: 7a3542e9613a65b43b393931f6eae12e, type: 3}
+  - {fileID: 21300000, guid: ec8bd39a9be91534ea4f221a819bb6c5, type: 3}
+  - {fileID: 21300000, guid: aa24326b2f0bf004497262ae4eb2d0e6, type: 3}
+  - {fileID: 21300000, guid: 6878356b4957ab3409171e28f5e1fcd9, type: 3}
+  - {fileID: 21300000, guid: 32be16cb35a928d459c970a239d43d3a, type: 3}
+  - {fileID: 21300000, guid: 9ad758fb2a9d4bd4583c1c50fd5debd2, type: 3}
+  - {fileID: 21300000, guid: e1c4bbec591df864584cc9d0466bcf9c, type: 3}
+  - {fileID: 21300000, guid: f0740e6d82aee0f4eac25dc3e6630600, type: 3}
+  - {fileID: 21300000, guid: 6cf02deeaf6429d448bc447e95341b78, type: 3}
+  - {fileID: 21300000, guid: f68e9f1fc1e7da84f82338cd51d85171, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - steamdeck_dpad_left
+  - steamdeck_stick_l
+  - steamdeck_stick_r_left
+  - steamdeck_stick_l_press
+  - steamdeck_stick_r
+  - steamdeck_dpad_up
+  - steamdeck_button_options
+  - steamdeck_button_view
+  - steamdeck_button_r2
+  - steamdeck_stick_r_down
+  - steamdeck_stick_r_press
+  - steamdeck_dpad
+  - steamdeck_stick_l_down
+  - steamdeck_button_r4
+  - steamdeck_button_x
+  - steamdeck_button_a
+  - steamdeck_stick_l_up
+  - steamdeck_button_r5
+  - steamdeck_button_b
+  - steamdeck_button_y
+  - steamdeck_button_l5
+  - steamdeck_button_l1
+  - steamdeck_dpad_right
+  - steamdeck_button_l4
+  - steamdeck_button_r1
+  - steamdeck_stick_l_left
+  - steamdeck_stick_l_right
+  - steamdeck_button_l2
+  - steamdeck_stick_r_right
+  - steamdeck_stick_r_up
+  - steamdeck_dpad_down
+  m_RenderDataMap: {}
+  m_Tag: TestAtlas_SteamDeck
+  m_IsVariant: 0

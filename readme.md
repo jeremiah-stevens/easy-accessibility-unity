@@ -11,7 +11,7 @@ This project hopes to provide a foundation of standard implementations developer
 	* Status: Auditor currently works. UI needs polished and remaining implementations below are stubbed and need to be finished.
 * **(🧪 Testing) Colorblind Filters:** provides a colorblindness correction filter to the entire project. Colorblindness correction and simulation features are available for URP, HDRP, and Built-In Render Pipelines.
 	* Status: Implementations exist and are working. Need to polish up integration approach (ex: offer a button to automatically enable).
-* **(🔨 In-Progress) Rebindable Keys:** offer a codeless integration for rebindable keys. Includes support for loading/saving/resetting keybinds.
+* **(🧪 Testing) Rebindable Keys:** offer a codeless integration for rebindable keys. Includes support for loading/saving/resetting keybinds.
 	* Status: Initial work on setting up structure, as well as evaluation for non-rebindable keys (Roslyn).
 * **(📓 Planned) Animation Settings:** setting to control animations on a page (ex: UI animations).
 * **(📓 Planned) Audio Controls:** functionality for providing audio controls, such as pausing a cutscene.

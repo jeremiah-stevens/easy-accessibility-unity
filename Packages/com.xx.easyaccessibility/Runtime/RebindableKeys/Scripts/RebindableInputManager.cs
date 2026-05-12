@@ -56,20 +56,41 @@ namespace EasyAccessibility
         /// </summary>
         public event Action<InputDevice> OnDeviceChanged;
 
-        public event Action<InputAction, int> OnBindingChanged; // RebindableAction internal use
+        /// <summary>
+        /// Event fired when a binding is changed. Provides the InputAction and the index of the binding that was changed.
+        /// If the action is null, the binding was fully reset from ResetAllBindings.
+        /// </summary>
+        /// <remarks>Used for internal operations</remark>
+        public event Action<InputAction, int> OnBindingChanged;
 
         /// <summary>
-        /// The current 
+        /// The current binding conflict object.
         /// </summary>
         public BindingConflict CurrentConflict { get; private set; }
 
         [Header("Icons")]
+        ///<summary>
+        /// The current icon set being used.
+        ///</summary>
         public InputIconSet iconSet;
+        /// <summary>
+        /// The last used device for this input system. This is used to determine if a device change has occurred.
+        /// </summary>
         public InputDevice LastUsedDevice { get; private set; }
 
+        [Header("Actions")]
+        [Tooltip("The InputActionAsset whose bindings are managed. Leave empty to use the project-wide asset from Input System settings.")]
+        public InputActionAsset actionsAsset;
+
         [Header("Excluded Paths")]
+        ///<summary>
+        /// Inputs to exclude when listening for rebinds.
+        ///</summary>
         public ExcludedControl excludedControls = ExcludedControl.MousePosition | ExcludedControl.MouseDelta | ExcludedControl.PointerPosition;
-        public string[] additionalExcludedPaths;
+        /// <summary>
+        /// Additional inputs to exclude when listening for rebinds, as input paths.
+        /// </summary>
+        public string[] additionalExcludedPaths = new string[] { };
 
         
 
@@ -155,6 +176,8 @@ namespace EasyAccessibility
                 })
                 .Start();
         }
+
+        private InputActionAsset GetActions() => actionsAsset != null ? actionsAsset : InputSystem.actions;
 
         private IEnumerable<string> GetExcludedPaths()
         {
@@ -267,7 +290,7 @@ namespace EasyAccessibility
         {
             if(input == null || bindingIndex < 0 || bindingIndex >= input.bindings.Count)
             {
-                Debug.LogError("Invalid input or binding index provided for ResetBinding.");
+                Debug.LogWarning("Invalid input or binding index provided for ResetBinding.");
                 return;
             }
 
@@ -280,7 +303,7 @@ namespace EasyAccessibility
         /// </summary>
         public void ResetAllBindings()
         {
-            var asset = InputSystem.actions;
+            var asset = GetActions();
             asset.RemoveAllBindingOverrides();
 
             //invoke the binding changed event with null action and -1 index to indicate a full reset
@@ -293,7 +316,7 @@ namespace EasyAccessibility
         /// </summary>
         public void SaveBindings()
         {
-            var asset = InputSystem.actions;
+            var asset = GetActions();
             if(asset == null)
             {
                 Debug.LogError("No default InputActionAsset configured. Set one in Project Settings → Input System.");
@@ -310,7 +333,7 @@ namespace EasyAccessibility
         /// </summary>
         public void LoadBindings()
         {
-            var asset = InputSystem.actions;
+            var asset = GetActions();
             if(asset == null)
             {
                 Debug.LogError("No default InputActionAsset configured. Set one in Project Settings → Input System.");
@@ -348,7 +371,8 @@ namespace EasyAccessibility
             //Singleton behavior
             if (m_instance != null) { Destroy(gameObject); return; }
             m_instance = this;
-            DontDestroyOnLoad(gameObject);
+            if (Application.isPlaying)
+                DontDestroyOnLoad(gameObject);
 
             OnBindingChanged += (a, i) => onBindingChanged?.Invoke();
             InputSystem.onActionChange += HandleActionChange;

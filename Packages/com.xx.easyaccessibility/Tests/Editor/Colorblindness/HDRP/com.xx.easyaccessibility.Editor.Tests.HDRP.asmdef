@@ -1,0 +1,34 @@
+{
+    "name": "com.xx.easyaccessibility.Editor.Tests.HDRP",
+    "rootNamespace": "",
+    "references": [
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "com.xx.easyaccessibility.Runtime",
+        "com.xx.easyaccessibility.Editor",
+        "GUID:457756d89b35d2941b3e7b37b4ece6f1",
+        "GUID:df380645f10b7bc4b97d4f5eb6303d95"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "EA_HDRP",
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.render-pipelines.high-definition",
+            "expression": "",
+            "define": "EA_HDRP"
+        }
+    ],
+    "noEngineReferences": false
+}

@@ -7,7 +7,7 @@ namespace EasyAccessibility
     /// Custom inspector for all InputIconSetPlayStation subclasses.
     /// Extends the shared gamepad preview with a Touchpad section that shows
     /// gesture sprites (click, tap, swipe directions) for DS4 and DS5.
-    /// DS3 has no touchpad — the section is hidden automatically.
+    /// DS3 has no touchpad: the section is hidden automatically.
     /// </summary>
     [CustomEditor(typeof(InputIconSetPlayStation), true)]
     public class InputIconSetPlayStationEditor : InputIconSetGamepadEditor
@@ -38,7 +38,7 @@ namespace EasyAccessibility
 
             var missing = touchpadPaths.Length - found;
             EditorGUILayout.HelpBox(
-                $"{found}/{touchpadPaths.Length} touchpad icons assigned{(missing > 0 ? $" — {missing} missing" : ".")}",
+                $"{found}/{touchpadPaths.Length} touchpad icons assigned{(missing > 0 ? $" : {missing} missing" : ".")}",
                 missing > 0 ? MessageType.Warning : MessageType.Info
             );
         }

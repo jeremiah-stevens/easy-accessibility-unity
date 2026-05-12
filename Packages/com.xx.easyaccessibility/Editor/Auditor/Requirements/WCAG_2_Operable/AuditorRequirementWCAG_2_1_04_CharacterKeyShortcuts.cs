@@ -35,7 +35,7 @@ namespace EasyAccessibility
                 issues.Add(new Issue
                 {
                     asset = script,
-                    issue = "Uses legacy Input System — these inputs cannot be rebound at runtime."
+                    issue = "Uses legacy Input System: these inputs cannot be rebound at runtime."
                 });
             }
 

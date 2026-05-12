@@ -16,7 +16,7 @@ namespace EasyAccessibility
     /// Note: The Switch 2 C button has no standard <Gamepad> path and is not covered here.
     /// If your project uses a device-specific binding for it, handle it via the m_overrides chain.
     ///
-    /// Expected sprite names follow the pattern "switch_*" — set the suffix field
+    /// Expected sprite names follow the pattern "switch_*" : set the suffix field
     /// to switch between style variants (e.g. "" vs "_dark").
     /// Falls back to the unsuffixed name if the suffixed sprite is not found in the atlas.
     /// </summary>

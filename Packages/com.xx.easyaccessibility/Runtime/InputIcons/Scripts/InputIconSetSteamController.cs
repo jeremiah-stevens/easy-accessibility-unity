@@ -9,7 +9,7 @@ namespace EasyAccessibility
     /// The Steam Controller has no physical right stick or D-pad. Steam Input maps them as:
     ///   rightStick / rightStickPress → Right Trackpad (joystick mode)
     ///   dpad / dpad directions       → Left Trackpad (d-pad mode)
-    /// Grip buttons have no standard <Gamepad> path — bind them via Steam Input's
+    /// Grip buttons have no standard <Gamepad> path : bind them via Steam Input's
     /// action set remapping or handle through m_overrides with a custom path.
     ///
     /// Expected sprite names follow the pattern "steam_*".
@@ -53,7 +53,7 @@ namespace EasyAccessibility
                 "<Gamepad>/leftStick/right"  => Get("steam_stick_right"),
                 "<Gamepad>/leftStickPress"   => Get("steam_stick_l_press"),
 
-                // Right trackpad — maps to rightStick in joystick mode
+                // Right trackpad : maps to rightStick in joystick mode
                 "<Gamepad>/rightStick"       => Get("steam_pad"),
                 "<Gamepad>/rightStick/up"    => Get("steam_pad_up"),
                 "<Gamepad>/rightStick/down"  => Get("steam_pad_down"),
@@ -61,7 +61,7 @@ namespace EasyAccessibility
                 "<Gamepad>/rightStick/right" => Get("steam_pad_right"),
                 "<Gamepad>/rightStickPress"  => Get("steam_pad_center"),
 
-                // Left trackpad — maps to dpad in d-pad mode
+                // Left trackpad : maps to dpad in d-pad mode
                 "<Gamepad>/dpad"       => Get("steam_dpad"),
                 "<Gamepad>/dpad/up"    => Get("steam_dpad_up"),
                 "<Gamepad>/dpad/down"  => Get("steam_dpad_down"),

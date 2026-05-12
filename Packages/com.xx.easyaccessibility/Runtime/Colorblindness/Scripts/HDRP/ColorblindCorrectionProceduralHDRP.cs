@@ -20,37 +20,6 @@ namespace EasyAccessibility
 
 
 
-        private void SetMode(AccessibilitySettings.ColorblindCorrectionMode mode)
-        {
-            switch (mode)
-            {
-                case AccessibilitySettings.ColorblindCorrectionMode.Protanopia:
-                    materialParameter.value.EnableKeyword("_MODE_PROTANOPIA");
-                    materialParameter.value.DisableKeyword("_MODE_DEUTERANOPIA");
-                    materialParameter.value.DisableKeyword("_MODE_TRITANOPIA");
-                    break;
-                case AccessibilitySettings.ColorblindCorrectionMode.Deuteranopia:
-                    materialParameter.value.DisableKeyword("_MODE_PROTANOPIA");
-                    materialParameter.value.EnableKeyword("_MODE_DEUTERANOPIA");
-                    materialParameter.value.DisableKeyword("_MODE_TRITANOPIA");
-                    break;
-                case AccessibilitySettings.ColorblindCorrectionMode.Tritanopia:
-                    materialParameter.value.DisableKeyword("_MODE_PROTANOPIA");
-                    materialParameter.value.DisableKeyword("_MODE_DEUTERANOPIA");
-                    materialParameter.value.EnableKeyword("_MODE_TRITANOPIA");
-                    break;
-                case AccessibilitySettings.ColorblindCorrectionMode.None:
-                default:
-                    materialParameter.value.DisableKeyword("_MODE_PROTANOPIA");
-                    materialParameter.value.DisableKeyword("_MODE_DEUTERANOPIA");
-                    materialParameter.value.DisableKeyword("_MODE_TRITANOPIA");
-                    break;
-            }
-        }
-
-
-
-
         public override bool IsActive() => materialParameter.value != null;
 
         public override void Setup()
@@ -61,12 +30,12 @@ namespace EasyAccessibility
         {
             if (materialParameter.value == null) return;
 
-            SetMode(AccessibilitySettings.Instance.colorblindCorrectionMode);
+            ColorblindMaterialUtils.SetCorrectionKeywords(materialParameter.value, AccessibilitySettings.Instance.colorblindCorrectionMode);
             materialParameter.value.SetFloat("_Amount", AccessibilitySettings.Instance.colorblindCorrectionAmount);
 
             if(overrideSettings.value)
             {
-                SetMode(mode.value);
+                ColorblindMaterialUtils.SetCorrectionKeywords(materialParameter.value, mode.value);
                 materialParameter.value.SetFloat("_Amount", amount.value);
             }
 

@@ -6,7 +6,7 @@ namespace EasyAccessibility
     /// <summary>
     /// Applies colorblind correction using a look-up table approach (Built-In Render Pipeline).
     /// </summary>
-    public class ColorblindCorrectionLUTBuiltIn : MonoBehaviour
+    public class ColorblindCorrectionLUTBuiltIn : ColorblindCorrectionBuiltIn
     {
         [Header("Override")]
         [SerializeField] bool overrideSettings;
@@ -19,28 +19,6 @@ namespace EasyAccessibility
         //state
         private Material m_renderMaterial;
         
-
-
-
-        private void SetLUT(AccessibilitySettings.ColorblindCorrectionMode mode)
-        {
-            switch (mode)
-            {
-                case AccessibilitySettings.ColorblindCorrectionMode.Protanopia:
-                    m_renderMaterial.SetTexture("_LUT", textureProtanopia);
-                    break;
-                case AccessibilitySettings.ColorblindCorrectionMode.Deuteranopia:
-                    m_renderMaterial.SetTexture("_LUT", textureDeutranopia);
-                    break;
-                case AccessibilitySettings.ColorblindCorrectionMode.Tritanopia:
-                    m_renderMaterial.SetTexture("_LUT", textureTritanopia);
-                    break;
-                default:
-                    m_renderMaterial.SetTexture("_LUT", null);
-                    break;
-            }
-        }
-
 
 
 
@@ -60,17 +38,16 @@ namespace EasyAccessibility
         {
             if (m_renderMaterial == null) return;
 
-            m_renderMaterial.SetInt("_Mode", (int)AccessibilitySettings.Instance.colorblindCorrectionMode);
+            var activeMode = AccessibilitySettings.Instance.colorblindCorrectionMode;
+            m_renderMaterial.SetInt("_Mode", (int)activeMode);
             m_renderMaterial.SetFloat("_Amount", AccessibilitySettings.Instance.colorblindCorrectionAmount);
-
-            SetLUT(AccessibilitySettings.Instance.colorblindCorrectionMode);
+            ColorblindMaterialUtils.SetLUT(m_renderMaterial, activeMode, textureProtanopia, textureDeutranopia, textureTritanopia);
 
             if (overrideSettings)
             {
                 m_renderMaterial.SetInt("_Mode", (int)mode);
                 m_renderMaterial.SetFloat("_Amount", amount);
-
-                SetLUT(mode);
+                ColorblindMaterialUtils.SetLUT(m_renderMaterial, mode, textureProtanopia, textureDeutranopia, textureTritanopia);
             }
 
             Graphics.Blit(source, destination, m_renderMaterial);

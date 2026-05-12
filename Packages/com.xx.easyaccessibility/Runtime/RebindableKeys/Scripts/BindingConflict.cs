@@ -43,7 +43,7 @@ namespace EasyAccessibility
                 ? $"{conflictingAction.name} ({conflictingBinding.name})"
                 : conflictingAction.name;
 
-            return $"\"{keyName}\" is already bound to \"{conflictActionName}\".";
+            return $"Cannot bind \"{keyName}\" to \"{action.name}\", because it is already bound to \"{conflictActionName}\".";
         }
     }
 }

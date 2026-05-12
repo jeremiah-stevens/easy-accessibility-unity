@@ -1,4 +1,4 @@
-#if EA_HDRP
+#if EA_HDRP && UNITY_EDITOR
 using System;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
@@ -22,59 +22,6 @@ namespace EasyAccessibility
 
 
 
-        private void SetMode(AccessibilitySettings.ColorblindSimulationMode mode)
-        {
-            switch (mode)
-            {
-                case AccessibilitySettings.ColorblindSimulationMode.Protanopia:
-                    materialParameter.value.EnableKeyword("_MODE_PROTANOPIA");
-                    materialParameter.value.DisableKeyword("_MODE_DEUTERANOPIA");
-                    materialParameter.value.DisableKeyword("_MODE_TRITANOPIA");
-                    materialParameter.value.DisableKeyword("_MODE_CONE_MONOCHROMATISM");
-                    materialParameter.value.DisableKeyword("_MODE_ACHROMATOPSIA");
-                    break;
-                case AccessibilitySettings.ColorblindSimulationMode.Deuteranopia:
-                    materialParameter.value.DisableKeyword("_MODE_PROTANOPIA");
-                    materialParameter.value.EnableKeyword("_MODE_DEUTERANOPIA");
-                    materialParameter.value.DisableKeyword("_MODE_TRITANOPIA");
-                    materialParameter.value.DisableKeyword("_MODE_CONE_MONOCHROMATISM");
-                    materialParameter.value.DisableKeyword("_MODE_ACHROMATOPSIA");
-                    break;
-                case AccessibilitySettings.ColorblindSimulationMode.Tritanopia:
-                    materialParameter.value.DisableKeyword("_MODE_PROTANOPIA");
-                    materialParameter.value.DisableKeyword("_MODE_DEUTERANOPIA");
-                    materialParameter.value.EnableKeyword("_MODE_TRITANOPIA");
-                    materialParameter.value.DisableKeyword("_MODE_CONE_MONOCHROMATISM");
-                    materialParameter.value.DisableKeyword("_MODE_ACHROMATOPSIA");
-                    break;
-                case AccessibilitySettings.ColorblindSimulationMode.Monochromatism:
-                    materialParameter.value.DisableKeyword("_MODE_PROTANOPIA");
-                    materialParameter.value.DisableKeyword("_MODE_DEUTERANOPIA");
-                    materialParameter.value.DisableKeyword("_MODE_TRITANOPIA");
-                    materialParameter.value.EnableKeyword("_MODE_CONE_MONOCHROMATISM");
-                    materialParameter.value.DisableKeyword("_MODE_ACHROMATOPSIA");
-                    break;
-                case AccessibilitySettings.ColorblindSimulationMode.Achromatopsia:
-                    materialParameter.value.DisableKeyword("_MODE_PROTANOPIA");
-                    materialParameter.value.DisableKeyword("_MODE_DEUTERANOPIA");
-                    materialParameter.value.DisableKeyword("_MODE_TRITANOPIA");
-                    materialParameter.value.DisableKeyword("_MODE_CONE_MONOCHROMATISM");
-                    materialParameter.value.EnableKeyword("_MODE_ACHROMATOPSIA");
-                    break;
-                case AccessibilitySettings.ColorblindSimulationMode.None:
-                default:
-                    materialParameter.value.DisableKeyword("_MODE_PROTANOPIA");
-                    materialParameter.value.DisableKeyword("_MODE_DEUTERANOPIA");
-                    materialParameter.value.DisableKeyword("_MODE_TRITANOPIA");
-                    materialParameter.value.DisableKeyword("_MODE_CONE_MONOCHROMATISM");
-                    materialParameter.value.DisableKeyword("_MODE_ACHROMATOPSIA");
-                    break;
-            }
-        }
-
-
-
-
         public bool IsActive() => materialParameter.value != null;
 
         public override void Setup()
@@ -85,15 +32,14 @@ namespace EasyAccessibility
         {
             if (materialParameter.value == null) return;
 
-            SetMode(AccessibilitySettings.Instance.colorblindSimulationMode);
+            ColorblindMaterialUtils.SetSimulationKeywords(materialParameter.value, AccessibilitySettings.Instance.colorblindSimulationMode);
             materialParameter.value.SetFloat("_Amount", AccessibilitySettings.Instance.colorblindSimulationAmount);
 
             if(overrideSettings.value)
             {
-                SetMode(mode.value);
+                ColorblindMaterialUtils.SetSimulationKeywords(materialParameter.value, mode.value);
                 materialParameter.value.SetFloat("_Amount", amount.value);
             }
-
 
             HDUtils.DrawFullScreen(cmd, materialParameter.value, destination);
         }

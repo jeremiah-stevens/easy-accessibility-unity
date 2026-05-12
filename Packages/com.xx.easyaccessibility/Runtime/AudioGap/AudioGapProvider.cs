@@ -4,6 +4,5 @@ namespace EasyAccessibility
 {
     public class AudioGapProvider : MonoBehaviour
     {
-
     }
 }

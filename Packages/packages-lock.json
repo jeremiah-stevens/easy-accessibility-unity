@@ -1,11 +1,5 @@
 {
   "dependencies": {
-    "com.a-la-code.easyaccessibility": {
-      "version": "file:com.xx.easyaccessibility",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
@@ -243,6 +237,12 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "com.xx.easyaccessibility": {
+      "version": "file:com.xx.easyaccessibility",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
     },
     "studio.gilp.internal-icon-browser": {
       "version": "https://github.com/GilpStudio/unity-internal-icon-browser.git",
