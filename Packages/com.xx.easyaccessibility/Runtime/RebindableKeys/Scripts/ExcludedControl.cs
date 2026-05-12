@@ -8,11 +8,11 @@ namespace EasyAccessibility
     [Flags]
     public enum ExcludedControl
     {
-        None           = 0,
-        MousePosition  = 1 << 0,
-        MouseDelta     = 1 << 1,
-        MouseScroll    = 1 << 2,
+        None = 0,
+        MousePosition = 1 << 0,
+        MouseDelta = 1 << 1,
+        MouseScroll = 1 << 2,
         PointerPosition = 1 << 3,
-        TouchPosition  = 1 << 4,
+        TouchPosition = 1 << 4,
     }
 }

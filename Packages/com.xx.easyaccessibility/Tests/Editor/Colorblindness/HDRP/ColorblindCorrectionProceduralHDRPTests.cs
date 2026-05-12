@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using System.Reflection;
 using NUnit.Framework;
 using UnityEngine;
-using static UnityEngine.Object;
 using static EasyAccessibility.AccessibilitySettings.ColorblindCorrectionMode;
+using static UnityEngine.Object;
 
 namespace EasyAccessibility.Tests.Colorblind
 {
@@ -13,10 +13,14 @@ namespace EasyAccessibility.Tests.Colorblind
         AccessibilitySettings m_settings;
         List<Object> m_cleanup;
 
-        static readonly FieldInfo k_Instance =
-            typeof(AccessibilitySettings).GetField("m_instance", BindingFlags.NonPublic | BindingFlags.Static);
-        static readonly MethodInfo k_Render =
-            typeof(ColorblindCorrectionProceduralHDRP).GetMethod("Render", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+        static readonly FieldInfo k_Instance = typeof(AccessibilitySettings).GetField(
+            "m_instance",
+            BindingFlags.NonPublic | BindingFlags.Static
+        );
+        static readonly MethodInfo k_Render = typeof(ColorblindCorrectionProceduralHDRP).GetMethod(
+            "Render",
+            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance
+        );
 
         [SetUp]
         public void SetUp()
@@ -34,14 +38,21 @@ namespace EasyAccessibility.Tests.Colorblind
             DestroyImmediate(m_component);
             DestroyImmediate(m_settings);
             foreach (var obj in m_cleanup)
-                if (obj != null) DestroyImmediate(obj);
+                if (obj != null)
+                    DestroyImmediate(obj);
         }
 
         #region Helpers
 
-        T Track<T>(T obj) where T : Object { m_cleanup.Add(obj); return obj; }
+        T Track<T>(T obj)
+            where T : Object
+        {
+            m_cleanup.Add(obj);
+            return obj;
+        }
 
-        Material MakeMaterial() => Track(new Material(Shader.Find("Shader Graphs/ColorblindCorrectionProcedural_HDRP")));
+        Material MakeMaterial() =>
+            Track(new Material(Shader.Find("Shader Graphs/ColorblindCorrectionProcedural_HDRP")));
 
         void InvokeRender()
         {
@@ -50,7 +61,10 @@ namespace EasyAccessibility.Tests.Colorblind
 
         void InvokeRenderSafe()
         {
-            try { InvokeRender(); }
+            try
+            {
+                InvokeRender();
+            }
             catch (TargetInvocationException) { }
         }
 

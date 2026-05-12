@@ -22,9 +22,6 @@ namespace EasyAccessibility
         public Status status = Status.None;
         public List<Issue> issues = new();
 
-
-
-
         public virtual void Audit()
         {
             Debug.Log($"Performing audit '{this.GetType().Name}'...");
@@ -32,7 +29,11 @@ namespace EasyAccessibility
             this.status = Status.Unsure; //by default, we set it to unsure
         }
 
-        protected void AuditForInstanceWithCamera<T>(string failMessage, Action<T> validationAction = null) where T : UnityEngine.Object
+        protected void AuditForInstanceWithCamera<T>(
+            string failMessage,
+            Action<T> validationAction = null
+        )
+            where T : UnityEngine.Object
         {
             var startingScenePath = EditorSceneManager.GetActiveScene().path;
 
@@ -49,13 +50,15 @@ namespace EasyAccessibility
 
                     if (instance == null)
                     {
-                        issues.Add(new Issue()
-                        {
-                            asset = AssetDatabase.LoadAssetAtPath<SceneAsset>(cam.scene.path),
-                            issue = $"Scene '{cam.scene.name}' {failMessage}"
-                        });
+                        issues.Add(
+                            new Issue()
+                            {
+                                asset = AssetDatabase.LoadAssetAtPath<SceneAsset>(cam.scene.path),
+                                issue = $"Scene '{cam.scene.name}' {failMessage}",
+                            }
+                        );
                     }
-                    else if(validationAction != null)
+                    else if (validationAction != null)
                     {
                         validationAction.Invoke(instance);
                     }
@@ -65,9 +68,13 @@ namespace EasyAccessibility
             EditorSceneManager.OpenScene(startingScenePath, OpenSceneMode.Single);
         }
 
-        protected void AuditForTranscripts<T>(string searchPattern) where T : UnityEngine.Object
+        protected void AuditForTranscripts<T>(string searchPattern)
+            where T : UnityEngine.Object
         {
-            var assetTranscriptGuids = AssetDatabase.FindAssetGUIDs("t:assettranscriptso", new[] { "Assets" }); //TODO: find a way of finding IAssetTranscripts
+            var assetTranscriptGuids = AssetDatabase.FindAssetGUIDs(
+                "t:assettranscriptso",
+                new[] { "Assets" }
+            ); //TODO: find a way of finding IAssetTranscripts
             var transcripts = new Dictionary<UnityEngine.Object, AssetTranscriptSO>();
             foreach (var curr in assetTranscriptGuids)
             {
@@ -85,11 +92,14 @@ namespace EasyAccessibility
                 }
                 else
                 {
-                    issues.Add(new Issue()
-                    {
-                        asset = currAsset,
-                        issue = $"Asset '{currAsset.name}' does not have transcript information."
-                    });
+                    issues.Add(
+                        new Issue()
+                        {
+                            asset = currAsset,
+                            issue =
+                                $"Asset '{currAsset.name}' does not have transcript information.",
+                        }
+                    );
                 }
             }
         }
@@ -99,16 +109,13 @@ namespace EasyAccessibility
             bool hasQualityLevelWithNoRenderPipeline = false;
             QualitySettings.ForEach(() =>
             {
-                if(QualitySettings.renderPipeline == null)
+                if (QualitySettings.renderPipeline == null)
                     hasQualityLevelWithNoRenderPipeline = true;
             });
 
             return GraphicsSettings.defaultRenderPipeline == null
-            && hasQualityLevelWithNoRenderPipeline;
+                && hasQualityLevelWithNoRenderPipeline;
         }
-
-
-
 
         public enum Status
         {
@@ -117,9 +124,6 @@ namespace EasyAccessibility
             Unsure = 2,
             Fail = 3,
         }
-
-
-
 
         [Serializable]
         public class Issue

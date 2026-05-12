@@ -20,57 +20,63 @@ namespace EasyAccessibility
     [CreateAssetMenu(menuName = "Easy Accessibility/Icon Set/Nintendo Switch")]
     public class InputIconSetNintendoSwitch : InputIconSetGamepad
     {
-        [SerializeField] private SpriteAtlas m_atlas;
-        [SerializeField] private InputIconSet m_overrides;
-        [SerializeField] private string suffix = "";
+        [SerializeField]
+        private SpriteAtlas m_atlas;
+
+        [SerializeField]
+        private InputIconSet m_overrides;
+
+        [SerializeField]
+        private string suffix = "";
 
         public override Sprite GetIcon(string controlPath)
         {
             var overrideSprite = m_overrides?.GetIcon(controlPath);
-            if (overrideSprite != null) return overrideSprite;
+            if (overrideSprite != null)
+                return overrideSprite;
 
             return controlPath switch
             {
                 // Face buttons (Nintendo physical layout)
                 "<Gamepad>/buttonSouth" => Get("switch_button_b"),
-                "<Gamepad>/buttonEast"  => Get("switch_button_a"),
+                "<Gamepad>/buttonEast" => Get("switch_button_a"),
                 "<Gamepad>/buttonNorth" => Get("switch_button_x"),
-                "<Gamepad>/buttonWest"  => Get("switch_button_y"),
+                "<Gamepad>/buttonWest" => Get("switch_button_y"),
 
                 // Shoulders and triggers
-                "<Gamepad>/leftShoulder"  => Get("switch_button_l"),
+                "<Gamepad>/leftShoulder" => Get("switch_button_l"),
                 "<Gamepad>/rightShoulder" => Get("switch_button_r"),
-                "<Gamepad>/leftTrigger"   => Get("switch_button_sl"),
-                "<Gamepad>/rightTrigger"  => Get("switch_button_sr"),
+                "<Gamepad>/leftTrigger" => Get("switch_button_sl"),
+                "<Gamepad>/rightTrigger" => Get("switch_button_sr"),
 
                 // System
-                "<Gamepad>/start"  => Get("switch_button_plus"),
+                "<Gamepad>/start" => Get("switch_button_plus"),
                 "<Gamepad>/select" => Get("switch_button_minus"),
 
                 // Left stick
-                "<Gamepad>/leftStick"        => Get("switch_stick_l"),
-                "<Gamepad>/leftStick/up"     => Get("switch_stick_l_up"),
-                "<Gamepad>/leftStick/down"   => Get("switch_stick_l_down"),
-                "<Gamepad>/leftStick/left"   => Get("switch_stick_l_left"),
-                "<Gamepad>/leftStick/right"  => Get("switch_stick_l_right"),
-                "<Gamepad>/leftStickPress"   => Get("switch_stick_l_press"),
+                "<Gamepad>/leftStick" => Get("switch_stick_l"),
+                "<Gamepad>/leftStick/up" => Get("switch_stick_l_up"),
+                "<Gamepad>/leftStick/down" => Get("switch_stick_l_down"),
+                "<Gamepad>/leftStick/left" => Get("switch_stick_l_left"),
+                "<Gamepad>/leftStick/right" => Get("switch_stick_l_right"),
+                "<Gamepad>/leftStickPress" => Get("switch_stick_l_press"),
 
                 // Right stick
-                "<Gamepad>/rightStick"       => Get("switch_stick_r"),
-                "<Gamepad>/rightStick/up"    => Get("switch_stick_r_up"),
-                "<Gamepad>/rightStick/down"  => Get("switch_stick_r_down"),
-                "<Gamepad>/rightStick/left"  => Get("switch_stick_r_left"),
+                "<Gamepad>/rightStick" => Get("switch_stick_r"),
+                "<Gamepad>/rightStick/up" => Get("switch_stick_r_up"),
+                "<Gamepad>/rightStick/down" => Get("switch_stick_r_down"),
+                "<Gamepad>/rightStick/left" => Get("switch_stick_r_left"),
                 "<Gamepad>/rightStick/right" => Get("switch_stick_r_right"),
-                "<Gamepad>/rightStickPress"  => Get("switch_stick_r_press"),
+                "<Gamepad>/rightStickPress" => Get("switch_stick_r_press"),
 
                 // D-Pad
-                "<Gamepad>/dpad"       => Get("switch_dpad"),
-                "<Gamepad>/dpad/up"    => Get("switch_dpad_up"),
-                "<Gamepad>/dpad/down"  => Get("switch_dpad_down"),
-                "<Gamepad>/dpad/left"  => Get("switch_dpad_left"),
+                "<Gamepad>/dpad" => Get("switch_dpad"),
+                "<Gamepad>/dpad/up" => Get("switch_dpad_up"),
+                "<Gamepad>/dpad/down" => Get("switch_dpad_down"),
+                "<Gamepad>/dpad/left" => Get("switch_dpad_left"),
                 "<Gamepad>/dpad/right" => Get("switch_dpad_right"),
 
-                _ => null
+                _ => null,
             };
         }
 

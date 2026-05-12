@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Reflection;
 using NUnit.Framework;
 using UnityEngine;
-using static UnityEngine.Object;
 using static EasyAccessibility.AccessibilitySettings.ColorblindCorrectionMode;
+using static UnityEngine.Object;
 
 namespace EasyAccessibility.Tests.Colorblind
 {
@@ -14,30 +14,50 @@ namespace EasyAccessibility.Tests.Colorblind
         AccessibilitySettings m_settings;
         List<UnityEngine.Object> m_cleanup;
 
-        static readonly FieldInfo k_Instance =
-            typeof(AccessibilitySettings).GetField("m_instance", BindingFlags.NonPublic | BindingFlags.Static);
-        static readonly FieldInfo k_Material =
-            typeof(ColorblindCorrectionLUTURP).GetField("material", BindingFlags.NonPublic | BindingFlags.Instance);
-        static readonly FieldInfo k_OverrideSettings =
-            typeof(ColorblindCorrectionLUTURP).GetField("overrideSettings", BindingFlags.NonPublic | BindingFlags.Instance);
-        static readonly FieldInfo k_Mode =
-            typeof(ColorblindCorrectionLUTURP).GetField("mode", BindingFlags.NonPublic | BindingFlags.Instance);
-        static readonly FieldInfo k_Amount =
-            typeof(ColorblindCorrectionLUTURP).GetField("amount", BindingFlags.NonPublic | BindingFlags.Instance);
-        static readonly FieldInfo k_TextureProtanopia =
-            typeof(ColorblindCorrectionLUTURP).GetField("textureProtanopia", BindingFlags.NonPublic | BindingFlags.Instance);
+        static readonly FieldInfo k_Instance = typeof(AccessibilitySettings).GetField(
+            "m_instance",
+            BindingFlags.NonPublic | BindingFlags.Static
+        );
+        static readonly FieldInfo k_Material = typeof(ColorblindCorrectionLUTURP).GetField(
+            "material",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
+        static readonly FieldInfo k_OverrideSettings = typeof(ColorblindCorrectionLUTURP).GetField(
+            "overrideSettings",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
+        static readonly FieldInfo k_Mode = typeof(ColorblindCorrectionLUTURP).GetField(
+            "mode",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
+        static readonly FieldInfo k_Amount = typeof(ColorblindCorrectionLUTURP).GetField(
+            "amount",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
+        static readonly FieldInfo k_TextureProtanopia = typeof(ColorblindCorrectionLUTURP).GetField(
+            "textureProtanopia",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
         static readonly FieldInfo k_TextureDeutranopia =
-            typeof(ColorblindCorrectionLUTURP).GetField("textureDeutranopia", BindingFlags.NonPublic | BindingFlags.Instance);
-        static readonly FieldInfo k_TextureTritanopia =
-            typeof(ColorblindCorrectionLUTURP).GetField("textureTritanopia", BindingFlags.NonPublic | BindingFlags.Instance);
-        static readonly MethodInfo k_AddRenderPasses =
-            typeof(ColorblindCorrectionLUTURP).GetMethod("AddRenderPasses", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            typeof(ColorblindCorrectionLUTURP).GetField(
+                "textureDeutranopia",
+                BindingFlags.NonPublic | BindingFlags.Instance
+            );
+        static readonly FieldInfo k_TextureTritanopia = typeof(ColorblindCorrectionLUTURP).GetField(
+            "textureTritanopia",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
+        static readonly MethodInfo k_AddRenderPasses = typeof(ColorblindCorrectionLUTURP).GetMethod(
+            "AddRenderPasses",
+            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance
+        );
 
         [SetUp]
         public void SetUp()
         {
             m_cleanup = new List<UnityEngine.Object>();
-            m_feature = (ColorblindCorrectionLUTURP)ScriptableObject.CreateInstance(typeof(ColorblindCorrectionLUTURP));
+            m_feature = (ColorblindCorrectionLUTURP)
+                ScriptableObject.CreateInstance(typeof(ColorblindCorrectionLUTURP));
             m_settings = ScriptableObject.CreateInstance<AccessibilitySettings>();
             k_Instance.SetValue(null, m_settings);
             k_Material.SetValue(m_feature, null);
@@ -50,14 +70,21 @@ namespace EasyAccessibility.Tests.Colorblind
             DestroyImmediate(m_feature);
             DestroyImmediate(m_settings);
             foreach (var obj in m_cleanup)
-                if (obj != null) DestroyImmediate(obj);
+                if (obj != null)
+                    DestroyImmediate(obj);
         }
 
         #region Helpers
 
-        T Track<T>(T obj) where T : UnityEngine.Object { m_cleanup.Add(obj); return obj; }
+        T Track<T>(T obj)
+            where T : UnityEngine.Object
+        {
+            m_cleanup.Add(obj);
+            return obj;
+        }
 
-        Material MakeMaterial() => Track(new Material(Shader.Find("Shader Graphs/ColorblindCorrectionLUT_URP")));
+        Material MakeMaterial() =>
+            Track(new Material(Shader.Find("Shader Graphs/ColorblindCorrectionLUT_URP")));
 
         Texture3D MakeTexture3D() => Track(new Texture3D(1, 1, 1, TextureFormat.RGBA32, false));
 
@@ -70,7 +97,10 @@ namespace EasyAccessibility.Tests.Colorblind
 
         void InvokeAddRenderPassesSafe()
         {
-            try { InvokeAddRenderPasses(); }
+            try
+            {
+                InvokeAddRenderPasses();
+            }
             catch (TargetInvocationException) { }
         }
 
@@ -117,13 +147,15 @@ namespace EasyAccessibility.Tests.Colorblind
         [TestCase(Deuteranopia)]
         [TestCase(Tritanopia)]
         [TestCase(None)]
-        public void NormalPath_LUT_MatchesSettingsMode(AccessibilitySettings.ColorblindCorrectionMode mode)
+        public void NormalPath_LUT_MatchesSettingsMode(
+            AccessibilitySettings.ColorblindCorrectionMode mode
+        )
         {
             var mat = MakeMaterial();
             k_Material.SetValue(m_feature, mat);
             var texProto = MakeTexture3D();
-            var texDeut  = MakeTexture3D();
-            var texTrit  = MakeTexture3D();
+            var texDeut = MakeTexture3D();
+            var texTrit = MakeTexture3D();
             k_TextureProtanopia.SetValue(m_feature, texProto);
             k_TextureDeutranopia.SetValue(m_feature, texDeut);
             k_TextureTritanopia.SetValue(m_feature, texTrit);
@@ -134,10 +166,18 @@ namespace EasyAccessibility.Tests.Colorblind
             Texture3D expected;
             switch (mode)
             {
-                case Protanopia:   expected = texProto; break;
-                case Deuteranopia: expected = texDeut;  break;
-                case Tritanopia:   expected = texTrit;  break;
-                default:           expected = null;     break;
+                case Protanopia:
+                    expected = texProto;
+                    break;
+                case Deuteranopia:
+                    expected = texDeut;
+                    break;
+                case Tritanopia:
+                    expected = texTrit;
+                    break;
+                default:
+                    expected = null;
+                    break;
             }
             Assert.AreSame(expected, mat.GetTexture("_LUT"));
         }
@@ -180,7 +220,7 @@ namespace EasyAccessibility.Tests.Colorblind
             var mat = MakeMaterial();
             k_Material.SetValue(m_feature, mat);
             var texProto = MakeTexture3D();
-            var texDeut  = MakeTexture3D();
+            var texDeut = MakeTexture3D();
             k_TextureProtanopia.SetValue(m_feature, texProto);
             k_TextureDeutranopia.SetValue(m_feature, texDeut);
             m_settings.colorblindCorrectionMode = Protanopia;

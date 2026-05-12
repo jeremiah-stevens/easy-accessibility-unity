@@ -8,10 +8,9 @@ namespace EasyAccessibility
         public AuditorRequirementWCAG_1_4_05_ImagesOfText()
         {
             source = AuditorRequirementKeys.Source_WCAG;
-            name = AuditorRequirementKeys.GetTitle(1,4,5);
-            description = AuditorRequirementKeys.GetDescription(1,4,5);
-            referenceLink = AuditorRequirementKeys.GetUrl(1,4,5);
-            
+            name = AuditorRequirementKeys.GetTitle(1, 4, 5);
+            description = AuditorRequirementKeys.GetDescription(1, 4, 5);
+            referenceLink = AuditorRequirementKeys.GetUrl(1, 4, 5);
         }
     }
 }

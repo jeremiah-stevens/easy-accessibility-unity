@@ -20,11 +20,18 @@ namespace EasyAccessibility
 
             var ps = (InputIconSetPlayStation)target;
             var touchpadPaths = ps.TouchpadPaths;
-            if (touchpadPaths.Length == 0) return;
+            if (touchpadPaths.Length == 0)
+                return;
 
             EditorGUILayout.Space();
-            m_showTouchpad = EditorGUILayout.Foldout(m_showTouchpad, "Touchpad", true, EditorStyles.foldoutHeader);
-            if (!m_showTouchpad) return;
+            m_showTouchpad = EditorGUILayout.Foldout(
+                m_showTouchpad,
+                "Touchpad",
+                true,
+                EditorStyles.foldoutHeader
+            );
+            if (!m_showTouchpad)
+                return;
 
             DrawColumnHeaders();
 
@@ -32,7 +39,8 @@ namespace EasyAccessibility
             foreach (var (path, label) in touchpadPaths)
             {
                 var sprite = ps.GetIcon(path);
-                if (sprite != null) found++;
+                if (sprite != null)
+                    found++;
                 DrawRow(sprite, path, label);
             }
 

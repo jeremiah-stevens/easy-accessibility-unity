@@ -1,7 +1,6 @@
 using System.Text.RegularExpressions;
 using UnityEditor;
 
-
 namespace EasyAccessibility
 {
     /// <summary>
@@ -11,7 +10,8 @@ namespace EasyAccessibility
     /// - The shortcut is active only when the component it affects has focus.
     /// - The shortcut is active only when the user is performing the function that the shortcut triggers.
     /// </summary>
-    public class AuditorRequirementWCAG_2_1_04_CharacterKeyShortcuts : AuditorRequirementWCAG_2_1_01_Keyboard
+    public class AuditorRequirementWCAG_2_1_04_CharacterKeyShortcuts
+        : AuditorRequirementWCAG_2_1_01_Keyboard
     {
         private static readonly Regex k_LegacyInputPattern = new Regex(
             @"\bInput\.(GetKey|GetKeyDown|GetKeyUp|GetButton|GetButtonDown|GetButtonUp|GetAxis|GetAxisRaw|GetMouseButton|GetMouseButtonDown|GetMouseButtonUp|mousePosition|touches|acceleration)\b",
@@ -27,16 +27,22 @@ namespace EasyAccessibility
             foreach (var guid in guids)
             {
                 var path = AssetDatabase.GUIDToAssetPath(guid);
-                if (path.StartsWith("Packages/")) continue;
+                if (path.StartsWith("Packages/"))
+                    continue;
                 var script = AssetDatabase.LoadAssetAtPath<MonoScript>(path);
-                if (script == null || string.IsNullOrEmpty(script.text)) continue;
-                if (!k_LegacyInputPattern.IsMatch(script.text)) continue;
+                if (script == null || string.IsNullOrEmpty(script.text))
+                    continue;
+                if (!k_LegacyInputPattern.IsMatch(script.text))
+                    continue;
 
-                issues.Add(new Issue
-                {
-                    asset = script,
-                    issue = "Uses legacy Input System: these inputs cannot be rebound at runtime."
-                });
+                issues.Add(
+                    new Issue
+                    {
+                        asset = script,
+                        issue =
+                            "Uses legacy Input System: these inputs cannot be rebound at runtime.",
+                    }
+                );
             }
 
             status = issues.Count > 0 ? Status.Fail : Status.Unsure;
@@ -45,9 +51,9 @@ namespace EasyAccessibility
         public AuditorRequirementWCAG_2_1_04_CharacterKeyShortcuts()
         {
             source = AuditorRequirementKeys.Source_WCAG;
-            name = AuditorRequirementKeys.GetTitle(2,1,4);
-            description = AuditorRequirementKeys.GetDescription(2,1,4);
-            referenceLink = AuditorRequirementKeys.GetUrl(2,1,4);
+            name = AuditorRequirementKeys.GetTitle(2, 1, 4);
+            description = AuditorRequirementKeys.GetDescription(2, 1, 4);
+            referenceLink = AuditorRequirementKeys.GetUrl(2, 1, 4);
         }
     }
 }

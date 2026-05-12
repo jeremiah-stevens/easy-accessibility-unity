@@ -2,7 +2,5 @@ using UnityEngine;
 
 namespace EasyAccessibility
 {
-    public class AudioGapProvider : MonoBehaviour
-    {
-    }
+    public class AudioGapProvider : MonoBehaviour { }
 }

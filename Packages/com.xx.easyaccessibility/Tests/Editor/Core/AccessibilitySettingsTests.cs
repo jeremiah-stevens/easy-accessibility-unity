@@ -11,14 +11,19 @@ namespace EasyAccessibility.Tests.Core
         string m_savePath;
         string m_savedBackup;
 
-        static readonly FieldInfo k_InstanceField =
-            typeof(AccessibilitySettings).GetField("m_instance", BindingFlags.NonPublic | BindingFlags.Static);
+        static readonly FieldInfo k_InstanceField = typeof(AccessibilitySettings).GetField(
+            "m_instance",
+            BindingFlags.NonPublic | BindingFlags.Static
+        );
 
         [SetUp]
         public void SetUp()
         {
             m_settings = ScriptableObject.CreateInstance<AccessibilitySettings>();
-            m_savePath = Path.Combine(Application.persistentDataPath, "accessibility_settings.json");
+            m_savePath = Path.Combine(
+                Application.persistentDataPath,
+                "accessibility_settings.json"
+            );
             m_savedBackup = File.Exists(m_savePath) ? File.ReadAllText(m_savePath) : null;
         }
 
@@ -68,11 +73,15 @@ namespace EasyAccessibility.Tests.Core
         [TestCase(AccessibilitySettings.ColorblindCorrectionMode.Protanopia)]
         [TestCase(AccessibilitySettings.ColorblindCorrectionMode.Deuteranopia)]
         [TestCase(AccessibilitySettings.ColorblindCorrectionMode.Tritanopia)]
-        public void SaveLoad_RoundTrips_ColorblindCorrectionMode(AccessibilitySettings.ColorblindCorrectionMode mode)
+        public void SaveLoad_RoundTrips_ColorblindCorrectionMode(
+            AccessibilitySettings.ColorblindCorrectionMode mode
+        )
         {
             m_settings.colorblindCorrectionMode = mode;
             m_settings.Save();
-            m_settings.colorblindCorrectionMode = AccessibilitySettings.ColorblindCorrectionMode.None;
+            m_settings.colorblindCorrectionMode = AccessibilitySettings
+                .ColorblindCorrectionMode
+                .None;
 
             m_settings.Load();
 
@@ -101,11 +110,15 @@ namespace EasyAccessibility.Tests.Core
         [TestCase(AccessibilitySettings.ColorblindSimulationMode.Tritanopia)]
         [TestCase(AccessibilitySettings.ColorblindSimulationMode.Monochromatism)]
         [TestCase(AccessibilitySettings.ColorblindSimulationMode.Achromatopsia)]
-        public void SaveLoad_RoundTrips_ColorblindSimulationMode(AccessibilitySettings.ColorblindSimulationMode mode)
+        public void SaveLoad_RoundTrips_ColorblindSimulationMode(
+            AccessibilitySettings.ColorblindSimulationMode mode
+        )
         {
             m_settings.colorblindSimulationMode = mode;
             m_settings.Save();
-            m_settings.colorblindSimulationMode = AccessibilitySettings.ColorblindSimulationMode.None;
+            m_settings.colorblindSimulationMode = AccessibilitySettings
+                .ColorblindSimulationMode
+                .None;
 
             m_settings.Load();
 

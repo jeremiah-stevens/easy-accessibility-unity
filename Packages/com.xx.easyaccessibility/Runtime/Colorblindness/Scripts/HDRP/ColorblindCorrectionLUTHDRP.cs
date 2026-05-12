@@ -17,32 +17,58 @@ namespace EasyAccessibility
         public MaterialParameter materialParameter = new MaterialParameter(null);
 
         public BoolParameter overrideSettings = new BoolParameter(false);
-        public VolumeParameter<AccessibilitySettings.ColorblindCorrectionMode> mode = new VolumeParameter<AccessibilitySettings.ColorblindCorrectionMode>();
+        public VolumeParameter<AccessibilitySettings.ColorblindCorrectionMode> mode =
+            new VolumeParameter<AccessibilitySettings.ColorblindCorrectionMode>();
         public ClampedFloatParameter amount = new ClampedFloatParameter(0f, 0f, 1f);
-        public TextureParameter textureProtanopia = new TextureParameter(null, TextureDimension.Tex3D);
-        public TextureParameter textureDeutranopia = new TextureParameter(null, TextureDimension.Tex3D);
-        public TextureParameter textureTritanopia = new TextureParameter(null, TextureDimension.Tex3D);
-
-
-
+        public TextureParameter textureProtanopia = new TextureParameter(
+            null,
+            TextureDimension.Tex3D
+        );
+        public TextureParameter textureDeutranopia = new TextureParameter(
+            null,
+            TextureDimension.Tex3D
+        );
+        public TextureParameter textureTritanopia = new TextureParameter(
+            null,
+            TextureDimension.Tex3D
+        );
 
         public override bool IsActive() => materialParameter.value != null;
 
-        public override void Setup()
-        {
-        }
+        public override void Setup() { }
 
-        public override void Render(CommandBuffer cmd, HDCamera camera, RTHandle source, RTHandle destination)
+        public override void Render(
+            CommandBuffer cmd,
+            HDCamera camera,
+            RTHandle source,
+            RTHandle destination
+        )
         {
-            if (materialParameter.value == null) return;
+            if (materialParameter.value == null)
+                return;
 
             var activeMode = AccessibilitySettings.Instance.colorblindCorrectionMode;
-            ColorblindMaterialUtils.SetLUT(materialParameter.value, activeMode, textureProtanopia.value, textureDeutranopia.value, textureTritanopia.value);
-            materialParameter.value.SetFloat("_Amount", AccessibilitySettings.Instance.colorblindCorrectionAmount);
+            ColorblindMaterialUtils.SetLUT(
+                materialParameter.value,
+                activeMode,
+                textureProtanopia.value,
+                textureDeutranopia.value,
+                textureTritanopia.value
+            );
+            materialParameter.value.SetFloat(
+                "_Amount",
+                AccessibilitySettings.Instance.colorblindCorrectionAmount
+            );
 
-            if(overrideSettings.value)
+            if (overrideSettings.value)
             {
-                ColorblindMaterialUtils.SetLUT(materialParameter.value, mode.value, textureProtanopia.value, textureDeutranopia.value, textureTritanopia.value);
+                ColorblindMaterialUtils.SetLUT(
+                    materialParameter.value,
+                    mode.value,
+                    textureProtanopia.value,
+                    textureDeutranopia.value,
+                    textureTritanopia.value
+                );
                 materialParameter.value.SetFloat("_Amount", amount.value);
             }
 

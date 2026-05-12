@@ -17,12 +17,18 @@ namespace EasyAccessibility.Tests.RebindableKeys
         InputAction m_compositeAction;
         AccessibilitySettings m_settings;
 
-        static readonly FieldInfo k_ActionField =
-            typeof(RebindableAction).GetField("m_action", BindingFlags.NonPublic | BindingFlags.Instance);
-        static readonly FieldInfo k_ManagerInstance =
-            typeof(RebindableInputManager).GetField("m_instance", BindingFlags.NonPublic | BindingFlags.Static);
-        static readonly FieldInfo k_SettingsInstance =
-            typeof(AccessibilitySettings).GetField("m_instance", BindingFlags.NonPublic | BindingFlags.Static);
+        static readonly FieldInfo k_ActionField = typeof(RebindableAction).GetField(
+            "m_action",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
+        static readonly FieldInfo k_ManagerInstance = typeof(RebindableInputManager).GetField(
+            "m_instance",
+            BindingFlags.NonPublic | BindingFlags.Static
+        );
+        static readonly FieldInfo k_SettingsInstance = typeof(AccessibilitySettings).GetField(
+            "m_instance",
+            BindingFlags.NonPublic | BindingFlags.Static
+        );
 
         [SetUp]
         public void SetUp()
@@ -75,7 +81,8 @@ namespace EasyAccessibility.Tests.RebindableKeys
             button.AddBinding("<Keyboard>/space");
 
             var composite = map.AddAction("CompositeAction", InputActionType.Value);
-            composite.AddCompositeBinding("2DVector")
+            composite
+                .AddCompositeBinding("2DVector")
                 .With("Up", "<Keyboard>/w")
                 .With("Down", "<Keyboard>/s")
                 .With("Left", "<Keyboard>/a")
@@ -274,6 +281,7 @@ namespace EasyAccessibility.Tests.RebindableKeys
         private class TestIconSet : InputIconSet
         {
             public Sprite sprite;
+
             public override Sprite GetIcon(string controlPath) => sprite;
         }
     }

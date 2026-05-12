@@ -18,11 +18,15 @@ namespace EasyAccessibility.Tests.RebindableKeys
         string m_settingsSavePath;
         string m_settingsBackup;
 
-        static readonly FieldInfo k_ManagerInstance =
-            typeof(RebindableInputManager).GetField("m_instance", BindingFlags.NonPublic | BindingFlags.Static);
+        static readonly FieldInfo k_ManagerInstance = typeof(RebindableInputManager).GetField(
+            "m_instance",
+            BindingFlags.NonPublic | BindingFlags.Static
+        );
 
-        static readonly FieldInfo k_SettingsInstance =
-            typeof(AccessibilitySettings).GetField("m_instance", BindingFlags.NonPublic | BindingFlags.Static);
+        static readonly FieldInfo k_SettingsInstance = typeof(AccessibilitySettings).GetField(
+            "m_instance",
+            BindingFlags.NonPublic | BindingFlags.Static
+        );
 
         [SetUp]
         public void SetUp()
@@ -33,8 +37,13 @@ namespace EasyAccessibility.Tests.RebindableKeys
             m_settings = ScriptableObject.CreateInstance<AccessibilitySettings>();
             k_SettingsInstance.SetValue(null, m_settings);
 
-            m_settingsSavePath = Path.Combine(Application.persistentDataPath, "accessibility_settings.json");
-            m_settingsBackup = File.Exists(m_settingsSavePath) ? File.ReadAllText(m_settingsSavePath) : null;
+            m_settingsSavePath = Path.Combine(
+                Application.persistentDataPath,
+                "accessibility_settings.json"
+            );
+            m_settingsBackup = File.Exists(m_settingsSavePath)
+                ? File.ReadAllText(m_settingsSavePath)
+                : null;
 
             m_asset = CreateTestAsset();
             m_actionA = m_asset.FindAction("ActionA");
@@ -77,8 +86,10 @@ namespace EasyAccessibility.Tests.RebindableKeys
         }
 
         BindingConflict CreateConflict(
-            InputAction action, int bindingIndex,
-            InputAction conflictingAction, int conflictingBindingIndex,
+            InputAction action,
+            int bindingIndex,
+            InputAction conflictingAction,
+            int conflictingBindingIndex,
             string oldPath
         )
         {
@@ -88,7 +99,7 @@ namespace EasyAccessibility.Tests.RebindableKeys
                 bindingIndex = bindingIndex,
                 conflictingAction = conflictingAction,
                 conflictingBindingIndex = conflictingBindingIndex,
-                oldPath = oldPath
+                oldPath = oldPath,
             };
         }
 
@@ -170,7 +181,12 @@ namespace EasyAccessibility.Tests.RebindableKeys
             int callCount = 0;
             InputAction receivedAction = null;
             int receivedIndex = int.MinValue;
-            m_manager.OnBindingChanged += (a, i) => { callCount++; receivedAction = a; receivedIndex = i; };
+            m_manager.OnBindingChanged += (a, i) =>
+            {
+                callCount++;
+                receivedAction = a;
+                receivedIndex = i;
+            };
             m_actionA.ApplyBindingOverride(0, "<Keyboard>/z");
 
             m_manager.ResetBinding(m_actionA, 0);
@@ -214,7 +230,12 @@ namespace EasyAccessibility.Tests.RebindableKeys
             int callCount = 0;
             InputAction receivedAction = new InputAction();
             int receivedIndex = int.MinValue;
-            m_manager.OnBindingChanged += (a, i) => { callCount++; receivedAction = a; receivedIndex = i; };
+            m_manager.OnBindingChanged += (a, i) =>
+            {
+                callCount++;
+                receivedAction = a;
+                receivedIndex = i;
+            };
 
             m_manager.ResetAllBindings();
 
@@ -235,7 +256,9 @@ namespace EasyAccessibility.Tests.RebindableKeys
             m_manager.SaveBindings();
 
             Assert.IsFalse(string.IsNullOrEmpty(m_settings.rebindableKeys));
-            Assert.DoesNotThrow(() => m_asset.LoadBindingOverridesFromJson(m_settings.rebindableKeys));
+            Assert.DoesNotThrow(() =>
+                m_asset.LoadBindingOverridesFromJson(m_settings.rebindableKeys)
+            );
         }
 
         [Test]

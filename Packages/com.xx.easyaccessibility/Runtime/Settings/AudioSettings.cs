@@ -5,8 +5,5 @@ namespace EasyAccessibility
     /*TODO:
      * - Implement, consider finding a way to make an interface instead
      */
-    public class AudioSettings : MonoBehaviour
-    {
-
-    }
+    public class AudioSettings : MonoBehaviour { }
 }

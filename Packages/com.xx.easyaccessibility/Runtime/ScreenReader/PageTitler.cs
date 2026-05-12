@@ -2,8 +2,5 @@ using UnityEngine;
 
 namespace EasyAccessibility
 {
-    public class PageTitler : MonoBehaviour
-    {
-
-    }
+    public class PageTitler : MonoBehaviour { }
 }

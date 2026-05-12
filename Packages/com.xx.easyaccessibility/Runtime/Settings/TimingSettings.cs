@@ -9,8 +9,5 @@ namespace EasyAccessibility
      *   - Time limit adjustable up to 10x default
      *   - Offer a warning about time
      */
-    public class TimingSettings : MonoBehaviour
-    {
-
-    }
+    public class TimingSettings : MonoBehaviour { }
 }

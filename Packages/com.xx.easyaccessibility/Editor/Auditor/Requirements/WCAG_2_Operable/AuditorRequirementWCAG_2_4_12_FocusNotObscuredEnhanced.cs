@@ -1,6 +1,7 @@
 namespace EasyAccessibility
 {
-    public class AuditorRequirementWCAG_2_4_12_FocusNotObscuredEnhanced : AuditorRequirementWCAG_2_4_11_FocusNotObscuredMinimum
+    public class AuditorRequirementWCAG_2_4_12_FocusNotObscuredEnhanced
+        : AuditorRequirementWCAG_2_4_11_FocusNotObscuredMinimum
     {
         public AuditorRequirementWCAG_2_4_12_FocusNotObscuredEnhanced()
         {

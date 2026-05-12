@@ -1,6 +1,7 @@
 namespace EasyAccessibility
 {
-    public class AuditorRequirementWCAG_3_3_06_ErrorPreventionAll : AuditorRequirementWCAG_3_3_04_ErrorPrevention
+    public class AuditorRequirementWCAG_3_3_06_ErrorPreventionAll
+        : AuditorRequirementWCAG_3_3_04_ErrorPrevention
     {
         public AuditorRequirementWCAG_3_3_06_ErrorPreventionAll()
         {

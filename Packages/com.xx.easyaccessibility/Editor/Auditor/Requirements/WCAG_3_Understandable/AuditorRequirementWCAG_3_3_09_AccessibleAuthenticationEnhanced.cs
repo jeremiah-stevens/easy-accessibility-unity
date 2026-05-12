@@ -1,6 +1,7 @@
 namespace EasyAccessibility
 {
-    public class AuditorRequirementWCAG_3_3_09_AccessibleAuthenticationEnhanced : AuditorRequirementWCAG_3_3_08_AccessibleAuthenticationMinimum
+    public class AuditorRequirementWCAG_3_3_09_AccessibleAuthenticationEnhanced
+        : AuditorRequirementWCAG_3_3_08_AccessibleAuthenticationMinimum
     {
         public AuditorRequirementWCAG_3_3_09_AccessibleAuthenticationEnhanced()
         {

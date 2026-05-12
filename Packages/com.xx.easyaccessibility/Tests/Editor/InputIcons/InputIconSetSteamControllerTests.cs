@@ -11,12 +11,18 @@ namespace EasyAccessibility.Tests.InputIcons
     {
         InputIconSetSteamController m_steamController;
 
-        static readonly FieldInfo k_Atlas =
-            typeof(InputIconSetSteamController).GetField("m_atlas", BindingFlags.NonPublic | BindingFlags.Instance);
-        static readonly FieldInfo k_Overrides =
-            typeof(InputIconSetSteamController).GetField("m_overrides", BindingFlags.NonPublic | BindingFlags.Instance);
-        static readonly FieldInfo k_Suffix =
-            typeof(InputIconSetSteamController).GetField("suffix", BindingFlags.NonPublic | BindingFlags.Instance);
+        static readonly FieldInfo k_Atlas = typeof(InputIconSetSteamController).GetField(
+            "m_atlas",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
+        static readonly FieldInfo k_Overrides = typeof(InputIconSetSteamController).GetField(
+            "m_overrides",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
+        static readonly FieldInfo k_Suffix = typeof(InputIconSetSteamController).GetField(
+            "suffix",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
 
         [SetUp]
         public void SetUp()
@@ -29,7 +35,8 @@ namespace EasyAccessibility.Tests.InputIcons
         public void TearDown()
         {
             var overrides = k_Overrides.GetValue(m_steamController) as InputIconSet;
-            if (overrides != null) DestroyImmediate(overrides);
+            if (overrides != null)
+                DestroyImmediate(overrides);
             DestroyImmediate(m_steamController);
         }
 
@@ -38,8 +45,11 @@ namespace EasyAccessibility.Tests.InputIcons
         static SpriteAtlas LoadSteamControllerAtlas()
         {
             var guids = AssetDatabase.FindAssets("TestAtlas_SteamController t:SpriteAtlas");
-            if (guids.Length == 0) return null;
-            return AssetDatabase.LoadAssetAtPath<SpriteAtlas>(AssetDatabase.GUIDToAssetPath(guids[0]));
+            if (guids.Length == 0)
+                return null;
+            return AssetDatabase.LoadAssetAtPath<SpriteAtlas>(
+                AssetDatabase.GUIDToAssetPath(guids[0])
+            );
         }
 
         Sprite MakeSprite() =>
@@ -51,29 +61,45 @@ namespace EasyAccessibility.Tests.InputIcons
 
         static readonly string[] k_FaceAndShoulderPaths =
         {
-            "<Gamepad>/buttonSouth", "<Gamepad>/buttonEast",
-            "<Gamepad>/buttonNorth", "<Gamepad>/buttonWest",
-            "<Gamepad>/leftShoulder",  "<Gamepad>/rightShoulder",
-            "<Gamepad>/leftTrigger",   "<Gamepad>/rightTrigger",
-            "<Gamepad>/start", "<Gamepad>/select",
+            "<Gamepad>/buttonSouth",
+            "<Gamepad>/buttonEast",
+            "<Gamepad>/buttonNorth",
+            "<Gamepad>/buttonWest",
+            "<Gamepad>/leftShoulder",
+            "<Gamepad>/rightShoulder",
+            "<Gamepad>/leftTrigger",
+            "<Gamepad>/rightTrigger",
+            "<Gamepad>/start",
+            "<Gamepad>/select",
         };
 
         static readonly string[] k_StickPaths =
         {
-            "<Gamepad>/leftStick",       "<Gamepad>/leftStick/up",    "<Gamepad>/leftStick/down",
-            "<Gamepad>/leftStick/left",  "<Gamepad>/leftStick/right", "<Gamepad>/leftStickPress",
+            "<Gamepad>/leftStick",
+            "<Gamepad>/leftStick/up",
+            "<Gamepad>/leftStick/down",
+            "<Gamepad>/leftStick/left",
+            "<Gamepad>/leftStick/right",
+            "<Gamepad>/leftStickPress",
         };
 
         static readonly string[] k_TrackpadRightPaths =
         {
-            "<Gamepad>/rightStick",      "<Gamepad>/rightStick/up",   "<Gamepad>/rightStick/down",
-            "<Gamepad>/rightStick/left", "<Gamepad>/rightStick/right", "<Gamepad>/rightStickPress",
+            "<Gamepad>/rightStick",
+            "<Gamepad>/rightStick/up",
+            "<Gamepad>/rightStick/down",
+            "<Gamepad>/rightStick/left",
+            "<Gamepad>/rightStick/right",
+            "<Gamepad>/rightStickPress",
         };
 
         static readonly string[] k_TrackpadLeftPaths =
         {
-            "<Gamepad>/dpad",      "<Gamepad>/dpad/up",   "<Gamepad>/dpad/down",
-            "<Gamepad>/dpad/left", "<Gamepad>/dpad/right",
+            "<Gamepad>/dpad",
+            "<Gamepad>/dpad/up",
+            "<Gamepad>/dpad/down",
+            "<Gamepad>/dpad/left",
+            "<Gamepad>/dpad/right",
         };
 
         [TestCaseSource(nameof(k_FaceAndShoulderPaths))]
@@ -149,6 +175,7 @@ namespace EasyAccessibility.Tests.InputIcons
         {
             public Sprite sprite;
             public string matchPath;
+
             public override Sprite GetIcon(string controlPath) =>
                 controlPath == matchPath ? sprite : null;
         }

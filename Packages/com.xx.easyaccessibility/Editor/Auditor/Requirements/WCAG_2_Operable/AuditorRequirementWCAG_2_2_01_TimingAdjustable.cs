@@ -13,9 +13,6 @@ namespace EasyAccessibility
             AuditForInstanceWithCamera<TimingSettings>("has no TimingSettings provider.");
         }
 
-
-
-
         public AuditorRequirementWCAG_2_2_01_TimingAdjustable()
         {
             source = AuditorRequirementKeys.Source_WCAG;

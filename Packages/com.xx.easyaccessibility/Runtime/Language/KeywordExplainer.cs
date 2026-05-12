@@ -7,8 +7,5 @@ namespace EasyAccessibility
      *   - Database of keywords to search for (Localization Table?)
      *   - Access to the text throughout the app to overlay links when these come up
      */
-    public class KeywordExplainer : MonoBehaviour
-    {
-
-    }
+    public class KeywordExplainer : MonoBehaviour { }
 }

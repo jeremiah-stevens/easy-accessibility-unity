@@ -7,10 +7,10 @@ using static EasyAccessibility.AccessibilitySettings.ColorblindCorrectionMode;
 
 namespace EasyAccessibility.Tests.Colorblind
 {
-    
     public class DaltonizationLUTGeneratorTests
     {
-        const string k_BasePath = "Packages/com.xx.easyaccessibility/Runtime/Colorblindness/Rendering";
+        const string k_BasePath =
+            "Packages/com.xx.easyaccessibility/Runtime/Colorblindness/Rendering";
         const int k_TestResolution = 4;
 
         [TearDown]
@@ -36,7 +36,10 @@ namespace EasyAccessibility.Tests.Colorblind
         [Test]
         public void GenerateLUT_None_LogsAndSkipsGeneration()
         {
-            LogAssert.Expect(LogType.Log, new System.Text.RegularExpressions.Regex("No need to generate"));
+            LogAssert.Expect(
+                LogType.Log,
+                new System.Text.RegularExpressions.Regex("No need to generate")
+            );
             Assert.DoesNotThrow(() => DaltonizationLUTGenerator.GenerateLUT(None));
         }
 
@@ -44,7 +47,10 @@ namespace EasyAccessibility.Tests.Colorblind
         public void GenerateLUT_InvalidMode_LogsErrorAndSkipsGeneration()
         {
             var badMode = (AccessibilitySettings.ColorblindCorrectionMode)99;
-            LogAssert.Expect(LogType.Error, new System.Text.RegularExpressions.Regex("No matrix for"));
+            LogAssert.Expect(
+                LogType.Error,
+                new System.Text.RegularExpressions.Regex("No matrix for")
+            );
             Assert.DoesNotThrow(() => DaltonizationLUTGenerator.GenerateLUT(badMode));
         }
 
@@ -101,8 +107,11 @@ namespace EasyAccessibility.Tests.Colorblind
             foreach (var mode in new[] { Protanopia, Deuteranopia, Tritanopia })
             {
                 var data = DaltonizationLUTGenerator.ComputeLUT(mode, k_TestResolution);
-                Assert.AreEqual(Color.black, data[LutIndex(0, 0, 0)],
-                    $"Expected black→black for {mode}");
+                Assert.AreEqual(
+                    Color.black,
+                    data[LutIndex(0, 0, 0)],
+                    $"Expected black→black for {mode}"
+                );
             }
         }
 
@@ -116,8 +125,12 @@ namespace EasyAccessibility.Tests.Colorblind
                 var data = DaltonizationLUTGenerator.ComputeLUT(mode, k_TestResolution);
                 for (int r = 0; r < k_TestResolution; r++)
                 {
-                    Assert.AreEqual(r / scale, data[LutIndex(r, 0, 0)].r, 1e-5f,
-                        $"Red channel not preserved at r={r} for {mode}");
+                    Assert.AreEqual(
+                        r / scale,
+                        data[LutIndex(r, 0, 0)].r,
+                        1e-5f,
+                        $"Red channel not preserved at r={r} for {mode}"
+                    );
                 }
             }
         }
@@ -128,9 +141,12 @@ namespace EasyAccessibility.Tests.Colorblind
             var data = DaltonizationLUTGenerator.ComputeLUT(Protanopia, k_TestResolution);
             foreach (var p in data)
             {
-                Assert.GreaterOrEqual(p.r, 0f); Assert.LessOrEqual(p.r, 1f);
-                Assert.GreaterOrEqual(p.g, 0f); Assert.LessOrEqual(p.g, 1f);
-                Assert.GreaterOrEqual(p.b, 0f); Assert.LessOrEqual(p.b, 1f);
+                Assert.GreaterOrEqual(p.r, 0f);
+                Assert.LessOrEqual(p.r, 1f);
+                Assert.GreaterOrEqual(p.g, 0f);
+                Assert.LessOrEqual(p.g, 1f);
+                Assert.GreaterOrEqual(p.b, 0f);
+                Assert.LessOrEqual(p.b, 1f);
             }
         }
 
@@ -146,7 +162,8 @@ namespace EasyAccessibility.Tests.Colorblind
 
             Assert.IsFalse(
                 pixels[0] == pixels[1] && pixels[1] == pixels[2],
-                "Expected different CVD matrices to produce different output at mid-point");
+                "Expected different CVD matrices to produce different output at mid-point"
+            );
         }
 
         #endregion

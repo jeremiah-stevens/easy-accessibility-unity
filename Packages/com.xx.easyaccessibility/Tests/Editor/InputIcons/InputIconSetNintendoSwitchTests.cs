@@ -12,14 +12,22 @@ namespace EasyAccessibility.Tests.InputIcons
         InputIconSetNintendoSwitch m_switch;
         InputIconSetNintendoSwitch2 m_switch2;
 
-        static readonly FieldInfo k_SwitchAtlas =
-            typeof(InputIconSetNintendoSwitch).GetField("m_atlas", BindingFlags.NonPublic | BindingFlags.Instance);
-        static readonly FieldInfo k_Switch2Atlas =
-            typeof(InputIconSetNintendoSwitch2).GetField("m_atlas", BindingFlags.NonPublic | BindingFlags.Instance);
-        static readonly FieldInfo k_SwitchOverrides =
-            typeof(InputIconSetNintendoSwitch).GetField("m_overrides", BindingFlags.NonPublic | BindingFlags.Instance);
-        static readonly FieldInfo k_SwitchSuffix =
-            typeof(InputIconSetNintendoSwitch).GetField("suffix", BindingFlags.NonPublic | BindingFlags.Instance);
+        static readonly FieldInfo k_SwitchAtlas = typeof(InputIconSetNintendoSwitch).GetField(
+            "m_atlas",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
+        static readonly FieldInfo k_Switch2Atlas = typeof(InputIconSetNintendoSwitch2).GetField(
+            "m_atlas",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
+        static readonly FieldInfo k_SwitchOverrides = typeof(InputIconSetNintendoSwitch).GetField(
+            "m_overrides",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
+        static readonly FieldInfo k_SwitchSuffix = typeof(InputIconSetNintendoSwitch).GetField(
+            "suffix",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
 
         [SetUp]
         public void SetUp()
@@ -35,7 +43,8 @@ namespace EasyAccessibility.Tests.InputIcons
         public void TearDown()
         {
             var overrides = k_SwitchOverrides.GetValue(m_switch) as InputIconSet;
-            if (overrides != null) DestroyImmediate(overrides);
+            if (overrides != null)
+                DestroyImmediate(overrides);
             DestroyImmediate(m_switch);
             DestroyImmediate(m_switch2);
         }
@@ -45,8 +54,11 @@ namespace EasyAccessibility.Tests.InputIcons
         static SpriteAtlas LoadSwitchAtlas()
         {
             var guids = AssetDatabase.FindAssets("TestAtlas_Switch t:SpriteAtlas");
-            if (guids.Length == 0) return null;
-            return AssetDatabase.LoadAssetAtPath<SpriteAtlas>(AssetDatabase.GUIDToAssetPath(guids[0]));
+            if (guids.Length == 0)
+                return null;
+            return AssetDatabase.LoadAssetAtPath<SpriteAtlas>(
+                AssetDatabase.GUIDToAssetPath(guids[0])
+            );
         }
 
         Sprite MakeSprite() =>
@@ -59,22 +71,38 @@ namespace EasyAccessibility.Tests.InputIcons
         static readonly string[] k_AllPaths =
         {
             // Face buttons
-            "<Gamepad>/buttonSouth", "<Gamepad>/buttonEast",
-            "<Gamepad>/buttonNorth", "<Gamepad>/buttonWest",
+            "<Gamepad>/buttonSouth",
+            "<Gamepad>/buttonEast",
+            "<Gamepad>/buttonNorth",
+            "<Gamepad>/buttonWest",
             // Shoulders and triggers
-            "<Gamepad>/leftShoulder",  "<Gamepad>/rightShoulder",
-            "<Gamepad>/leftTrigger",   "<Gamepad>/rightTrigger",
+            "<Gamepad>/leftShoulder",
+            "<Gamepad>/rightShoulder",
+            "<Gamepad>/leftTrigger",
+            "<Gamepad>/rightTrigger",
             // System
-            "<Gamepad>/start", "<Gamepad>/select",
+            "<Gamepad>/start",
+            "<Gamepad>/select",
             // Left stick
-            "<Gamepad>/leftStick",       "<Gamepad>/leftStick/up",    "<Gamepad>/leftStick/down",
-            "<Gamepad>/leftStick/left",  "<Gamepad>/leftStick/right", "<Gamepad>/leftStickPress",
+            "<Gamepad>/leftStick",
+            "<Gamepad>/leftStick/up",
+            "<Gamepad>/leftStick/down",
+            "<Gamepad>/leftStick/left",
+            "<Gamepad>/leftStick/right",
+            "<Gamepad>/leftStickPress",
             // Right stick
-            "<Gamepad>/rightStick",      "<Gamepad>/rightStick/up",   "<Gamepad>/rightStick/down",
-            "<Gamepad>/rightStick/left", "<Gamepad>/rightStick/right", "<Gamepad>/rightStickPress",
+            "<Gamepad>/rightStick",
+            "<Gamepad>/rightStick/up",
+            "<Gamepad>/rightStick/down",
+            "<Gamepad>/rightStick/left",
+            "<Gamepad>/rightStick/right",
+            "<Gamepad>/rightStickPress",
             // D-Pad
-            "<Gamepad>/dpad",      "<Gamepad>/dpad/up",   "<Gamepad>/dpad/down",
-            "<Gamepad>/dpad/left", "<Gamepad>/dpad/right",
+            "<Gamepad>/dpad",
+            "<Gamepad>/dpad/up",
+            "<Gamepad>/dpad/down",
+            "<Gamepad>/dpad/left",
+            "<Gamepad>/dpad/right",
         };
 
         [TestCaseSource(nameof(k_AllPaths))]
@@ -138,6 +166,7 @@ namespace EasyAccessibility.Tests.InputIcons
         {
             public Sprite sprite;
             public string matchPath;
+
             public override Sprite GetIcon(string controlPath) =>
                 controlPath == matchPath ? sprite : null;
         }

@@ -28,7 +28,6 @@ namespace EasyAccessibility
         }
         public static bool IsInitialized => m_instance != null;
 
-
         [Header("Bindings")]
         InputActionRebindingExtensions.RebindingOperation m_currentRebindOperation;
 
@@ -37,13 +36,14 @@ namespace EasyAccessibility
         /// Event fired when a rebind is cancelled by the user (e.g. by pressing the cancel button or by timing out).
         /// </summary>
         public UnityEvent onBindingCancelled = new UnityEvent();
-        
+
         /// <summary>
         /// Event fired when a rebind conflicts with an existing key (ex: two actions mapped to the space bar). If a
         /// listener is registered for this event, the binding will be rejected and the old binding will be restored.
         /// Otherwise, the new binding will be accepted.
         /// </summary>
         public UnityEvent onBindingConflict = new UnityEvent();
+
         /// <summary>
         /// Event fired when a binding is changed. Provides the InputAction and the index of the binding that was changed.
         /// If the action is null, the binding was fully reset from ResetAllBindings.
@@ -73,29 +73,31 @@ namespace EasyAccessibility
         /// The current icon set being used.
         ///</summary>
         public InputIconSet iconSet;
+
         /// <summary>
         /// The last used device for this input system. This is used to determine if a device change has occurred.
         /// </summary>
         public InputDevice LastUsedDevice { get; private set; }
 
         [Header("Actions")]
-        [Tooltip("The InputActionAsset whose bindings are managed. Leave empty to use the project-wide asset from Input System settings.")]
+        [Tooltip(
+            "The InputActionAsset whose bindings are managed. Leave empty to use the project-wide asset from Input System settings."
+        )]
         public InputActionAsset actionsAsset;
 
         [Header("Excluded Paths")]
         ///<summary>
         /// Inputs to exclude when listening for rebinds.
         ///</summary>
-        public ExcludedControl excludedControls = ExcludedControl.MousePosition | ExcludedControl.MouseDelta | ExcludedControl.PointerPosition;
+        public ExcludedControl excludedControls =
+            ExcludedControl.MousePosition
+            | ExcludedControl.MouseDelta
+            | ExcludedControl.PointerPosition;
+
         /// <summary>
         /// Additional inputs to exclude when listening for rebinds, as input paths.
         /// </summary>
         public string[] additionalExcludedPaths = new string[] { };
-
-        
-
-
-
 
         /// <summary>
         /// Starts a rebind on the given InputAction and binding index. The binding index can be found in the InputAction's
@@ -135,16 +137,18 @@ namespace EasyAccessibility
                     // Infer control type from a sibling composite part
                     for (int i = 0; i < input.bindings.Count; i++)
                     {
-                        if (i == bindingIndex || !input.bindings[i].isPartOfComposite) continue;
+                        if (i == bindingIndex || !input.bindings[i].isPartOfComposite)
+                            continue;
                         var siblingPath = input.bindings[i].effectivePath;
                         if (!string.IsNullOrEmpty(siblingPath))
                         {
                             control = InputSystem.FindControl(siblingPath);
-                            if (control != null) break;
+                            if (control != null)
+                                break;
                         }
                     }
                 }
-                
+
                 if (control is ButtonControl)
                     operation.WithExpectedControlType("Button");
                 else if (control is AxisControl)
@@ -169,7 +173,8 @@ namespace EasyAccessibility
                     m_currentRebindOperation = null;
 
                     //check for a conflict
-                    if(CheckForConflict(input, bindingIndex, oldPath)) return;
+                    if (CheckForConflict(input, bindingIndex, oldPath))
+                        return;
 
                     SaveBindings();
                     OnBindingChanged?.Invoke(input, bindingIndex);
@@ -177,20 +182,27 @@ namespace EasyAccessibility
                 .Start();
         }
 
-        private InputActionAsset GetActions() => actionsAsset != null ? actionsAsset : InputSystem.actions;
+        private InputActionAsset GetActions() =>
+            actionsAsset != null ? actionsAsset : InputSystem.actions;
 
         private IEnumerable<string> GetExcludedPaths()
         {
-            if (excludedControls.HasFlag(ExcludedControl.MousePosition))   yield return "<Mouse>/position";
-            if (excludedControls.HasFlag(ExcludedControl.MouseDelta))      yield return "<Mouse>/delta";
-            if (excludedControls.HasFlag(ExcludedControl.MouseScroll))     yield return "<Mouse>/scroll";
-            if (excludedControls.HasFlag(ExcludedControl.PointerPosition)) yield return "<Pointer>/position";
-            if (excludedControls.HasFlag(ExcludedControl.TouchPosition))   yield return "<Touchscreen>/touch*/position";
+            if (excludedControls.HasFlag(ExcludedControl.MousePosition))
+                yield return "<Mouse>/position";
+            if (excludedControls.HasFlag(ExcludedControl.MouseDelta))
+                yield return "<Mouse>/delta";
+            if (excludedControls.HasFlag(ExcludedControl.MouseScroll))
+                yield return "<Mouse>/scroll";
+            if (excludedControls.HasFlag(ExcludedControl.PointerPosition))
+                yield return "<Pointer>/position";
+            if (excludedControls.HasFlag(ExcludedControl.TouchPosition))
+                yield return "<Touchscreen>/touch*/position";
 
             //adds synthetics controls to the exclusion set
             yield return "<Keyboard>/anyKey";
 
-            foreach (var path in additionalExcludedPaths) yield return path;
+            foreach (var path in additionalExcludedPaths)
+                yield return path;
         }
 
         #region Conflict Resolution
@@ -205,6 +217,7 @@ namespace EasyAccessibility
             ResetBinding(c.action, c.bindingIndex);
             SaveBindings();
         }
+
         /// <summary>
         /// Resolves the given conflict by clearing the value of the conflicting keybind.
         /// </summary>
@@ -219,6 +232,7 @@ namespace EasyAccessibility
             OnBindingChanged?.Invoke(c.conflictingAction, c.conflictingBindingIndex);
             OnBindingChanged?.Invoke(c.action, c.bindingIndex);
         }
+
         /// <summary>
         /// Resolves the given conflict by swapping the two bindings.
         /// </summary>
@@ -245,7 +259,7 @@ namespace EasyAccessibility
                     bindingIndex = bindingIndex,
                     conflictingAction = conflict.Value.action,
                     conflictingBindingIndex = conflict.Value.bindingIndex,
-                    oldPath = oldPath
+                    oldPath = oldPath,
                 };
 
                 onBindingConflict.Invoke();
@@ -254,14 +268,18 @@ namespace EasyAccessibility
             return false;
         }
 
-        private (InputAction action, int bindingIndex)? FindConflict(InputAction reboundAction, int reboundIndex)
+        private (InputAction action, int bindingIndex)? FindConflict(
+            InputAction reboundAction,
+            int reboundIndex
+        )
         {
             var newPath = reboundAction.bindings[reboundIndex].effectivePath;
             foreach (var action in reboundAction.actionMap.actions)
             {
                 for (int i = 0; i < action.bindings.Count; i++)
                 {
-                    if (action == reboundAction && i == reboundIndex) continue;
+                    if (action == reboundAction && i == reboundIndex)
+                        continue;
                     if (action.bindings[i].effectivePath == newPath)
                         return (action, i);
                 }
@@ -288,7 +306,7 @@ namespace EasyAccessibility
         /// <param name="bindingIndex">Index of the binding to reset</param>
         public void ResetBinding(InputAction input, int bindingIndex)
         {
-            if(input == null || bindingIndex < 0 || bindingIndex >= input.bindings.Count)
+            if (input == null || bindingIndex < 0 || bindingIndex >= input.bindings.Count)
             {
                 Debug.LogWarning("Invalid input or binding index provided for ResetBinding.");
                 return;
@@ -317,9 +335,11 @@ namespace EasyAccessibility
         public void SaveBindings()
         {
             var asset = GetActions();
-            if(asset == null)
+            if (asset == null)
             {
-                Debug.LogError("No default InputActionAsset configured. Set one in Project Settings → Input System.");
+                Debug.LogError(
+                    "No default InputActionAsset configured. Set one in Project Settings → Input System."
+                );
                 return;
             }
 
@@ -334,12 +354,14 @@ namespace EasyAccessibility
         public void LoadBindings()
         {
             var asset = GetActions();
-            if(asset == null)
+            if (asset == null)
             {
-                Debug.LogError("No default InputActionAsset configured. Set one in Project Settings → Input System.");
+                Debug.LogError(
+                    "No default InputActionAsset configured. Set one in Project Settings → Input System."
+                );
                 return;
             }
-            if(string.IsNullOrEmpty(AccessibilitySettings.Instance.rebindableKeys))
+            if (string.IsNullOrEmpty(AccessibilitySettings.Instance.rebindableKeys))
             {
                 Debug.Log("No rebinds found in settings, skipping load.");
                 return;
@@ -348,28 +370,33 @@ namespace EasyAccessibility
             asset.LoadBindingOverridesFromJson(AccessibilitySettings.Instance.rebindableKeys);
         }
 
-        private void HandleActionChange(object obj, InputActionChange change) {
-            if (change != InputActionChange.ActionPerformed) return;
+        private void HandleActionChange(object obj, InputActionChange change)
+        {
+            if (change != InputActionChange.ActionPerformed)
+                return;
             var device = ((InputAction)obj).activeControl?.device;
-            if (device == null || device == LastUsedDevice) return;
+            if (device == null || device == LastUsedDevice)
+                return;
             LastUsedDevice = device;
             OnDeviceChanged?.Invoke(device);
         }
 
-
-
-
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void AutoInitialize()
         {
-            if(m_instance != null) return;
+            if (m_instance != null)
+                return;
             _ = Instance; // creates the object + triggers Awake → LoadBindings
         }
 
         void Awake()
         {
             //Singleton behavior
-            if (m_instance != null) { Destroy(gameObject); return; }
+            if (m_instance != null)
+            {
+                Destroy(gameObject);
+                return;
+            }
             m_instance = this;
             if (Application.isPlaying)
                 DontDestroyOnLoad(gameObject);
@@ -378,14 +405,18 @@ namespace EasyAccessibility
             InputSystem.onActionChange += HandleActionChange;
 
             if (iconSet == null)
-                Debug.LogWarning("RebindableInputManager: No icon set assigned. Input icons will not be shown.", this);
+                Debug.LogWarning(
+                    "RebindableInputManager: No icon set assigned. Input icons will not be shown.",
+                    this
+                );
 
             LoadBindings();
         }
 
         void OnDestroy()
         {
-            if(m_instance == this) m_instance = null;
+            if (m_instance == this)
+                m_instance = null;
             CancelRebind();
 
             InputSystem.onActionChange -= HandleActionChange;
@@ -395,7 +426,10 @@ namespace EasyAccessibility
         void OnValidate()
         {
             if (iconSet == null)
-                Debug.LogWarning("RebindableInputManager: iconSet is not assigned. Input icons will not be shown.", this);
+                Debug.LogWarning(
+                    "RebindableInputManager: iconSet is not assigned. Input icons will not be shown.",
+                    this
+                );
         }
 #endif
     }

@@ -9,8 +9,8 @@ namespace EasyAccessibility
     [CreateAssetMenu(menuName = "Easy Accessibility/Icon Set/PlayStation 3")]
     public class InputIconSetPlayStation3 : InputIconSetPlayStation
     {
-        protected override string Prefix      => "3";
-        protected override string StartName   => "button_start";
-        protected override string SelectName  => "button_select";
+        protected override string Prefix => "3";
+        protected override string StartName => "button_start";
+        protected override string SelectName => "button_select";
     }
 }

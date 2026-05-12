@@ -10,10 +10,9 @@ namespace EasyAccessibility
         public AuditorRequirementWCAG_2_1_01_Keyboard()
         {
             source = AuditorRequirementKeys.Source_WCAG;
-            name = AuditorRequirementKeys.GetTitle(2,1,1);
-            description = AuditorRequirementKeys.GetDescription(2,1,1);
-            referenceLink = AuditorRequirementKeys.GetUrl(2,1,1);
-            
+            name = AuditorRequirementKeys.GetTitle(2, 1, 1);
+            description = AuditorRequirementKeys.GetDescription(2, 1, 1);
+            referenceLink = AuditorRequirementKeys.GetUrl(2, 1, 1);
         }
     }
 }

@@ -1,7 +1,6 @@
 #if UNITY_EDITOR
 using UnityEngine;
 
-
 namespace EasyAccessibility
 {
     /// <summary>
@@ -12,15 +11,18 @@ namespace EasyAccessibility
     public class ColorblindSimulationBuiltIn : MonoBehaviour
     {
         [Header("Override")]
-        [SerializeField] bool overrideSettings;
-        [SerializeField] AccessibilitySettings.ColorblindSimulationMode mode;
-        [SerializeField][Range(0f, 1f)] float amount = 1;
+        [SerializeField]
+        bool overrideSettings;
+
+        [SerializeField]
+        AccessibilitySettings.ColorblindSimulationMode mode;
+
+        [SerializeField]
+        [Range(0f, 1f)]
+        float amount = 1;
 
         //state
         private Material m_renderMaterial;
-
-
-
 
         void Start()
         {
@@ -36,10 +38,17 @@ namespace EasyAccessibility
 
         void OnRenderImage(RenderTexture source, RenderTexture destination)
         {
-            if (m_renderMaterial == null) return;
+            if (m_renderMaterial == null)
+                return;
 
-            m_renderMaterial.SetInt("_Mode", (int)AccessibilitySettings.Instance.colorblindSimulationMode);
-            m_renderMaterial.SetFloat("_Amount", AccessibilitySettings.Instance.colorblindSimulationAmount);
+            m_renderMaterial.SetInt(
+                "_Mode",
+                (int)AccessibilitySettings.Instance.colorblindSimulationMode
+            );
+            m_renderMaterial.SetFloat(
+                "_Amount",
+                AccessibilitySettings.Instance.colorblindSimulationAmount
+            );
 
             if (overrideSettings)
             {

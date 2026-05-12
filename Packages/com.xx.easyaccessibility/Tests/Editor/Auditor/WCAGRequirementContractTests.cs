@@ -8,8 +8,8 @@ namespace EasyAccessibility.Tests.Auditor
     public class WCAGRequirementContractTests
     {
         static IEnumerable<TestCaseData> AllRequirementTypes() =>
-            typeof(AuditorRequirement).Assembly
-                .GetTypes()
+            typeof(AuditorRequirement)
+                .Assembly.GetTypes()
                 .Where(t => t.IsSubclassOf(typeof(AuditorRequirement)) && !t.IsAbstract)
                 .Select(t => new TestCaseData(t).SetName(t.Name));
 

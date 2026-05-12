@@ -15,18 +15,30 @@ namespace EasyAccessibility.Tests.Colorblind
         AccessibilitySettings m_settings;
         List<Object> m_cleanup;
 
-        static readonly FieldInfo k_Instance =
-            typeof(AccessibilitySettings).GetField("m_instance", BindingFlags.NonPublic | BindingFlags.Static);
-        static readonly FieldInfo k_RenderMaterial =
-            typeof(ColorblindSimulationBuiltIn).GetField("m_renderMaterial", BindingFlags.NonPublic | BindingFlags.Instance);
-        static readonly FieldInfo k_OverrideSettings =
-            typeof(ColorblindSimulationBuiltIn).GetField("overrideSettings", BindingFlags.NonPublic | BindingFlags.Instance);
-        static readonly FieldInfo k_Mode =
-            typeof(ColorblindSimulationBuiltIn).GetField("mode", BindingFlags.NonPublic | BindingFlags.Instance);
-        static readonly FieldInfo k_Amount =
-            typeof(ColorblindSimulationBuiltIn).GetField("amount", BindingFlags.NonPublic | BindingFlags.Instance);
-        static readonly MethodInfo k_OnRenderImage =
-            typeof(ColorblindSimulationBuiltIn).GetMethod("OnRenderImage", BindingFlags.NonPublic | BindingFlags.Instance);
+        static readonly FieldInfo k_Instance = typeof(AccessibilitySettings).GetField(
+            "m_instance",
+            BindingFlags.NonPublic | BindingFlags.Static
+        );
+        static readonly FieldInfo k_RenderMaterial = typeof(ColorblindSimulationBuiltIn).GetField(
+            "m_renderMaterial",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
+        static readonly FieldInfo k_OverrideSettings = typeof(ColorblindSimulationBuiltIn).GetField(
+            "overrideSettings",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
+        static readonly FieldInfo k_Mode = typeof(ColorblindSimulationBuiltIn).GetField(
+            "mode",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
+        static readonly FieldInfo k_Amount = typeof(ColorblindSimulationBuiltIn).GetField(
+            "amount",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
+        static readonly MethodInfo k_OnRenderImage = typeof(ColorblindSimulationBuiltIn).GetMethod(
+            "OnRenderImage",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
 
         [SetUp]
         public void SetUp()
@@ -45,14 +57,21 @@ namespace EasyAccessibility.Tests.Colorblind
             DestroyImmediate(m_go);
             DestroyImmediate(m_settings);
             foreach (var obj in m_cleanup)
-                if (obj != null) DestroyImmediate(obj);
+                if (obj != null)
+                    DestroyImmediate(obj);
         }
 
         #region Helpers
 
-        T Track<T>(T obj) where T : Object { m_cleanup.Add(obj); return obj; }
+        T Track<T>(T obj)
+            where T : Object
+        {
+            m_cleanup.Add(obj);
+            return obj;
+        }
 
-        Material MakeMaterial() => Track(new Material(Shader.Find("EasyAccessibility/BuiltIn/ColorblindSimulation")));
+        Material MakeMaterial() =>
+            Track(new Material(Shader.Find("EasyAccessibility/BuiltIn/ColorblindSimulation")));
 
         void InvokeOnRenderImage()
         {
