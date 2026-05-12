@@ -1,0 +1,97 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # Package Validation
+  validate-package:
+    name: Validate Package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate package.json fields and version format
+        run: |
+          python3 - <<'EOF'
+          import json, sys, re
+
+          with open("Packages/com.xx.easyaccessibility/package.json") as f:
+              pkg = json.load(f)
+
+          required = ["name", "version", "displayName", "description", "unity", "author"]
+          missing = [k for k in required if k not in pkg]
+          if missing:
+              print(f"::error::Missing required package.json fields: {missing}")
+              sys.exit(1)
+
+          if not re.match(r"^\d+\.\d+\.\d+$", pkg["version"]):
+              print(f"::error::Version '{pkg['version']}' is not valid semver (expected X.Y.Z)")
+              sys.exit(1)
+
+          print(f"OK: {pkg['name']} v{pkg['version']}")
+          EOF
+
+      - name: Check CHANGELOG.md contains current version
+        run: |
+          VERSION=$(python3 -c "
+          import json
+          print(json.load(open('Packages/com.xx.easyaccessibility/package.json'))['version'])
+          ")
+
+          if ! grep -qF "$VERSION" "Packages/com.xx.easyaccessibility/CHANGELOG.md"; then
+            echo "::error::CHANGELOG.md has no entry for version $VERSION"
+            exit 1
+          fi
+
+          echo "CHANGELOG.md contains entry for v$VERSION"
+
+  # Linter
+  format:
+    name: C# Format Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Install CSharpier
+        run: dotnet tool install csharpier --global
+
+      - name: Check formatting
+        run: csharpier check Packages/com.xx.easyaccessibility
+
+  # Test Suite
+  test:
+    name: Unity Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Activate a Unity license before running tests.
+      # For a Personal license store UNITY_LICENSE (XML content), UNITY_EMAIL, UNITY_PASSWORD.
+      # For a Pro/Plus license also add UNITY_SERIAL.
+      # See: https://game.ci/docs/github/activation
+      - name: Run Unity tests (EditMode + PlayMode)
+        uses: game-ci/unity-test-runner@v4
+        id: unity-tests
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          unityVersion: 6000.3.10f1
+          testMode: all
+          artifactsPath: test-results
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: test-results
