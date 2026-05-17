@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using EasyAccessibility.DescriptiveMedia;
 using UnityEngine;
 
 namespace EasyAccessibility
@@ -45,6 +46,17 @@ namespace EasyAccessibility
         /// </summary>
         [Header("Rebindable Keys")]
         public string rebindableKeys;
+
+        /// <summary>
+        /// Which audio categories generate descriptive captions.
+        /// </summary>
+        [Header("Descriptive Audio")]
+        public AudioCategory enabledAudioCategories = AudioCategory.All;
+
+        /// <summary>
+        /// Media with a priority below this value will not generate captions.
+        /// </summary>
+        public int minimumMediaPriority = 0;
 
         private static AccessibilitySettings m_instance;
 

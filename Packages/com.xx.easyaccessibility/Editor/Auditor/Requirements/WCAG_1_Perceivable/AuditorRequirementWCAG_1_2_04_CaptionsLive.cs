@@ -1,6 +1,4 @@
-using UnityEditor;
-using UnityEditor.SceneManagement;
-using UnityEngine;
+using EasyAccessibility.DescriptiveMedia;
 
 namespace EasyAccessibility
 {
@@ -19,7 +17,9 @@ namespace EasyAccessibility
 
         private void AuditScenes()
         {
-            AuditForInstanceWithCamera<LiveCaptions>("has no LiveCaptions provider");
+            AuditForInstanceWithCamera<DescriptiveMediaSource>(
+                "has no DescriptiveMediaSource, add one to any GameObject with an AudioSource or VideoPlayer"
+            );
         }
 
         public AuditorRequirementWCAG_1_2_04_CaptionsLive()

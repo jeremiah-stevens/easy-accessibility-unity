@@ -1,3 +1,5 @@
+using EasyAccessibility.DescriptiveMedia;
+
 namespace EasyAccessibility
 {
     public class AuditorRequirementWCAG_1_2_09_AudioOnlyLive
@@ -9,7 +11,9 @@ namespace EasyAccessibility
 
             issues.Clear();
 
-            AuditForInstanceWithCamera<LiveCaptions>("has no LiveCaptions provider");
+            AuditForInstanceWithCamera<DescriptiveMediaSource>(
+                "has no DescriptiveMediaSource, add one to any GameObject with an AudioSource"
+            );
 
             this.status = (issues.Count == 0) ? Status.Pass : Status.Fail;
         }

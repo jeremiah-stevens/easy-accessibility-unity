@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using EasyAccessibility.DescriptiveMedia;
 using Unity.Properties;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -71,33 +72,32 @@ namespace EasyAccessibility
         protected void AuditForTranscripts<T>(string searchPattern)
             where T : UnityEngine.Object
         {
-            var assetTranscriptGuids = AssetDatabase.FindAssetGUIDs(
-                "t:assettranscriptso",
+            var descriptiveGuids = AssetDatabase.FindAssets(
+                "t:DescriptiveMediaSO",
                 new[] { "Assets" }
-            ); //TODO: find a way of finding IAssetTranscripts
-            var transcripts = new Dictionary<UnityEngine.Object, AssetTranscriptSO>();
-            foreach (var curr in assetTranscriptGuids)
+            );
+            var coveredAssets = new HashSet<UnityEngine.Object>();
+            foreach (var guid in descriptiveGuids)
             {
-                var currTranscriptSO = AssetDatabase.LoadAssetByGUID<AssetTranscriptSO>(curr);
-                transcripts.Add(currTranscriptSO.Asset, currTranscriptSO);
+                var path = AssetDatabase.GUIDToAssetPath(guid);
+                var descriptiveSO = AssetDatabase.LoadAssetAtPath<DescriptiveMediaSO>(path);
+                if (descriptiveSO?.MediaAsset != null)
+                    coveredAssets.Add(descriptiveSO.MediaAsset);
             }
 
-            var assets = AssetDatabase.FindAssetGUIDs(searchPattern, new[] { "Assets" });
-            foreach (var curr in assets)
+            var assets = AssetDatabase.FindAssets(searchPattern, new[] { "Assets" });
+            foreach (var guid in assets)
             {
-                var currAsset = AssetDatabase.LoadAssetByGUID<T>(curr);
-                if (transcripts.ContainsKey(currAsset))
-                {
-                    //TODO: validate transcript information
-                }
-                else
+                var path = AssetDatabase.GUIDToAssetPath(guid);
+                var currAsset = AssetDatabase.LoadAssetAtPath<T>(path);
+                if (!coveredAssets.Contains(currAsset))
                 {
                     issues.Add(
                         new Issue()
                         {
                             asset = currAsset,
                             issue =
-                                $"Asset '{currAsset.name}' does not have transcript information.",
+                                $"Asset '{currAsset.name}' does not have descriptive media information.",
                         }
                     );
                 }
