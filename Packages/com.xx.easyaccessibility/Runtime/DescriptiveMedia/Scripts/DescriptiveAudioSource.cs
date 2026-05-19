@@ -63,10 +63,25 @@ namespace EasyAccessibility.DescriptiveMedia
             DescriptiveMediaManager.Instance.RegisterPlayOneShot(this);
         }
 
+        // Set when playOnAwake is intercepted; Play() is deferred to Start().
+        private bool _pendingAutoPlay;
+
         private void Awake()
         {
             if (_audioSource == null)
                 _audioSource = GetComponent<AudioSource>();
+
+            if (_audioSource != null && _audioSource.playOnAwake)
+            {
+                _audioSource.playOnAwake = false;
+                _pendingAutoPlay = true;
+            }
+        }
+
+        private void Start()
+        {
+            if (_pendingAutoPlay)
+                Play();
         }
 
         private void OnDestroy()

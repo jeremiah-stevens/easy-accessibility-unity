@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using EasyAccessibility;
 using UnityEngine;
 
 namespace EasyAccessibility.DescriptiveMedia
@@ -39,6 +38,34 @@ namespace EasyAccessibility.DescriptiveMedia
         private readonly List<ActiveCaption> m_activeCaptions = new();
         private readonly Dictionary<DescriptiveMediaSource, Coroutine> m_vttCoroutines = new();
 
+#if UNITY_EDITOR
+        [Serializable]
+        private struct ActiveCaptionDebugInfo
+        {
+            public string sourceName;
+            public string text;
+        }
+
+        [SerializeField]
+        private List<ActiveCaptionDebugInfo> _debugCaptions = new();
+#endif
+
+        private void NotifyCaptionsChanged()
+        {
+#if UNITY_EDITOR
+            _debugCaptions.Clear();
+            foreach (var c in m_activeCaptions)
+                _debugCaptions.Add(
+                    new ActiveCaptionDebugInfo
+                    {
+                        sourceName = c.Source != null ? c.Source.gameObject.name : "(destroyed)",
+                        text = c.Text,
+                    }
+                );
+#endif
+            OnCaptionsChanged?.Invoke(new ReadOnlyCollection<ActiveCaption>(m_activeCaptions));
+        }
+
         /// <summary>
         /// Registers a clip play from a <see cref="DescriptiveMediaSource"/> and adds it to
         /// the active caption list if it passes the current category and priority filters.
@@ -62,7 +89,7 @@ namespace EasyAccessibility.DescriptiveMedia
             if (source.DescriptiveMedia.SourceType == DescriptionSourceType.VTT)
                 m_vttCoroutines[source] = StartCoroutine(TickVttCaption(source, caption));
 
-            OnCaptionsChanged?.Invoke(new ReadOnlyCollection<ActiveCaption>(m_activeCaptions));
+            NotifyCaptionsChanged();
         }
 
         /// <summary>
@@ -85,7 +112,7 @@ namespace EasyAccessibility.DescriptiveMedia
 
             m_activeCaptions.Add(caption);
             StartCoroutine(ExpireOneShotCaption(caption, source.DescriptiveMedia.Duration));
-            OnCaptionsChanged?.Invoke(new ReadOnlyCollection<ActiveCaption>(m_activeCaptions));
+            NotifyCaptionsChanged();
         }
 
         /// <summary>
@@ -100,7 +127,7 @@ namespace EasyAccessibility.DescriptiveMedia
 
             StopVttCoroutine(source);
             m_activeCaptions.RemoveAll(c => c.Source == source);
-            OnCaptionsChanged?.Invoke(new ReadOnlyCollection<ActiveCaption>(m_activeCaptions));
+            NotifyCaptionsChanged();
         }
 
         private void StopVttCoroutine(DescriptiveMediaSource source)
@@ -128,9 +155,7 @@ namespace EasyAccessibility.DescriptiveMedia
                 {
                     caption.Text = cueIndex >= 0 ? cues[cueIndex].Text : string.Empty;
                     lastCueIndex = cueIndex;
-                    OnCaptionsChanged?.Invoke(
-                        new ReadOnlyCollection<ActiveCaption>(m_activeCaptions)
-                    );
+                    NotifyCaptionsChanged();
                 }
 
                 yield return null;
@@ -145,7 +170,7 @@ namespace EasyAccessibility.DescriptiveMedia
         {
             yield return new WaitForSeconds(duration);
             m_activeCaptions.Remove(caption);
-            OnCaptionsChanged?.Invoke(new ReadOnlyCollection<ActiveCaption>(m_activeCaptions));
+            NotifyCaptionsChanged();
         }
 
         private bool PassesFilter(DescriptiveMediaSO media)

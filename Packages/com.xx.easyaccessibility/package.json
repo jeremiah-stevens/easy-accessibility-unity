@@ -14,5 +14,8 @@
       "description": "Pre-configured icon sets using Kenney's CC0 Input Prompts asset pack.",
       "path": "Samples~/Kenney Input Prompts"
     }
-  ]
+  ],
+  "dependencies": {
+    "com.unity.textmeshpro": "3.0.6"
+  }
 }
